@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Field Studies — Display Controller</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: #1a1a1a;
+      color: #a09a90;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .controller {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 64px;
+      padding: 48px;
+    }
+
+    .header {
+      text-align: center;
+    }
+
+    .header__title {
+      font-weight: 900;
+      font-size: 48px;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+    }
+
+    .header__subtitle {
+      font-weight: 400;
+      font-size: 14px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #6b6660;
+      margin-top: 16px;
+    }
+
+    .screens {
+      display: flex;
+      gap: 32px;
+    }
+
+    .screen-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-decoration: none;
+      color: inherit;
+      padding: 40px 48px;
+      border: 1px solid rgba(160, 154, 144, 0.15);
+      transition: border-color 0.3s ease, background-color 0.3s ease;
+    }
+
+    .screen-link:hover {
+      border-color: rgba(160, 154, 144, 0.4);
+      background-color: rgba(160, 154, 144, 0.04);
+    }
+
+    .screen-link__icon {
+      width: 120px;
+      height: 213px;
+      border: 1px solid rgba(160, 154, 144, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: #6b6660;
+    }
+
+    .screen-link__label {
+      font-weight: 500;
+      font-size: 18px;
+      color: #a09a90;
+    }
+
+    .screen-link__desc {
+      font-weight: 400;
+      font-size: 13px;
+      color: #6b6660;
+      text-align: center;
+      max-width: 180px;
+      line-height: 1.5;
+    }
+
+    .sync-note {
+      font-size: 12px;
+      color: #6b6660;
+      letter-spacing: 0.04em;
+      text-align: center;
+      line-height: 1.6;
+      max-width: 420px;
+    }
+
+    .sync-note code {
+      color: #a09a90;
+      background: rgba(160, 154, 144, 0.08);
+      padding: 2px 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="controller">
+    <div class="header">
+      <div class="header__title">Field Studies</div>
+      <div class="header__subtitle">Display Controller</div>
+    </div>
+
+    <div class="screens">
+      <a href="./left/" class="screen-link">
+        <div class="screen-link__icon">9 : 16</div>
+        <div class="screen-link__label">SX — Left Screen</div>
+        <div class="screen-link__desc">Accordion scroll, planimetry, products</div>
+      </a>
+      <a href="./right/" class="screen-link">
+        <div class="screen-link__icon">9 : 16</div>
+        <div class="screen-link__label">DX — Right Screen</div>
+        <div class="screen-link__desc">Image grid, hero expansion, gallery</div>
+      </a>
+    </div>
+
+    <div class="sync-note">
+      Open both screens on two portrait monitors.<br>
+      Sync via <code>?start=TIMESTAMP</code> URL parameter.<br>
+      Loops continuously — no interaction needed.
+    </div>
+  </div>
+
+</body>
+</html>
