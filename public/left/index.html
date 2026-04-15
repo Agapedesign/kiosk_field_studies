@@ -47,16 +47,19 @@
     }
 
     .cover__logo {
-      width: 64px;
-      height: auto;
+      width: 180px;
+      height: 40px;
       margin-bottom: 60px;
-      color: var(--cover-text);
-    }
-
-    .cover__logo svg {
-      width: 100%;
-      height: auto;
-      fill: currentColor;
+      border: 1px solid var(--cover-text-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-family);
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cover-text-dim);
     }
 
     .cover__title {
@@ -133,11 +136,11 @@
     .scroll-item__location {
       font-family: var(--font-family);
       font-weight: 400;
-      font-size: 18px;
+      font-size: 24px;
       line-height: 1.4;
       letter-spacing: 0.02em;
       color: var(--cover-text-dim);
-      margin-top: 12px;
+      margin-top: 24px;
     }
 
     /* --- Collapsible body (accordion, dark register) --- */
@@ -186,21 +189,21 @@
     .body__quote {
       font-family: var(--font-family);
       font-weight: 300;
-      font-size: 22px;
-      line-height: 1.5;
-      color: var(--cover-text-dim);
-      max-width: 600px;
-      margin-top: 20px;
+      font-size: 36px;
+      line-height: 1.4;
+      color: var(--cover-text);
+      max-width: 720px;
+      margin-top: 32px;
     }
 
     .body__quote-author {
       font-family: var(--font-family);
       font-weight: 400;
-      font-size: 14px;
+      font-size: 18px;
       line-height: 1.4;
       color: var(--cover-text-dim);
       opacity: 0.7;
-      margin-top: 6px;
+      margin-top: 12px;
     }
 
     /* ----------------------------------------
@@ -299,11 +302,7 @@
       <!-- ============ Cover (always full vh) ============ -->
       <div class="scroll-item scroll-item--cover" id="coverItem">
         <div class="cover__top">
-          <div class="cover__logo">
-            <svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
-              <path d="M30 0 C30 0 0 40 0 55 C0 68.8 13.4 80 30 80 C46.6 80 60 68.8 60 55 C60 40 30 0 30 0Z" fill="currentColor"/>
-            </svg>
-          </div>
+          <div class="cover__logo">Agape logo</div>
           <div>
             <div class="cover__title">Field<br>Studies</div>
             <div class="cover__title cover__title--review">Design<br>Review</div>

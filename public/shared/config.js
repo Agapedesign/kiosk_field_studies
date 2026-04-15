@@ -72,7 +72,7 @@ const CONFIG = {
     columns: 4,
     scrollSpeed: 60,          // px/sec — vertical scroll speed
     inactiveOpacity: 0.3,    // opacity of non-active project thumbnails
-    cellGap: 3,              // px gap between cells
+    cellGap: 10,             // px gap between cells
   },
 
   // --- Gallery (DX, T₂) ---
