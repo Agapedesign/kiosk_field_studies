@@ -1,0 +1,32 @@
+<svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <!-- Coastal Retreat — Cascais — 3 products -->
+
+  <g class="plan-perimeter" stroke="#a09a90" stroke-width="2">
+    <path d="M40,60 L440,60 L440,200 L560,200 L560,460 L40,460 Z"/>
+  </g>
+
+  <g class="plan-partitions" stroke="#a09a90" stroke-width="1.5">
+    <path d="M300,60 L300,460"/>
+    <path d="M440,200 L440,460"/>
+  </g>
+
+  <g class="plan-fixtures" stroke="#a09a90" stroke-width="1">
+    <!-- Freestanding bathtub -->
+    <path d="M80,140 Q80,100 150,100 L210,100 Q280,100 280,140 L280,280 Q280,320 210,320 L150,320 Q80,320 80,280 Z"/>
+    <!-- Washbasin -->
+    <path d="M330,80 L420,80 L420,140 Q420,180 375,180 Q330,180 330,140 Z"/>
+    <!-- Shower -->
+    <path d="M460,230 L540,230 L540,430 L460,430 Z M465,235 L535,235 L535,425 L465,425 Z"/>
+  </g>
+
+  <g class="plan-dots">
+    <circle cx="180" cy="210" r="14" fill="#a09a90"/>
+    <text x="180" y="215" text-anchor="middle" fill="#1a1a1a" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="13" font-weight="700">1</text>
+
+    <circle cx="375" cy="120" r="14" fill="#a09a90"/>
+    <text x="375" y="125" text-anchor="middle" fill="#1a1a1a" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="13" font-weight="700">2</text>
+
+    <circle cx="500" cy="330" r="14" fill="#a09a90"/>
+    <text x="500" y="335" text-anchor="middle" fill="#1a1a1a" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="13" font-weight="700">3</text>
+  </g>
+</svg>

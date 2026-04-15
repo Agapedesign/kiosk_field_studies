@@ -1,0 +1,38 @@
+<svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <!-- Home Sanctuary — Amsterdam — 4 products -->
+
+  <g class="plan-perimeter" stroke="#a09a90" stroke-width="2">
+    <path d="M40,40 L560,40 L560,460 L40,460 Z"/>
+  </g>
+
+  <g class="plan-partitions" stroke="#a09a90" stroke-width="1.5">
+    <path d="M280,40 L280,460"/>
+    <path d="M40,260 L280,260"/>
+    <path d="M280,200 L560,200"/>
+  </g>
+
+  <g class="plan-fixtures" stroke="#a09a90" stroke-width="1">
+    <!-- Bathtub -->
+    <path d="M60,70 L240,70 L240,230 L60,230 Z M70,80 L230,80 L230,220 L70,220 Z"/>
+    <!-- Washbasin -->
+    <path d="M310,60 L410,60 L410,120 Q410,160 360,160 Q310,160 310,120 Z"/>
+    <!-- Shower tray -->
+    <path d="M310,230 L530,230 L530,430 L310,430 Z"/>
+    <!-- Vanity -->
+    <path d="M60,290 L250,290 L250,340 L60,340 Z"/>
+  </g>
+
+  <g class="plan-dots">
+    <circle cx="150" cy="150" r="14" fill="#a09a90"/>
+    <text x="150" y="155" text-anchor="middle" fill="#1a1a1a" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="13" font-weight="700">1</text>
+
+    <circle cx="360" cy="100" r="14" fill="#a09a90"/>
+    <text x="360" y="105" text-anchor="middle" fill="#1a1a1a" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="13" font-weight="700">2</text>
+
+    <circle cx="150" cy="315" r="14" fill="#a09a90"/>
+    <text x="150" y="320" text-anchor="middle" fill="#1a1a1a" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="13" font-weight="700">3</text>
+
+    <circle cx="420" cy="330" r="14" fill="#a09a90"/>
+    <text x="420" y="335" text-anchor="middle" fill="#1a1a1a" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" font-size="13" font-weight="700">4</text>
+  </g>
+</svg>
