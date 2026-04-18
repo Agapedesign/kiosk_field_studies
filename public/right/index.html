@@ -45,6 +45,9 @@
     .grid__cell {
       position: relative;
       overflow: hidden;
+      /* Each cell is its own paint/layout boundary — smart-TV compositors
+         can then skip checking siblings when one cell's clip-path animates. */
+      contain: layout paint;
     }
 
     .grid__cell-inner {
@@ -140,8 +143,10 @@
         return url.replace('/upload/', '/upload/' + parts.join(',') + '/');
       }
 
-      // Thumbnail width — matches actual cell size (~140px)
-      var THUMB_W = 150;
+      // Thumbnail width — the 6-col grid renders cells at ~164px wide,
+      // so 320 gives the browser a ~2× oversample to downsample from.
+      // Fetching at 150 caused visible upscaling (sgranata).
+      var THUMB_W = 320;
       // Floater max dimensions — the scroll band is ~700px wide and the
       // screen is 1920 tall, so fetching larger than 800×1920 just burns
       // smart-TV GPU memory and decode time. `c_limit` keeps natural
@@ -209,9 +214,13 @@
         var project = PROJECTS[cell.projectIndex];
         var imgSrc = cldImg(project.images.hero, THUMB_W);
 
-        // Image
+        // Image — `decoding="async"` + a background `decode()` call so
+        // all 36 thumbs are pre-rasterized before the curtain-down
+        // reveal runs. Otherwise decode cost lands inside the
+        // animation frame and causes "fatica" on the smart-TV GPU.
         var img = document.createElement('img');
         img.className = 'grid__cell-image';
+        img.decoding = 'async';
         img.src = imgSrc;
         img.alt = project.title;
         img.onerror = function () {
@@ -219,6 +228,9 @@
           this.style.display = 'none';
           inner.style.backgroundColor = FALLBACK_BG;
         };
+        if (typeof img.decode === 'function') {
+          img.decode().catch(function () {});
+        }
         inner.appendChild(img);
 
         el.appendChild(inner);
