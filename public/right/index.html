@@ -376,13 +376,17 @@
           h: imgCr.height,
         };
 
-        // Scroll geometry: cols 2–5 of the underlying grid, horizontally centered
-        var cellW = (SCREEN_W - PAD * 2 - GAP * (cols - 1)) / cols;
-        var SCROLL_LEFT = PAD + cellW + GAP;
-        var SCROLL_W = cellW * 4 + GAP * 3;
+        // Scroll geometry: measure actual rendered rects of grid cols 2 and 5
+        // in row 0, so the scroll band aligns pixel-exact with the underlying
+        // grid regardless of rounding in the CSS `1fr` distribution.
+        var firstRowCells = allCellEls.slice(0, cols);
+        var col2Rect = firstRowCells[1].getBoundingClientRect();
+        var col5Rect = firstRowCells[4].getBoundingClientRect();
+        var SCROLL_LEFT = col2Rect.left - sr.left;
+        var SCROLL_W = col5Rect.right - col2Rect.left;
+        var GAP_V = 10; // vertical spacing between stacked images
 
-        // Per-image render box — fit to SCROLL_W, cap height at SCREEN_H,
-        // centered in a 1920-px vertical slot.
+        // Per-image render box — fit to SCROLL_W, cap height at SCREEN_H.
         imgData.forEach(function (d) {
           var w = SCROLL_W;
           var h = SCROLL_W * (d.h / d.w);
@@ -393,8 +397,15 @@
           d.renderW = w;
           d.renderH = h;
           d.slotLeft = SCROLL_LEFT + (SCROLL_W - w) / 2;
-          d.slotTop = (SCREEN_H - h) / 2;
         });
+
+        // Baseline Y for each image — hero centered on screen, others
+        // stacked below with GAP_V between.
+        var baselineY = [];
+        baselineY[0] = (SCREEN_H - imgData[0].renderH) / 2;
+        for (var bi = 1; bi < imgData.length; bi++) {
+          baselineY[bi] = baselineY[bi - 1] + imgData[bi - 1].renderH + GAP_V;
+        }
 
         // Create floating layer
         var layer = document.createElement('div');
@@ -403,8 +414,8 @@
         activeLayer = layer;
         activeHeroInner = innerEl;
 
-        // Stack images in 1920-px slots: hero starts at thumb rect, others
-        // sit at their natural slot offsets (off-screen below).
+        // Place images — hero starts at thumb rect, others at their
+        // baseline stack position (below screen for all i >= 1).
         var floaters = imgData.map(function (data, i) {
           var el = document.createElement('img');
           el.src = data.url;
@@ -416,42 +427,83 @@
               y: 0, opacity: 1,
             });
           } else {
+            // Non-hero images stay invisible until hero finishes expanding —
+            // otherwise image 1 would peek into the bottom of the screen
+            // while hero is still growing from the thumb position.
             gsap.set(el, {
-              left: data.slotLeft,
-              top: i * SCREEN_H + data.slotTop,
+              left: data.slotLeft, top: baselineY[i],
               width: data.renderW, height: data.renderH,
-              y: 0, opacity: 1,
+              y: 0, opacity: 0,
             });
           }
           return { el: el, data: data };
         });
         var allFloaterEls = floaters.map(function (f) { return f.el; });
 
-        // T0: swap grid thumb → floating hero (same pos/size)
+        // T0: swap grid thumb → floating hero
         gsap.set(innerEl, { opacity: 0 });
 
-        // T1: hero expands to slot-0 center (cols 2–5 width)
+        // T1: hero expands to its baseline (cols 2–5 width, centered vertically)
         await animate(floaters[0].el, {
           left: imgData[0].slotLeft,
-          top: imgData[0].slotTop,
+          top: baselineY[0],
           width: imgData[0].renderW,
           height: imgData[0].renderH,
           duration: 1.0,
-          ease: 'power2.out',
+          ease: 'power2.inOut',
         });
         if (!live()) return;
 
-        // T2: hero hold at center
-        await delay(2);
-        if (!live()) return;
+        // T2: reveal non-hero images now that hero has settled —
+        // fade combined with curtain-down (top → bottom unveil).
+        // Uses fromTo + immediateRender:false (same pattern as grid curtains)
+        // so GSAP has explicit, consistent-unit endpoints for clipPath.
+        if (floaters.length > 1) {
+          var nonHeroEls = floaters.slice(1).map(function (f) { return f.el; });
+          await new Promise(function (resolve) {
+            gsap.fromTo(nonHeroEls,
+              { opacity: 0, clipPath: 'inset(0% 0% 100% 0%)' },
+              {
+                opacity: 1,
+                clipPath: 'inset(0% 0% 0% 0%)',
+                duration: 0.8,
+                ease: 'power2.out',
+                immediateRender: false,
+                onComplete: resolve,
+              }
+            );
+          });
+          if (!live()) return;
+        }
 
-        // T3: scroll — one 1920-px step per image, plus a final step that
-        // pushes the last image off the top. ease.inOut at each boundary
-        // gives zero velocity pauses without a full stop.
-        for (var k = 1; k <= imgData.length; k++) {
+        // T3: drift-then-transition per image.
+        //   drift — 2 s linear slow crawl (min velocity, never fully 0)
+        //   transition — 1 s ease.inOut to the next image's center
+        // Last image's transition pushes it off the top.
+        var DRIFT_DIST = 40;
+        var DRIFT_DUR  = 2.0;
+        var TRANS_DUR  = 1.0;
+
+        for (var i = 0; i < imgData.length; i++) {
           await animate(allFloaterEls, {
-            y: '-=' + SCREEN_H,
-            duration: 1.0,
+            y: '-=' + DRIFT_DIST,
+            duration: DRIFT_DUR,
+            ease: 'none',
+          });
+          if (!live()) return;
+
+          var transDist;
+          if (i === imgData.length - 1) {
+            // Push last image off the top
+            transDist = imgData[i].renderH / 2 + SCREEN_H / 2 - DRIFT_DIST;
+          } else {
+            var stepDist = imgData[i].renderH / 2 + GAP_V + imgData[i + 1].renderH / 2;
+            transDist = stepDist - DRIFT_DIST;
+          }
+
+          await animate(allFloaterEls, {
+            y: '-=' + transDist,
+            duration: TRANS_DUR,
             ease: 'power2.inOut',
           });
           if (!live()) return;

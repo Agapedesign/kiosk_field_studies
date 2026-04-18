@@ -193,7 +193,7 @@ img {
 }
 
 .project-quote {
-  font-weight: 300;
+  font-weight: 400;
   font-size: 26px;
   line-height: 1.5;
   color: var(--text-secondary);
@@ -223,7 +223,7 @@ img {
 }
 
 .cell-number {
-  font-weight: 300;
+  font-weight: 400;
   font-size: 13px;
   line-height: 1;
   color: var(--text-tertiary);
