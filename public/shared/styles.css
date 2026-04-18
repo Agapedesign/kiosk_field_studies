@@ -257,3 +257,28 @@ img {
 .will-animate {
   will-change: transform, opacity;
 }
+
+
+/* ========================================
+   Wall-mount rotation
+   Physical TVs are mounted rotated 90° clockwise. When `?rotate=cw` is
+   passed on the URL, `<html>` gets `.rotated` and the body is counter-
+   rotated 90° counter-clockwise so content reads upright.
+   Body keeps its logical 1080×1920 portrait dimensions; `<html>` becomes
+   the landscape viewport (1920×1080) that holds the rotated body centered.
+   ======================================== */
+
+html.rotated {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+html.rotated body {
+  transform: rotate(-90deg);
+  transform-origin: center center;
+  flex: 0 0 auto;
+}

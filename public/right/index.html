@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=1080, height=1920, initial-scale=1">
   <title>Field Studies — Right Screen</title>
+  <script>
+    // Wall-mount rotation: `?rotate=cw` means the physical TV is mounted
+    // rotated 90° clockwise, so counter-rotate the body. Run before the
+    // stylesheet so there is no pre-rotation flash.
+    if (new URLSearchParams(location.search).get('rotate') === 'cw') {
+      document.documentElement.classList.add('rotated');
+    }
+  </script>
   <link rel="stylesheet" href="../shared/styles.css">
   <style>
     /* ========================================
@@ -232,6 +240,24 @@
         });
       }
 
+      /**
+       * Offset of an element relative to an ancestor, ignoring CSS transforms
+       * (unlike getBoundingClientRect which returns post-transform viewport
+       * coords). Required so the DX scroll geometry stays correct when the
+       * whole page is rotated via `?rotate=cw` for wall-mounted TVs.
+       */
+      function offsetRect(el, ancestor) {
+        var x = 0, y = 0;
+        var cur = el;
+        while (cur && cur !== ancestor) {
+          x += cur.offsetLeft;
+          y += cur.offsetTop;
+          cur = cur.offsetParent;
+          if (!cur) break;
+        }
+        return { x: x, y: y, w: el.offsetWidth, h: el.offsetHeight };
+      }
+
       // =============================================
       // 6. Grid reveal / hide
       // =============================================
@@ -366,24 +392,19 @@
         }));
         if (!live()) return;
 
-        // Measure hero thumbnail rect (actual rendered image, not cell box)
-        var sr = screenRight.getBoundingClientRect();
-        var imgCr = heroImgEl.getBoundingClientRect();
-        var heroRect = {
-          x: imgCr.left - sr.left,
-          y: imgCr.top - sr.top,
-          w: imgCr.width,
-          h: imgCr.height,
-        };
+        // Measure hero thumbnail rect (actual rendered image, not cell box).
+        // Uses `offsetRect` so geometry stays correct when the page is
+        // rotated via `?rotate=cw` for wall-mounted TVs.
+        var heroRect = offsetRect(heroImgEl, screenRight);
 
         // Scroll geometry: measure actual rendered rects of grid cols 2 and 5
         // in row 0, so the scroll band aligns pixel-exact with the underlying
         // grid regardless of rounding in the CSS `1fr` distribution.
         var firstRowCells = allCellEls.slice(0, cols);
-        var col2Rect = firstRowCells[1].getBoundingClientRect();
-        var col5Rect = firstRowCells[4].getBoundingClientRect();
-        var SCROLL_LEFT = col2Rect.left - sr.left;
-        var SCROLL_W = col5Rect.right - col2Rect.left;
+        var col2Rect = offsetRect(firstRowCells[1], screenRight);
+        var col5Rect = offsetRect(firstRowCells[4], screenRight);
+        var SCROLL_LEFT = col2Rect.x;
+        var SCROLL_W = (col5Rect.x + col5Rect.w) - col2Rect.x;
         var GAP_V = 10; // vertical spacing between stacked images
 
         // Per-image render box — fit to SCROLL_W, cap height at SCREEN_H.

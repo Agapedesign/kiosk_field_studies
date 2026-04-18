@@ -108,6 +108,56 @@
       background: rgba(160, 154, 144, 0.08);
       padding: 2px 6px;
     }
+
+    .rotate-toggle {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 13px;
+      color: #a09a90;
+      letter-spacing: 0.04em;
+    }
+
+    .rotate-toggle input {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 36px;
+      height: 20px;
+      border: 1px solid rgba(160, 154, 144, 0.4);
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .rotate-toggle input::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #a09a90;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .rotate-toggle input:checked {
+      background: rgba(176, 132, 106, 0.25);
+      border-color: #b0846a;
+    }
+
+    .rotate-toggle input:checked::after {
+      transform: translateX(16px);
+      background: #b0846a;
+    }
+
+    .rotate-toggle__hint {
+      font-size: 11px;
+      color: #6b6660;
+    }
   </style>
 </head>
 <body>
@@ -119,17 +169,23 @@
     </div>
 
     <div class="screens">
-      <a href="./left/" class="screen-link">
+      <a href="./left/" class="screen-link" data-link="left">
         <div class="screen-link__icon">9 : 16</div>
         <div class="screen-link__label">SX — Left Screen</div>
         <div class="screen-link__desc">Accordion scroll, planimetry, products</div>
       </a>
-      <a href="./right/" class="screen-link">
+      <a href="./right/" class="screen-link" data-link="right">
         <div class="screen-link__icon">9 : 16</div>
         <div class="screen-link__label">DX — Right Screen</div>
         <div class="screen-link__desc">Image grid, hero expansion, gallery</div>
       </a>
     </div>
+
+    <label class="rotate-toggle">
+      <input type="checkbox" id="rotate-cw">
+      <span>TV a parete (ruotata 90° oraria)</span>
+      <span class="rotate-toggle__hint">controruota il contenuto</span>
+    </label>
 
     <div class="sync-note">
       Open both screens on two portrait monitors.<br>
@@ -137,6 +193,30 @@
       Loops continuously — no interaction needed.
     </div>
   </div>
+
+  <script>
+    (function () {
+      var STORAGE_KEY = 'fs.rotateCw';
+      var toggle = document.getElementById('rotate-cw');
+      var links = document.querySelectorAll('.screen-link');
+
+      function applyLinks(on) {
+        links.forEach(function (a) {
+          var base = a.getAttribute('data-link') === 'left' ? './left/' : './right/';
+          a.href = on ? base + '?rotate=cw' : base;
+        });
+      }
+
+      var initial = localStorage.getItem(STORAGE_KEY) === '1';
+      toggle.checked = initial;
+      applyLinks(initial);
+
+      toggle.addEventListener('change', function () {
+        localStorage.setItem(STORAGE_KEY, toggle.checked ? '1' : '0');
+        applyLinks(toggle.checked);
+      });
+    })();
+  </script>
 
 </body>
 </html>

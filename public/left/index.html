@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=1080, height=1920, initial-scale=1">
   <title>Field Studies — Left Screen</title>
+  <script>
+    // Wall-mount rotation: `?rotate=cw` means the physical TV is mounted
+    // rotated 90° clockwise, so counter-rotate the body. Run before the
+    // stylesheet so there is no pre-rotation flash.
+    if (new URLSearchParams(location.search).get('rotate') === 'cw') {
+      document.documentElement.classList.add('rotated');
+    }
+  </script>
   <link rel="stylesheet" href="../shared/styles.css">
   <style>
     /* ========================================
