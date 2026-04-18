@@ -1,9 +1,13 @@
 /**
  * Field Studies Display — Project Data v4
  *
- * 37 projects. All images + plans from Cloudinary CDN.
+ * Projects sourced with images + plans from Cloudinary CDN.
  * Base URL: https://res.cloudinary.com/agapelibrary/image/upload/
  * Insert transformations between /upload/ and the path.
+ *
+ * Projects whose hero is a local placeholder path (not `http(s)://`)
+ * are filtered out at the bottom of this file and never reach either
+ * screen.
  */
 
 const PROJECTS = [
@@ -2115,3 +2119,13 @@ const PROJECTS = [
     "cloudinaryTag": "FS R24/11 IN EU"
   }
 ];
+
+// Drop projects without a real (remote) hero image. Local placeholder
+// paths like `assets/images/.../hero.jpg` mean the project hasn't been
+// shot yet and must not appear on either screen.
+for (var _pi = PROJECTS.length - 1; _pi >= 0; _pi--) {
+  var _hero = PROJECTS[_pi].images && PROJECTS[_pi].images.hero;
+  if (!_hero || !/^https?:\/\//.test(_hero)) {
+    PROJECTS.splice(_pi, 1);
+  }
+}
