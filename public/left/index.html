@@ -466,9 +466,10 @@
       // =============================================
       // 2. Clone bars for infinite-loop sweep
       // =============================================
-      // A lightweight copy of all bars is prepended above the
-      // real content. When scrolling upward past the cover, the
-      // clones provide seamless visual continuity.
+      // A lightweight copy of all bars is appended below the real
+      // content. Sweeps animate downward through the clones (track
+      // translates up, items enter from the bottom — the natural
+      // vertical-scroll direction) and snap back to the real element.
 
       var cloneFrag = document.createDocumentFragment();
       var coverClone = coverItem.cloneNode(true);
@@ -487,10 +488,14 @@
         cloneFrag.appendChild(ci);
       });
 
-      scrollTrack.insertBefore(cloneFrag, scrollTrack.firstChild);
+      scrollTrack.appendChild(cloneFrag);
+
+      // Reference the first cloned element so we can measure the
+      // content block height after layout (see init).
+      var firstCloneEl = coverClone;
 
       // blockHeight = height of one full set (clone block).
-      // Measured in init after layout; real cover sits at this offset.
+      // Measured in init after layout; first clone sits at this offset.
       var blockHeight = 0;
 
       // =============================================
@@ -774,7 +779,7 @@
       }
 
       /**
-       * Infinite-loop sweep: scrolls upward continuously through all
+       * Infinite-loop sweep: scrolls downward continuously through all
        * titles (via clone block), then snaps back to the real element.
        * Every transition shows the full catalogue index.
        */
@@ -782,10 +787,11 @@
         var realTargetY = -(targetEl.offsetTop);
         var currentY = gsap.getProperty(scrollTrack, 'y') || 0;
 
-        // Clone equivalent sits one blockHeight closer to y=0
-        var cloneTargetY = realTargetY + blockHeight;
+        // Clones sit AFTER real content, so clone of target is one
+        // blockHeight further into the track (more negative y).
+        var cloneTargetY = realTargetY - blockHeight;
 
-        // Upward distance
+        // Downward distance
         var dist = Math.abs(cloneTargetY - currentY);
         var duration = Math.max(2.0, Math.min(4.5, 1.0 + dist / 3000));
 
@@ -917,7 +923,7 @@
       async function runLoop() {
         while (true) {
           // --- Cover ---
-          gsap.set(scrollTrack, { y: -blockHeight });
+          gsap.set(scrollTrack, { y: 0 });
           resetHighlight();
           await delay(CONFIG.t0.duration);
 
@@ -961,8 +967,8 @@
 
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
-          // Measure block height: real cover's offsetTop = total clone block height
-          blockHeight = coverItem.offsetTop;
+          // Measure block height: first clone's offsetTop = total real block height
+          blockHeight = firstCloneEl.offsetTop;
           console.log('[SX] Block height:', blockHeight, 'px');
 
           preloadPlans().then(function () {
