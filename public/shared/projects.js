@@ -1,1147 +1,2117 @@
 /**
- * Field Studies Display — Project Data v3
+ * Field Studies Display — Project Data v4
  *
- * 37 projects from the "Field Studies — Design Review" catalogue.
- * All content in English.
- *
- * IMAGE DELIVERY:
- * Projects with Cloudinary images use base URLs from:
- *   https://res.cloudinary.com/agapelibrary/image/upload/
- * Transformations should be applied programmatically by inserting
- * parameters between /upload/ and the public_id, e.g.:
- *   .../upload/w_1080,h_1920,c_fill,q_auto,f_auto/Agape%20Field%20Studies%2026/...
- *
- * Projects without Cloudinary images use local placeholder paths.
- * Plans should be placed in assets/plans/{id}.svg
+ * 37 projects. All images + plans from Cloudinary CDN.
+ * Base URL: https://res.cloudinary.com/agapelibrary/image/upload/
+ * Insert transformations between /upload/ and the path.
  */
 
 const PROJECTS = [
   {
-    id: 'home-sanctuary',
-    title: 'Home Sanctuary',
-    location: 'Amsterdam, The Netherlands',
-    architect: 'Barde vanVoltt',
-    code: 'FS R13 IN EU',
-    pages: '016 — 023',
-    quote: {
-      text: 'There are many joys about living in Amsterdam, one of which is nestling inside and watching the rain pass.',
-      author: 'Barde vanVoltt',
+    "id": "home-sanctuary",
+    "title": "Home Sanctuary",
+    "location": "Amsterdam, The Netherlands",
+    "architect": "Barde vanVoltt",
+    "code": "FS R13 IN EU",
+    "pages": "016 — 023",
+    "quote": {
+      "text": "There are many joys about living in Amsterdam, one of which is nestling inside and watching the rain pass.",
+      "author": "Barde vanVoltt"
     },
-    products: [
-      { number: 1, name: 'Memory', type: 'Taps, Accessories' },
-      { number: 2, name: 'In-Out', type: 'Bathtub' },
-      { number: 3, name: 'Bjhon 1', type: 'Washbasin' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Memory",
+        "type": "Taps, Accessories"
+      },
+      {
+        "number": 2,
+        "name": "In-Out",
+        "type": "Bathtub"
+      },
+      {
+        "number": 3,
+        "name": "Bjhon 1",
+        "type": "Washbasin"
+      }
     ],
-    images: {
-      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_01%20IN%20EU/1a._canalhouse_bardevanvoltt.jpg',
-      gallery: [
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_01%20IN%20EU/3._canalhouse_bardevanvoltt.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_01%20IN%20EU/5._canalhouse_bardevanvoltt.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_01%20IN%20EU/7._canalhouse_bardevanvoltt.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_01%20IN%20EU/9._canalhouse_bardevanvoltt.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_01%20IN%20EU/1a._canalhouse_bardevanvoltt.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_01%20IN%20EU/3._canalhouse_bardevanvoltt.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_01%20IN%20EU/5._canalhouse_bardevanvoltt.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_01%20IN%20EU/7._canalhouse_bardevanvoltt.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_01%20IN%20EU/9._canalhouse_bardevanvoltt.jpg"
       ],
-      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_01%20IN%20EU/1a._canalhouse_bardevanvoltt.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_01%20IN%20EU/1a._canalhouse_bardevanvoltt.jpg"
     },
-    cloudinaryTag: 'FS R22/01 IN EU',
-    plan: 'assets/plans/home-sanctuary.svg',
+    "cloudinaryTag": "FS R22/01 IN EU",
+    "plan": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_01%20IN%20EU/Home_Sanctuary.svg"
   },
   {
-    id: 'its-house',
-    title: "It's House",
-    location: 'Taipei City, Taiwan',
-    architect: '2BOOKS design',
-    code: 'FS R15 IN AS',
-    pages: '024 — 029',
-    quote: {
-      text: 'For its pure shape, which perfectly reflects our design concept. As little ornamentation as possible is best.',
-      author: 'Jeff Weng',
+    "id": "its-house",
+    "title": "It's House",
+    "location": "Taipei City, Taiwan",
+    "architect": "2BOOKS design",
+    "code": "FS R15 IN AS",
+    "pages": "024 — 029",
+    "quote": {
+      "text": "For its pure shape, which perfectly reflects our design concept. As little ornamentation as possible is best.",
+      "author": "Jeff Weng"
     },
-    products: [
-      { number: 1, name: 'Fez 2', type: 'Taps' },
-      { number: 2, name: 'Petra', type: 'Washbasin' },
-      { number: 3, name: 'Pear 2', type: 'Sanitary ware' },
-      { number: 4, name: '369', type: 'Accessories' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Fez 2",
+        "type": "Taps"
+      },
+      {
+        "number": 2,
+        "name": "Petra",
+        "type": "Washbasin"
+      },
+      {
+        "number": 3,
+        "name": "Pear 2",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 4,
+        "name": "369",
+        "type": "Accessories"
+      }
     ],
-    images: {
-      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_22%20IN%20AS/TWO_BOOKS_P0036147_0_5x.jpg',
-      gallery: [
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_22%20IN%20AS/TWO_BOOKS_P0036180_0_5x.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_22%20IN%20AS/TWO_BOOKS_P0036305_0_5x.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_22%20IN%20AS/TWO_BOOKS_P0036308_0_5x.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_22%20IN%20AS/TWO_BOOKS_P0036366_0_5x.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_22%20IN%20AS/TWO_BOOKS_P0036147_0_5x.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_22%20IN%20AS/TWO_BOOKS_P0036180_0_5x.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_22%20IN%20AS/TWO_BOOKS_P0036305_0_5x.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_22%20IN%20AS/TWO_BOOKS_P0036308_0_5x.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_22%20IN%20AS/TWO_BOOKS_P0036366_0_5x.jpg"
       ],
-      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_22%20IN%20AS/TWO_BOOKS_P0036147_0_5x.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_22%20IN%20AS/TWO_BOOKS_P0036147_0_5x.jpg"
     },
-    cloudinaryTag: 'FS R22/22 IN AS',
-    plan: 'assets/plans/its-house.svg',
+    "cloudinaryTag": "FS R22/22 IN AS",
+    "plan": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_22%20IN%20AS/Its_House.svg"
   },
   {
-    id: 'pleated-b-villa',
-    title: 'Pleated B Villa',
-    location: 'Aldrans, Austria',
-    architect: 'Bergmeisterwolf Architekten',
-    code: 'FS R25 IN EU',
-    pages: '030 — 037',
-    quote: {
-      text: 'It is the simplicity that can transform tradition.',
-      author: 'Bergmeisterwolf Architekten',
+    "id": "pleated-b-villa",
+    "title": "Pleated B Villa",
+    "location": "Aldrans, Austria",
+    "architect": "Bergmeisterwolf Architekten",
+    "code": "FS R25 IN EU",
+    "pages": "030 — 037",
+    "quote": {
+      "text": "It is the simplicity that can transform tradition.",
+      "author": "Bergmeisterwolf Architekten"
     },
-    products: [
-      { number: 1, name: 'Memory', type: 'Taps, Accessories' },
-      { number: 2, name: 'Vieques', type: 'Bathtub, Washbasin' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Memory",
+        "type": "Taps, Accessories"
+      },
+      {
+        "number": 2,
+        "name": "Vieques",
+        "type": "Bathtub, Washbasin"
+      }
     ],
-    images: {
-      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_40%20IN%20EU/bergmeisterwolf_Aldranz_IMG_4578_GW.jpg',
-      gallery: [
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_40%20IN%20EU/bergmeisterwolf_Aldranz_IMG_4343_GW.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_40%20IN%20EU/bergmeisterwolf_Aldranz_IMG_4457_GW.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_40%20IN%20EU/bergmeisterwolf_Aldranz_IMG_4563_GW.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_40%20IN%20EU/bergmeisterwolf_Aldranz_IMG_4578_GW.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_40%20IN%20EU/bergmeisterwolf_Aldranz_IMG_4343_GW.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_40%20IN%20EU/bergmeisterwolf_Aldranz_IMG_4457_GW.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_40%20IN%20EU/bergmeisterwolf_Aldranz_IMG_4563_GW.jpg"
       ],
-      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_40%20IN%20EU/bergmeisterwolf_Aldranz_IMG_4578_GW.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_40%20IN%20EU/bergmeisterwolf_Aldranz_IMG_4578_GW.jpg"
     },
-    cloudinaryTag: 'FS R19/40 IN EU',
-    plan: 'assets/plans/pleated-b-villa.svg',
+    "cloudinaryTag": "FS R19/40 IN EU",
+    "plan": ["https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_40%20IN%20EU/Plated_B_Villa.svg","https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_40%20IN%20EU/Plated_B_Villa_1.svg"]
   },
   {
-    id: 'te-arai-beach-house',
-    title: 'Te Arai Beach House',
-    location: 'North Island, New Zealand',
-    architect: 'Fearon Hay Architects',
-    code: 'FS R33 IN OC',
-    pages: '038 — 043',
-    quote: {
-      text: 'The Ottocento bath and basins fit perfectly with the contemporary farmhouse aesthetic.',
-      author: 'Sonja Hawkins',
+    "id": "te-arai-beach-house",
+    "title": "Te Arai Beach House",
+    "location": "North Island, New Zealand",
+    "architect": "Fearon Hay Architects",
+    "code": "FS R33 IN OC",
+    "pages": "038 — 043",
+    "quote": {
+      "text": "The Ottocento bath and basins fit perfectly with the contemporary farmhouse aesthetic.",
+      "author": "Sonja Hawkins"
     },
-    products: [
-      { number: 1, name: 'Memory', type: 'Taps' },
-      { number: 2, name: 'Pear', type: 'Sanitary ware' },
-      { number: 3, name: 'Ottocento', type: 'Bathtub, Washbasins' },
-      { number: 4, name: 'Nudo LED', type: 'Mirror' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Memory",
+        "type": "Taps"
+      },
+      {
+        "number": 2,
+        "name": "Pear",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 3,
+        "name": "Ottocento",
+        "type": "Bathtub, Washbasins"
+      },
+      {
+        "number": 4,
+        "name": "Nudo LED",
+        "type": "Mirror"
+      }
     ],
-    images: {
-      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_15%20IN%20OC/FH.TaraIti.071-POST.jpg',
-      gallery: [
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_15%20IN%20OC/FH.TaraIti.060.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_15%20IN%20OC/FH.TaraIti.133.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_15%20IN%20OC/FH.TaraIti.205.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_15%20IN%20OC/FH.TaraIti.071-POST.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_15%20IN%20OC/FH.TaraIti.060.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_15%20IN%20OC/FH.TaraIti.133.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_15%20IN%20OC/FH.TaraIti.205.jpg"
       ],
-      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_15%20IN%20OC/FH.TaraIti.071-POST.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_15%20IN%20OC/FH.TaraIti.071-POST.jpg"
     },
-    cloudinaryTag: 'FS R20/15 IN OC',
-    plan: 'assets/plans/te-arai-beach-house.svg',
+    "cloudinaryTag": "FS R20/15 IN OC",
+    "plan": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_15%20IN%20OC/Te_Arai_Beach_House.svg"
   },
   {
-    id: 'suspension-house',
-    title: 'Suspension House',
-    location: 'Napa County, United States',
-    architect: 'Fougeron Architecture',
-    code: 'FS R32 IN NA',
-    pages: '044 — 051',
-    quote: {
-      text: 'The goal with this unique site was to enhance the relationship of the structure to the nearby bodies of water and the rock face.',
-      author: 'Fougeron Architecture',
+    "id": "suspension-house",
+    "title": "Suspension House",
+    "location": "Napa County, United States",
+    "architect": "Fougeron Architecture",
+    "code": "FS R32 IN NA",
+    "pages": "044 — 051",
+    "quote": {
+      "text": "The goal with this unique site was to enhance the relationship of the structure to the nearby bodies of water and the rock face.",
+      "author": "Fougeron Architecture"
     },
-    products: [
-      { number: 1, name: 'Sen', type: 'Taps, Accessories' },
-      { number: 2, name: 'Litorale', type: 'Washbasin/Countertop' },
-      { number: 3, name: 'Plan-a', type: 'Shower' },
-      { number: 4, name: 'Pear 2', type: 'Sanitary ware' },
-      { number: 5, name: 'Evo 21', type: 'System' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Sen",
+        "type": "Taps, Accessories"
+      },
+      {
+        "number": 2,
+        "name": "Litorale",
+        "type": "Washbasin/Countertop"
+      },
+      {
+        "number": 3,
+        "name": "Plan-a",
+        "type": "Shower"
+      },
+      {
+        "number": 4,
+        "name": "Pear 2",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 5,
+        "name": "Evo 21",
+        "type": "System"
+      }
     ],
-    images: {
-      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Fougeron_SuspensionHouse_50S8922-POST.jpg',
-      gallery: [
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Fougeron_SuspensionHouse_50S7745.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Fougeron_SuspensionHouse_50S8473-POST.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Fougeron_SuspensionHouse_50S8630.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Fougeron_SuspensionHouse_50S9219.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Fougeron_SuspensionHouseDJI_0482.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Fougeron_SuspensionHouse_50S8922-POST.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Fougeron_SuspensionHouse_50S7745.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Fougeron_SuspensionHouse_50S8473-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Fougeron_SuspensionHouse_50S8630.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Fougeron_SuspensionHouse_50S9219.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Fougeron_SuspensionHouseDJI_0482.jpg"
       ],
-      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Fougeron_SuspensionHouse_50S8922-POST.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Fougeron_SuspensionHouse_50S8922-POST.jpg"
     },
-    cloudinaryTag: 'FS R22/21 IN NA',
-    plan: 'assets/plans/suspension-house.svg',
+    "cloudinaryTag": "FS R22/21 IN NA",
+    "plan": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Suspension_House.svg"
   },
   {
-    id: 'hh47-house',
-    title: 'HH47 House',
-    location: 'Ghent, Belgium',
-    architect: 'Juma Architects',
-    code: 'FS R12 IN EU',
-    pages: '052 — 059',
-    quote: {
-      text: 'Building for themselves, the husband and wife team was able to design a house that catered precisely to their family\'s needs.',
-      author: 'Juma Architects',
+    "id": "hh47-house",
+    "title": "HH47 House",
+    "location": "Ghent, Belgium",
+    "architect": "Juma Architects",
+    "code": "FS R12 IN EU",
+    "pages": "052 — 059",
+    "quote": {
+      "text": "Building for themselves, the husband and wife team was able to design a house that catered precisely to their family's needs.",
+      "author": "Juma Architects"
     },
-    products: [
-      { number: 1, name: 'Lift', type: 'Mirror cabinets' },
-      { number: 2, name: 'Nudo', type: 'Mirror' },
-      { number: 3, name: 'Memory', type: 'Taps, Accessories' },
-      { number: 4, name: 'Litorale', type: 'Washbasin/Countertop' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Lift",
+        "type": "Mirror cabinets"
+      },
+      {
+        "number": 2,
+        "name": "Nudo",
+        "type": "Mirror"
+      },
+      {
+        "number": 3,
+        "name": "Memory",
+        "type": "Taps, Accessories"
+      },
+      {
+        "number": 4,
+        "name": "Litorale",
+        "type": "Washbasin/Countertop"
+      }
     ],
-    images: {
-      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_63%20IN%20EU/09192019_JUMA_Hoge_Heirweg_Luyens_Van_De_Keere_Annick_Vernimmen_264.jpg',
-      gallery: [
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_63%20IN%20EU/00516055_O.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_63%20IN%20EU/09192019_JUMA_Hoge_Heirweg_Luyens_Van_De_Keere_Annick_Vernimmen_079.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_63%20IN%20EU/09192019_JUMA_Hoge_Heirweg_Luyens_Van_De_Keere_Annick_Vernimmen_173.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_63%20IN%20EU/09192019_JUMA_Hoge_Heirweg_Luyens_Van_De_Keere_Annick_Vernimmen_226.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_63%20IN%20EU/09192019_JUMA_Hoge_Heirweg_Luyens_Van_De_Keere_Annick_Vernimmen_264.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_63%20IN%20EU/00516055_O.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_63%20IN%20EU/09192019_JUMA_Hoge_Heirweg_Luyens_Van_De_Keere_Annick_Vernimmen_079.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_63%20IN%20EU/09192019_JUMA_Hoge_Heirweg_Luyens_Van_De_Keere_Annick_Vernimmen_173.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_63%20IN%20EU/09192019_JUMA_Hoge_Heirweg_Luyens_Van_De_Keere_Annick_Vernimmen_226.jpg"
       ],
-      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_63%20IN%20EU/09192019_JUMA_Hoge_Heirweg_Luyens_Van_De_Keere_Annick_Vernimmen_264.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_63%20IN%20EU/09192019_JUMA_Hoge_Heirweg_Luyens_Van_De_Keere_Annick_Vernimmen_264.jpg"
     },
-    cloudinaryTag: 'FS R19/63 IN EU',
-    plan: 'assets/plans/hh47-house.svg',
+    "cloudinaryTag": "FS R19/63 IN EU",
+    "plan": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_63%20IN%20EU/HH47_House.svg"
   },
   {
-    id: 'villa-with-internal-view',
-    title: 'Villa with Internal View',
-    location: 'Stra, Italy',
-    architect: 'MIDE architetti',
-    code: 'FS R36 IN EU',
-    pages: '060 — 065',
-    quote: {
-      text: 'A project that avoids ostentation, favouring a quiet beauty shaped by calibrated voids, layers of transparency, and honest materiality.',
-      author: 'MIDE architetti',
+    "id": "villa-with-internal-view",
+    "title": "Villa with Internal View",
+    "location": "Stra, Italy",
+    "architect": "MIDE architetti",
+    "code": "FS R36 IN EU",
+    "pages": "060 — 065",
+    "quote": {
+      "text": "A project that avoids ostentation, favouring a quiet beauty shaped by calibrated voids, layers of transparency, and honest materiality.",
+      "author": "MIDE architetti"
     },
-    products: [
-      { number: 1, name: 'Square', type: 'Taps' },
-      { number: 2, name: 'Ufo', type: 'Bathtub' },
-      { number: 3, name: 'Square', type: 'Shower' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Square",
+        "type": "Taps"
+      },
+      {
+        "number": 2,
+        "name": "Ufo",
+        "type": "Bathtub"
+      },
+      {
+        "number": 3,
+        "name": "Square",
+        "type": "Shower"
+      }
     ],
-    images: {
-      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_27%20IN%20EU/hires.tobias.kaser.007.jpg',
-      gallery: [
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_27%20IN%20EU/hires.tobias.kaser.012.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_27%20IN%20EU/hires.tobias.kaser.025.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_27%20IN%20EU/hires.tobias.kaser.007.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_27%20IN%20EU/hires.tobias.kaser.012.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_27%20IN%20EU/hires.tobias.kaser.025.jpg"
       ],
-      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_27%20IN%20EU/hires.tobias.kaser.007.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_27%20IN%20EU/hires.tobias.kaser.007.jpg"
     },
-    cloudinaryTag: 'FS R25/27 IN EU',
-    plan: 'assets/plans/villa-with-internal-view.svg',
+    "cloudinaryTag": "FS R25/27 IN EU",
+    "plan": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_27%20IN%20EU/Villa_with_Internal_View.svg"
   },
   {
-    id: 'sage-house',
-    title: 'Sage House',
-    location: 'Melbourne, Australia',
-    architect: 'Carole Whiting',
-    code: 'FS R29 IN OC',
-    pages: '066 — 071',
-    quote: {
-      text: 'The space was designed for calm and comfort and to provide a gentle environment for hectic family life.',
-      author: 'Carole Whiting',
+    "id": "sage-house",
+    "title": "Sage House",
+    "location": "Melbourne, Australia",
+    "architect": "Carole Whiting",
+    "code": "FS R29 IN OC",
+    "pages": "066 — 071",
+    "quote": {
+      "text": "The space was designed for calm and comfort and to provide a gentle environment for hectic family life.",
+      "author": "Carole Whiting"
     },
-    products: [
-      { number: 1, name: 'Limón', type: 'Taps' },
-      { number: 2, name: 'Vieques', type: 'Bathtub, Washbasins' },
-      { number: 3, name: 'Flat XL', type: 'Countertop' },
-      { number: 4, name: 'Dot Line', type: 'Mirror, Accessories' },
-      { number: 5, name: 'Plan-a', type: 'Shower' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Limón",
+        "type": "Taps"
+      },
+      {
+        "number": 2,
+        "name": "Vieques",
+        "type": "Bathtub, Washbasins"
+      },
+      {
+        "number": 3,
+        "name": "Flat XL",
+        "type": "Countertop"
+      },
+      {
+        "number": 4,
+        "name": "Dot Line",
+        "type": "Mirror, Accessories"
+      },
+      {
+        "number": 5,
+        "name": "Plan-a",
+        "type": "Shower"
+      }
     ],
-    images: {
-      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_04%20IN%20OC/CW_Sage_House_53-POST.jpg',
-      gallery: [
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_04%20IN%20OC/CW_Sage_House_11.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_04%20IN%20OC/CW_Sage_House_51.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_04%20IN%20OC/CW_Sage_House_54.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_04%20IN%20OC/CW_Sage_House_53-POST.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_04%20IN%20OC/CW_Sage_House_11.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_04%20IN%20OC/CW_Sage_House_51.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_04%20IN%20OC/CW_Sage_House_54.jpg"
       ],
-      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_04%20IN%20OC/CW_Sage_House_53-POST.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_04%20IN%20OC/CW_Sage_House_53-POST.jpg"
     },
-    cloudinaryTag: 'FS R19/04 IN OC',
-    plan: 'assets/plans/sage-house.svg',
+    "cloudinaryTag": "FS R19/04 IN OC",
+    "plan": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_04%20IN%20OC/Sage_House.svg"
   },
   {
-    id: 'twin-gable-house',
-    title: 'Twin Gable House',
-    location: 'San Francisco, United States',
-    architect: 'Ryan Leidner Architecture',
-    code: 'FS R35 IN NA',
-    pages: '072 — 079',
-    quote: {
-      text: 'The clean, minimal nature of the spaces allows every object to be appreciated as a work of art.',
-      author: 'Ryan Leidner',
+    "id": "twin-gable-house",
+    "title": "Twin Gable House",
+    "location": "San Francisco, United States",
+    "architect": "Ryan Leidner Architecture",
+    "code": "FS R35 IN NA",
+    "pages": "072 — 079",
+    "quote": {
+      "text": "The clean, minimal nature of the spaces allows every object to be appreciated as a work of art.",
+      "author": "Ryan Leidner"
     },
-    products: [
-      { number: 1, name: 'Memory', type: 'Taps, Mirror' },
-      { number: 2, name: 'Flat XL', type: 'Countertop' },
-      { number: 3, name: 'Litorale', type: 'Washbasin/Countertop' },
-      { number: 4, name: '750', type: 'Sanitary ware' },
-      { number: 5, name: 'Ottocento 001', type: 'Washbasin' },
-      { number: 6, name: 'Spoon XL', type: 'Bathtub' },
-      { number: 7, name: 'Flat DX', type: 'Shower' },
-      { number: 8, name: 'Gemma', type: 'Extras' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Memory",
+        "type": "Taps, Mirror"
+      },
+      {
+        "number": 2,
+        "name": "Flat XL",
+        "type": "Countertop"
+      },
+      {
+        "number": 3,
+        "name": "Litorale",
+        "type": "Washbasin/Countertop"
+      },
+      {
+        "number": 4,
+        "name": "750",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 5,
+        "name": "Ottocento 001",
+        "type": "Washbasin"
+      },
+      {
+        "number": 6,
+        "name": "Spoon XL",
+        "type": "Bathtub"
+      },
+      {
+        "number": 7,
+        "name": "Flat DX",
+        "type": "Shower"
+      },
+      {
+        "number": 8,
+        "name": "Gemma",
+        "type": "Extras"
+      }
     ],
-    images: {
-      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_16%20IN%20NA/Leidner_Eichler_01.jpg',
-      gallery: [
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_16%20IN%20NA/Leidner_Eichler_09.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_16%20IN%20NA/Leidner_Eichler_10.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_16%20IN%20NA/Leidner_Eichler_31.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_16%20IN%20NA/Leidner_Eichler_34.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_16%20IN%20NA/Leidner_Eichler_01.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_16%20IN%20NA/Leidner_Eichler_09.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_16%20IN%20NA/Leidner_Eichler_10.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_16%20IN%20NA/Leidner_Eichler_31.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_16%20IN%20NA/Leidner_Eichler_34.jpg"
       ],
-      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_16%20IN%20NA/Leidner_Eichler_01.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_16%20IN%20NA/Leidner_Eichler_01.jpg"
     },
-    cloudinaryTag: 'FS R20/16 IN NA',
-    plan: 'assets/plans/twin-gable-house.svg',
+    "cloudinaryTag": "FS R20/16 IN NA",
+    "plan": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_16%20IN%20NA/Twin_Gable_House.svg"
   },
   {
-    id: 'kew-residence',
-    title: 'Kew Residence',
-    location: 'Melbourne, Australia',
-    architect: 'John Wardle Architects',
-    code: 'FS R16 IN OC',
-    pages: '080 — 087',
-    quote: {
-      text: 'My wife Susan and I have owned this house for over 25 years. It has chartered the course of our family, from birth to adulthood of our three children.',
-      author: 'John Wardle',
+    "id": "kew-residence",
+    "title": "Kew Residence",
+    "location": "Melbourne, Australia",
+    "architect": "John Wardle Architects",
+    "code": "FS R16 IN OC",
+    "pages": "080 — 087",
+    "quote": {
+      "text": "My wife Susan and I have owned this house for over 25 years. It has chartered the course of our family, from birth to adulthood of our three children.",
+      "author": "John Wardle"
     },
-    products: [
-      { number: 1, name: 'Lift', type: 'Mirror cabinets' },
-      { number: 2, name: 'Fez 2', type: 'Taps' },
-      { number: 3, name: 'Nivis', type: 'Washbasin' },
-      { number: 4, name: 'Kaa', type: 'Shower head, Handheld shower' },
-      { number: 5, name: 'Stairs', type: 'Extras' },
-      { number: 6, name: 'Pear 2', type: 'Sanitary ware' },
-      { number: 7, name: 'Bjhon 2', type: 'Washbasin' },
-      { number: 8, name: 'Solid', type: 'Mirror' },
-      { number: 9, name: 'Memory', type: 'Accessories' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Lift",
+        "type": "Mirror cabinets"
+      },
+      {
+        "number": 2,
+        "name": "Fez 2",
+        "type": "Taps"
+      },
+      {
+        "number": 3,
+        "name": "Nivis",
+        "type": "Washbasin"
+      },
+      {
+        "number": 4,
+        "name": "Kaa",
+        "type": "Shower head, Handheld shower"
+      },
+      {
+        "number": 5,
+        "name": "Stairs",
+        "type": "Extras"
+      },
+      {
+        "number": 6,
+        "name": "Pear 2",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 7,
+        "name": "Bjhon 2",
+        "type": "Washbasin"
+      },
+      {
+        "number": 8,
+        "name": "Solid",
+        "type": "Mirror"
+      },
+      {
+        "number": 9,
+        "name": "Memory",
+        "type": "Accessories"
+      }
     ],
-    images: {
-      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_036_HR.jpg',
-      gallery: [
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_021_HR.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_027_HR.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_030_HR.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_042_HR.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_043_HR-POST.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_052_HR.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_036_HR.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_021_HR.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_027_HR.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_030_HR.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_042_HR.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_043_HR-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_052_HR.jpg"
       ],
-      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_036_HR.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_036_HR.jpg"
     },
-    cloudinaryTag: 'FS R20/21 IN OC',
-    plan: 'assets/plans/kew-residence.svg',
+    "cloudinaryTag": "FS R20/21 IN OC",
+    "plan": [
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/Kew_Residence.svg",
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/Kew_Residence_1.svg"
+    ]
   },
   {
-    id: 'shutter-house',
-    title: 'Shutter House',
-    location: 'Wembley, Australia',
-    architect: 'State of Kin',
-    code: 'FS R30 IN OC',
-    pages: '088 — 093',
-    quote: {
-      text: 'Shutter House is an expression of our appreciation of Japanese architecture through the use of light and detail.',
-      author: 'State of Kin',
+    "id": "shutter-house",
+    "title": "Shutter House",
+    "location": "Wembley, Australia",
+    "architect": "State of Kin",
+    "code": "FS R30 IN OC",
+    "pages": "088 — 093",
+    "quote": {
+      "text": "Shutter House is an expression of our appreciation of Japanese architecture through the use of light and detail.",
+      "author": "State of Kin"
     },
-    products: [
-      { number: 1, name: 'Memory', type: 'Taps' },
-      { number: 2, name: 'Vieques', type: 'Bathtub, Washbasin' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Memory",
+        "type": "Taps"
+      },
+      {
+        "number": 2,
+        "name": "Vieques",
+        "type": "Bathtub, Washbasin"
+      }
     ],
-    images: {
-      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_26%20IN%20OC/20200211_SOK_Shutter_House_645.jpg',
-      gallery: [
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_26%20IN%20OC/20200211_SOK_Shutter_House_008_2.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_26%20IN%20OC/20200211_SOK_Shutter_House_355.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_26%20IN%20OC/20200211_SOK_Shutter_House_363.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_26%20IN%20OC/20200211_SOK_Shutter_House_645.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_26%20IN%20OC/20200211_SOK_Shutter_House_008_2.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_26%20IN%20OC/20200211_SOK_Shutter_House_355.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_26%20IN%20OC/20200211_SOK_Shutter_House_363.jpg"
       ],
-      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_26%20IN%20OC/20200211_SOK_Shutter_House_645.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_26%20IN%20OC/20200211_SOK_Shutter_House_645.jpg"
     },
-    cloudinaryTag: 'FS R20/26 IN OC',
-    plan: 'assets/plans/shutter-house.svg',
+    "cloudinaryTag": "FS R20/26 IN OC",
+    "plan": [
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_26%20IN%20OC/Shutter_House.svg",
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_26%20IN%20OC/Shutter_House_1.svg"
+    ]
   },
   {
-    id: 'apartment-xviii',
-    title: 'Apartment XVIII',
-    location: 'Paris, France',
-    architect: 'Studio Razavi',
-    code: 'FS R03 IN EU',
-    pages: '094 — 099',
-    quote: {
-      text: 'These pieces work together in creating a peaceful space, where sound, light and vision all become part of a coherent whole.',
-      author: 'Studio Razavi',
+    "id": "apartment-xviii",
+    "title": "Apartment XVIII",
+    "location": "Paris, France",
+    "architect": "Studio Razavi",
+    "code": "FS R03 IN EU",
+    "pages": "094 — 099",
+    "quote": {
+      "text": "These pieces work together in creating a peaceful space, where sound, light and vision all become part of a coherent whole.",
+      "author": "Studio Razavi"
     },
-    products: [
-      { number: 1, name: 'Plan-a', type: 'Shower' },
-      { number: 2, name: 'Pear 2', type: 'Sanitary ware' },
-      { number: 3, name: 'Memory Mix', type: 'Taps' },
-      { number: 4, name: 'Bucatini', type: 'Mirrors' },
-      { number: 5, name: 'Sen', type: 'Shelf' },
-      { number: 6, name: 'Lariana', type: 'Bathtub, Washbasin' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Plan-a",
+        "type": "Shower"
+      },
+      {
+        "number": 2,
+        "name": "Pear 2",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 3,
+        "name": "Memory Mix",
+        "type": "Taps"
+      },
+      {
+        "number": 4,
+        "name": "Bucatini",
+        "type": "Mirrors"
+      },
+      {
+        "number": 5,
+        "name": "Sen",
+        "type": "Shelf"
+      },
+      {
+        "number": 6,
+        "name": "Lariana",
+        "type": "Bathtub, Washbasin"
+      }
     ],
-    images: {
-      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_09%20IN%20EU/studio_razavi_architecture_-_Apartment_XVIII_-_Vincent_Leroux_3.jpg',
-      gallery: [
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_09%20IN%20EU/studio_razavi_architecture_-_Apartment_XVIII_-_Vincent_Leroux_9.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_09%20IN%20EU/studio_razavi_architecture_-_Apartment_XVIII_-_Vincent_Leroux_20.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_09%20IN%20EU/studio_razavi_architecture_-_Apartment_XVIII_-_Vincent_Leroux_21.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_09%20IN%20EU/studio_razavi_architecture_-_Apartment_XVIII_-_Vincent_Leroux_3.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_09%20IN%20EU/studio_razavi_architecture_-_Apartment_XVIII_-_Vincent_Leroux_9.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_09%20IN%20EU/studio_razavi_architecture_-_Apartment_XVIII_-_Vincent_Leroux_20.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_09%20IN%20EU/studio_razavi_architecture_-_Apartment_XVIII_-_Vincent_Leroux_21.jpg"
       ],
-      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_09%20IN%20EU/studio_razavi_architecture_-_Apartment_XVIII_-_Vincent_Leroux_3.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_09%20IN%20EU/studio_razavi_architecture_-_Apartment_XVIII_-_Vincent_Leroux_3.jpg"
     },
-    cloudinaryTag: 'FS R22/09 IN EU',
-    plan: 'assets/plans/apartment-xviii.svg',
+    "cloudinaryTag": "FS R22/09 IN EU",
+    "plan": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_09%20IN%20EU/Apartment_XVIII.svg"
   },
   {
-    id: 'yolo-house',
-    title: 'Yolo House',
-    location: 'Surry Hills, Australia',
-    architect: 'Pattern Studio',
-    code: 'FS R37 IN OC',
-    pages: '100 — 107',
-    quote: {
-      text: 'Small houses, when designed well, can offer immense pleasure.',
-      author: 'Pattern Studio',
+    "id": "yolo-house",
+    "title": "Yolo House",
+    "location": "Surry Hills, Australia",
+    "architect": "Pattern Studio",
+    "code": "FS R37 IN OC",
+    "pages": "100 — 107",
+    "quote": {
+      "text": "Small houses, when designed well, can offer immense pleasure.",
+      "author": "Pattern Studio"
     },
-    products: [
-      { number: 1, name: 'Memory', type: 'Taps, Mirror' },
-      { number: 2, name: 'Vieques', type: 'Bathtub, Washbasin' },
-      { number: 3, name: 'Pear 2', type: 'Sanitary ware' },
-      { number: 4, name: 'Nudo', type: 'Mirror' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Memory",
+        "type": "Taps, Mirror"
+      },
+      {
+        "number": 2,
+        "name": "Vieques",
+        "type": "Bathtub, Washbasin"
+      },
+      {
+        "number": 3,
+        "name": "Pear 2",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 4,
+        "name": "Nudo",
+        "type": "Mirror"
+      }
     ],
-    images: {
-      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_24%20IN%20OC/PATTERN_YOLO_256_FULLRES.jpg',
-      gallery: [
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_24%20IN%20OC/PATTERN_YOLO_305_FULLRES.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_24%20IN%20OC/PATTERN_YOLO_355_FULLRES.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_24%20IN%20OC/PATTERN_YOLO_413_FULLRES.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_24%20IN%20OC/PATTERN_YOLO_522-Edit_FULLRES.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_24%20IN%20OC/PATTERN_YOLO_256_FULLRES.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_24%20IN%20OC/PATTERN_YOLO_305_FULLRES.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_24%20IN%20OC/PATTERN_YOLO_355_FULLRES.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_24%20IN%20OC/PATTERN_YOLO_413_FULLRES.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_24%20IN%20OC/PATTERN_YOLO_522-Edit_FULLRES.jpg"
       ],
-      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_24%20IN%20OC/PATTERN_YOLO_256_FULLRES.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_24%20IN%20OC/PATTERN_YOLO_256_FULLRES.jpg"
     },
-    cloudinaryTag: 'FS R25/24 IN OC',
-    plan: 'assets/plans/yolo-house.svg',
+    "cloudinaryTag": "FS R25/24 IN OC",
+    "plan": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_24%20IN%20OC/Yolo_House.svg"
   },
   {
-    id: 'merricks-farmhouse',
-    title: 'Merricks Farmhouse',
-    location: 'Mornington Peninsula, Australia',
-    architect: 'Michael Lumby Architecture with Nielsen Jenkins',
-    code: 'FS R19 IN OC',
-    pages: '108 — 115',
-    quote: {
-      text: 'The courtyard becomes the most important room in the house, a reference and refuge from the expansive outlook.',
-      author: 'Michael Lumby',
+    "id": "merricks-farmhouse",
+    "title": "Merricks Farmhouse",
+    "location": "Mornington Peninsula, Australia",
+    "architect": "Michael Lumby Architecture with Nielsen Jenkins",
+    "code": "FS R19 IN OC",
+    "pages": "108 — 115",
+    "quote": {
+      "text": "The courtyard becomes the most important room in the house, a reference and refuge from the expansive outlook.",
+      "author": "Michael Lumby"
     },
-    products: [
-      { number: 1, name: 'Sen', type: 'Taps, Accessories' },
-      { number: 2, name: 'Vieques', type: 'Washbasins, Bathtub' },
-      { number: 3, name: 'Flat XL', type: 'Countertop' },
-      { number: 4, name: 'Pear 2', type: 'Sanitary ware' },
-      { number: 5, name: 'Nudo', type: 'Mirror' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Sen",
+        "type": "Taps, Accessories"
+      },
+      {
+        "number": 2,
+        "name": "Vieques",
+        "type": "Washbasins, Bathtub"
+      },
+      {
+        "number": 3,
+        "name": "Flat XL",
+        "type": "Countertop"
+      },
+      {
+        "number": 4,
+        "name": "Pear 2",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 5,
+        "name": "Nudo",
+        "type": "Mirror"
+      }
     ],
-    images: {
-      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_23%20IN%20OC/LUMBYMERRICKS_342_fullres.jpg',
-      gallery: [
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_23%20IN%20OC/LUMBYMERRICKS_107-Edit_fullres.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_23%20IN%20OC/LUMBYMERRICKS_118_fullres.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_23%20IN%20OC/LUMBYMERRICKS_266-Edit_fullres.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_23%20IN%20OC/LUMBYMERRICKS_296-Edit_fullres.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_23%20IN%20OC/LUMBYMERRICKS_342_fullres.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_23%20IN%20OC/LUMBYMERRICKS_107-Edit_fullres.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_23%20IN%20OC/LUMBYMERRICKS_118_fullres.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_23%20IN%20OC/LUMBYMERRICKS_266-Edit_fullres.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_23%20IN%20OC/LUMBYMERRICKS_296-Edit_fullres.jpg"
       ],
-      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_23%20IN%20OC/LUMBYMERRICKS_342_fullres.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_23%20IN%20OC/LUMBYMERRICKS_342_fullres.jpg"
     },
-    cloudinaryTag: 'FS R23/23 IN OC',
-    plan: 'assets/plans/merricks-farmhouse.svg',
+    "cloudinaryTag": "FS R23/23 IN OC",
+    "plan": [
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_23%20IN%20OC/Merrick_Farmhouse.svg",
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_23%20IN%20OC/Merrick_Farmhouse_1.svg"
+    ]
   },
   {
-    id: 'casa-mezcal',
-    title: 'Casa Mezcal',
-    location: 'Mexico City, Mexico',
-    architect: 'Barde vanVoltt',
-    code: 'FS R07 IN NA',
-    pages: '116 — 125',
-    quote: {
-      text: 'The key was bringing the outside in.',
-      author: 'Barde vanVoltt',
+    "id": "casa-mezcal",
+    "title": "Casa Mezcal",
+    "location": "Mexico City, Mexico",
+    "architect": "Barde vanVoltt",
+    "code": "FS R07 IN NA",
+    "pages": "116 — 125",
+    "quote": {
+      "text": "The key was bringing the outside in.",
+      "author": "Barde vanVoltt"
     },
-    products: [
-      { number: 1, name: 'Memory Mix', type: 'Taps' },
-      { number: 2, name: 'Immersion', type: 'Bathtub' },
-      { number: 3, name: 'Petra', type: 'Washbasins' },
-      { number: 4, name: 'Flat XL', type: 'Countertop' },
-      { number: 5, name: 'Pear 2', type: 'Sanitary ware' },
-      { number: 6, name: 'Cheese', type: 'Washbasin' },
-      { number: 7, name: 'Petra', type: 'Shower' },
-      { number: 8, name: 'Square', type: 'Taps' },
-      { number: 9, name: 'Nudo', type: 'Mirror' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Memory Mix",
+        "type": "Taps"
+      },
+      {
+        "number": 2,
+        "name": "Immersion",
+        "type": "Bathtub"
+      },
+      {
+        "number": 3,
+        "name": "Petra",
+        "type": "Washbasins"
+      },
+      {
+        "number": 4,
+        "name": "Flat XL",
+        "type": "Countertop"
+      },
+      {
+        "number": 5,
+        "name": "Pear 2",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 6,
+        "name": "Cheese",
+        "type": "Washbasin"
+      },
+      {
+        "number": 7,
+        "name": "Petra",
+        "type": "Shower"
+      },
+      {
+        "number": 8,
+        "name": "Square",
+        "type": "Taps"
+      },
+      {
+        "number": 9,
+        "name": "Nudo",
+        "type": "Mirror"
+      }
     ],
-    images: {
-      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/03_CasaMezcal_BardevanVoltt_AlejandroRamirezOrozco.jpg',
-      gallery: [
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/05_CasaMezcal_BardevanVoltt_AlejandroRamirezOrozco.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/23_CasaMezcal_BardevanVoltt_AlejandroRamirezOrozco.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/24_CasaMezcal_BardevanVoltt_AlejandroRamirezOrozco.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/31_CasaMezcal_BardevanVoltt_AlejandroRamirezOrozco.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/65_CasaMezcal_BardeVanVoltt_HighResolution_RGB_PohotoByAlejandroRamirezOrozco.jpg',
-        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/77_CasaMezcal_BardeVanVoltt_HighResolution_RGB_PohotoByAlejandroRamirezOrozco.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/03_CasaMezcal_BardevanVoltt_AlejandroRamirezOrozco.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/05_CasaMezcal_BardevanVoltt_AlejandroRamirezOrozco.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/23_CasaMezcal_BardevanVoltt_AlejandroRamirezOrozco.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/24_CasaMezcal_BardevanVoltt_AlejandroRamirezOrozco.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/31_CasaMezcal_BardevanVoltt_AlejandroRamirezOrozco.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/65_CasaMezcal_BardeVanVoltt_HighResolution_RGB_PohotoByAlejandroRamirezOrozco.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/77_CasaMezcal_BardeVanVoltt_HighResolution_RGB_PohotoByAlejandroRamirezOrozco.jpg"
       ],
-      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/03_CasaMezcal_BardevanVoltt_AlejandroRamirezOrozco.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/03_CasaMezcal_BardevanVoltt_AlejandroRamirezOrozco.jpg"
     },
-    cloudinaryTag: 'FS R23/26 IN NA',
-    plan: 'assets/plans/casa-mezcal.svg',
+    "cloudinaryTag": "FS R23/26 IN NA",
+    "plan": [
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/Casa_Mezcal.svg",
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/Casa_Mezcal_1.svg"
+    ]
   },
   {
-    id: 'private-house-lazise',
-    title: 'Private House',
-    location: 'Lazise, Italy',
-    architect: 'Piersolieri Architecture',
-    code: 'FS R28 IN EU',
-    pages: '126 — 131',
-    quote: {
-      text: 'The Neb tub by Benedini Associati sits in a glassed-in corner overlooking the manicured gardens and towering cypress trees of the Veneto countryside.',
-      author: 'Piersolieri Architecture',
+    "id": "private-house-lazise",
+    "title": "Private House",
+    "location": "Lazise, Italy",
+    "architect": "Piersolieri Architecture",
+    "code": "FS R28 IN EU",
+    "pages": "126 — 131",
+    "quote": {
+      "text": "The Neb tub by Benedini Associati sits in a glassed-in corner overlooking the manicured gardens and towering cypress trees of the Veneto countryside.",
+      "author": "Piersolieri Architecture"
     },
-    products: [
-      { number: 1, name: 'Neb', type: 'Bathtub' },
-      { number: 2, name: 'Square', type: 'Taps' },
-      { number: 3, name: 'Ottocento', type: 'Washbasin' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Neb",
+        "type": "Bathtub"
+      },
+      {
+        "number": 2,
+        "name": "Square",
+        "type": "Taps"
+      },
+      {
+        "number": 3,
+        "name": "Ottocento",
+        "type": "Washbasin"
+      }
     ],
-    images: {
-      hero: 'assets/images/private-house-lazise/hero.jpg',
-      gallery: [
-        'assets/images/private-house-lazise/01.jpg',
-        'assets/images/private-house-lazise/02.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_48%20IN%20EU/PSR_AA-131_2.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_48%20IN%20EU/PSR_AA-341_1_2.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_48%20IN%20EU/PSR_AA-116_2.jpg"
       ],
-      thumbnail: 'assets/images/private-house-lazise/thumb.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_48%20IN%20EU/PSR_AA-131_2.jpg"
     },
-    plan: 'assets/plans/private-house-lazise.svg',
+    "plan": [
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_48%20IN%20EU/Private_House.svg",
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_48%20IN%20EU/Private_House_1.svg",
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_48%20IN%20EU/Private_House_2.svg"
+    ],
+    "cloudinaryTag": "FS R21/48 IN EU"
   },
   {
-    id: 'eifel-estate',
-    title: 'Eifel Estate',
-    location: 'Eifel, Germany',
-    architect: 'Uwe Bernd Friedemann',
-    code: 'FS R09 IN EU',
-    pages: '132 — 137',
-    quote: {
-      text: 'The architects treated the bathroom fixtures the same way they would fine sculptures.',
-      author: 'Uwe Bernd Friedemann',
+    "id": "eifel-estate",
+    "title": "Eifel Estate",
+    "location": "Eifel, Germany",
+    "architect": "Uwe Bernd Friedemann",
+    "code": "FS R09 IN EU",
+    "pages": "132 — 137",
+    "quote": {
+      "text": "The architects treated the bathroom fixtures the same way they would fine sculptures.",
+      "author": "Uwe Bernd Friedemann"
     },
-    products: [
-      { number: 1, name: 'Memory', type: 'Taps' },
-      { number: 2, name: 'DR', type: 'Bathtub' },
-      { number: 3, name: 'Lato', type: 'Storage unit' },
-      { number: 4, name: 'Sen', type: 'Taps' },
-      { number: 5, name: 'Narciso', type: 'Mirror' },
-      { number: 6, name: 'Ell', type: 'Washbasin/Countertop' },
-      { number: 7, name: 'Minuetto', type: 'Mirror' },
-      { number: 8, name: 'Bjhon 1', type: 'Washbasin' },
-      { number: 9, name: 'Pear', type: 'Sanitary ware' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Memory",
+        "type": "Taps"
+      },
+      {
+        "number": 2,
+        "name": "DR",
+        "type": "Bathtub"
+      },
+      {
+        "number": 3,
+        "name": "Lato",
+        "type": "Storage unit"
+      },
+      {
+        "number": 4,
+        "name": "Sen",
+        "type": "Taps"
+      },
+      {
+        "number": 5,
+        "name": "Narciso",
+        "type": "Mirror"
+      },
+      {
+        "number": 6,
+        "name": "Ell",
+        "type": "Washbasin/Countertop"
+      },
+      {
+        "number": 7,
+        "name": "Minuetto",
+        "type": "Mirror"
+      },
+      {
+        "number": 8,
+        "name": "Bjhon 1",
+        "type": "Washbasin"
+      },
+      {
+        "number": 9,
+        "name": "Pear",
+        "type": "Sanitary ware"
+      }
     ],
-    images: {
-      hero: 'assets/images/eifel-estate/hero.jpg',
-      gallery: [
-        'assets/images/eifel-estate/01.jpg',
-        'assets/images/eifel-estate/02.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_07%20IN%20EU/DJI_0026_f-POST.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_07%20IN%20EU/VEF_1362_f-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_07%20IN%20EU/VEF_1560_f-POST.jpg"
       ],
-      thumbnail: 'assets/images/eifel-estate/thumb.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_07%20IN%20EU/DJI_0026_f-POST.jpg"
     },
-    plan: 'assets/plans/eifel-estate.svg',
+    "plan": [
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_07%20IN%20EU/Eifel_Estate.svg",
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_07%20IN%20EU/Eifel_Estate_1.svg"
+    ],
+    "cloudinaryTag": "FS R19/07 IN EU"
   },
   {
-    id: 'landhuis-domus-pacis',
-    title: 'Landhuis Domus Pacis',
-    location: 'Rumpt, The Netherlands',
-    architect: 'Studio Martijn Veldman',
-    code: 'FS R17 IN EU',
-    pages: '138 — 145',
-    quote: {
-      text: 'Set in a glassed-in wing of the sprawling house, a lengthy lap pool is afforded views of the lush manicured gardens and benefits from full natural light.',
-      author: 'Martin Veldman',
+    "id": "landhuis-domus-pacis",
+    "title": "Landhuis Domus Pacis",
+    "location": "Rumpt, The Netherlands",
+    "architect": "Studio Martijn Veldman",
+    "code": "FS R17 IN EU",
+    "pages": "138 — 145",
+    "quote": {
+      "text": "Set in a glassed-in wing of the sprawling house, a lengthy lap pool is afforded views of the lush manicured gardens and benefits from full natural light.",
+      "author": "Martin Veldman"
     },
-    products: [
-      { number: 1, name: 'Ell', type: 'Washbasin/Countertop' },
-      { number: 2, name: 'Gemma', type: 'Extras' },
-      { number: 3, name: 'Memory', type: 'Taps, Mirrors, Accessories' },
-      { number: 4, name: 'Pear', type: 'Sanitary ware' },
-      { number: 5, name: 'Bjhon 1', type: 'Washbasin' },
-      { number: 6, name: 'Lato', type: 'Storage unit' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Ell",
+        "type": "Washbasin/Countertop"
+      },
+      {
+        "number": 2,
+        "name": "Gemma",
+        "type": "Extras"
+      },
+      {
+        "number": 3,
+        "name": "Memory",
+        "type": "Taps, Mirrors, Accessories"
+      },
+      {
+        "number": 4,
+        "name": "Pear",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 5,
+        "name": "Bjhon 1",
+        "type": "Washbasin"
+      },
+      {
+        "number": 6,
+        "name": "Lato",
+        "type": "Storage unit"
+      }
     ],
-    images: {
-      hero: 'assets/images/landhuis-domus-pacis/hero.jpg',
-      gallery: [
-        'assets/images/landhuis-domus-pacis/01.jpg',
-        'assets/images/landhuis-domus-pacis/02.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_13%20IN%20EU/Veldmanint_Rumpt0449.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_13%20IN%20EU/Veldmanint_Rumpt0387-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_13%20IN%20EU/Veldmanint_Rumpt0363.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_13%20IN%20EU/Veldmanint_Rumpt0437.jpg"
       ],
-      thumbnail: 'assets/images/landhuis-domus-pacis/thumb.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_13%20IN%20EU/Veldmanint_Rumpt0449.jpg"
     },
-    plan: 'assets/plans/landhuis-domus-pacis.svg',
+    "plan": [
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_13%20IN%20EU/Landhuis_Domus_Pacis.svg",
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_13%20IN%20EU/Landhuis_Domus_Pacis_1.svg"
+    ],
+    "cloudinaryTag": "FS R20/13 IN EU"
   },
   {
-    id: 'the-pavilions',
-    title: 'The Pavilions',
-    location: 'Vésenaz, Switzerland',
-    architect: 'Valentine Bärg',
-    code: 'FS R34 IN EU',
-    pages: '146 — 153',
-    quote: {
-      text: 'The most significant update within the house was in the primary bathroom, which they furnished to resemble a modern Japanese onsen spa.',
-      author: 'Valentine Bärg',
+    "id": "the-pavilions",
+    "title": "The Pavilions",
+    "location": "Vésenaz, Switzerland",
+    "architect": "Valentine Bärg",
+    "code": "FS R34 IN EU",
+    "pages": "146 — 153",
+    "quote": {
+      "text": "The most significant update within the house was in the primary bathroom, which they furnished to resemble a modern Japanese onsen spa.",
+      "author": "Valentine Bärg"
     },
-    products: [
-      { number: 1, name: 'Sen', type: 'Taps, Accessories' },
-      { number: 2, name: '750', type: 'Sanitary ware' },
-      { number: 3, name: 'DR', type: 'Bathtub, Washbasins' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Sen",
+        "type": "Taps, Accessories"
+      },
+      {
+        "number": 2,
+        "name": "750",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 3,
+        "name": "DR",
+        "type": "Bathtub, Washbasins"
+      }
     ],
-    images: {
-      hero: 'assets/images/the-pavilions/hero.jpg',
-      gallery: [
-        'assets/images/the-pavilions/01.jpg',
-        'assets/images/the-pavilions/02.jpg',
-        'assets/images/the-pavilions/03.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_26%20IN%20EU/VG_Pointe-a-la-Bise_005-POST.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_26%20IN%20EU/VG_Pointe-a-la-Bise_012.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_26%20IN%20EU/VG_Pointe-a-la-Bise_015.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_26%20IN%20EU/VG_Pointe-a-la-Bise_008-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_26%20IN%20EU/VG_Pointe-a-la-Bise_007.jpg"
       ],
-      thumbnail: 'assets/images/the-pavilions/thumb.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_26%20IN%20EU/VG_Pointe-a-la-Bise_005-POST.jpg"
     },
-    plan: 'assets/plans/the-pavilions.svg',
+    "plan": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_26%20IN%20EU/The_Pavilions.svg",
+    "cloudinaryTag": "FS R19/26 IN EU"
   },
   {
-    id: 'canal-house',
-    title: 'Canal House',
-    location: 'Miami, United States',
-    architect: 'Studio MK27',
-    code: 'FS R05 IN NA',
-    pages: '154 — 161',
-    quote: {
-      text: 'The asymmetrical DR tub was strategically placed so that it may be graced with a view of the bedroom and, further ahead, the garden and canal.',
-      author: 'Marcio Kogan',
+    "id": "canal-house",
+    "title": "Canal House",
+    "location": "Miami, United States",
+    "architect": "Studio MK27",
+    "code": "FS R05 IN NA",
+    "pages": "154 — 161",
+    "quote": {
+      "text": "The asymmetrical DR tub was strategically placed so that it may be graced with a view of the bedroom and, further ahead, the garden and canal.",
+      "author": "Marcio Kogan"
     },
-    products: [
-      { number: 1, name: 'Memory Mix', type: 'Taps' },
-      { number: 2, name: 'DR', type: 'Bathtub' },
-      { number: 3, name: 'Flat XL', type: 'Countertop' },
-      { number: 4, name: 'Ottocento 001', type: 'Washbasins' },
-      { number: 5, name: 'Pear', type: 'Sanitary ware' },
-      { number: 6, name: 'Lato', type: 'Storage unit' },
-      { number: 7, name: 'Narciso', type: 'Mirror' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Memory Mix",
+        "type": "Taps"
+      },
+      {
+        "number": 2,
+        "name": "DR",
+        "type": "Bathtub"
+      },
+      {
+        "number": 3,
+        "name": "Flat XL",
+        "type": "Countertop"
+      },
+      {
+        "number": 4,
+        "name": "Ottocento 001",
+        "type": "Washbasins"
+      },
+      {
+        "number": 5,
+        "name": "Pear",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 6,
+        "name": "Lato",
+        "type": "Storage unit"
+      },
+      {
+        "number": 7,
+        "name": "Narciso",
+        "type": "Mirror"
+      }
     ],
-    images: {
-      hero: 'assets/images/canal-house/hero.jpg',
-      gallery: [
-        'assets/images/canal-house/01.jpg',
-        'assets/images/canal-house/02.jpg',
-        'assets/images/canal-house/03.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R17_69%20IN%20NA/mk27_canal_house_franparente_High_7_-POST.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R17_69%20IN%20NA/mk27_agape_DR_franparente.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R17_69%20IN%20NA/mk27_canal_house_franparente_High_32_-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R17_69%20IN%20NA/mk27_canal_house_franparente_High_22.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R17_69%20IN%20NA/mk27_canal_house_franparente_High_9_-POST.jpg"
       ],
-      thumbnail: 'assets/images/canal-house/thumb.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R17_69%20IN%20NA/mk27_canal_house_franparente_High_7_-POST.jpg"
     },
-    plan: 'assets/plans/canal-house.svg',
+    "plan": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R17_69%20IN%20NA/Canal_House.svg",
+    "cloudinaryTag": "FS R17/69 IN NA"
   },
   {
-    id: 'grand-canal-penthouse',
-    title: 'Grand Canal Penthouse',
-    location: 'Dublin, Ireland',
-    architect: 'Realm',
-    code: 'FS R11 IN EU',
-    pages: '162 — 169',
-    quote: {
-      text: "The clients wanted a 'home away from home' with a minimal and timeless design.",
-      author: 'Realm',
+    "id": "grand-canal-penthouse",
+    "title": "Grand Canal Penthouse",
+    "location": "Dublin, Ireland",
+    "architect": "Realm",
+    "code": "FS R11 IN EU",
+    "pages": "162 — 169",
+    "quote": {
+      "text": "The clients wanted a 'home away from home' with a minimal and timeless design.",
+      "author": "Realm"
     },
-    products: [
-      { number: 1, name: 'Pear 2', type: 'Sanitary ware' },
-      { number: 2, name: 'Litorale', type: 'Washbasin/Countertop' },
-      { number: 3, name: '4×4', type: 'Mirror units' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Pear 2",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 2,
+        "name": "Litorale",
+        "type": "Washbasin/Countertop"
+      },
+      {
+        "number": 3,
+        "name": "4×4",
+        "type": "Mirror units"
+      }
     ],
-    images: {
-      hero: 'assets/images/grand-canal-penthouse/hero.jpg',
-      gallery: [
-        'assets/images/grand-canal-penthouse/01.jpg',
-        'assets/images/grand-canal-penthouse/02.jpg',
-        'assets/images/grand-canal-penthouse/03.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_01%20IN%20EU/BulthaupHQ_HD_05-POST.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_01%20IN%20EU/BulthaupHQ_HD_02-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_01%20IN%20EU/BulthaupHQ_HD_14-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_01%20IN%20EU/BulthaupHQ_HD_21-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_01%20IN%20EU/BulthaupHQ_HD_12-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_01%20IN%20EU/BulthaupHQ_HD_09-POST.jpg"
       ],
-      thumbnail: 'assets/images/grand-canal-penthouse/thumb.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_01%20IN%20EU/BulthaupHQ_HD_05-POST.jpg"
     },
-    plan: 'assets/plans/grand-canal-penthouse.svg',
+    "plan": [
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_01%20IN%20EU/Grand_Canal_Penthouse.svg",
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_01%20IN%20EU/Grand_Canal_Penthouse_1.svg",
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_01%20IN%20EU/Grand_Canal_Penthouse_2.svg"
+    ],
+    "cloudinaryTag": "FS R20/01 IN EU"
   },
   {
-    id: 'nordic-flat',
-    title: 'Nordic Flat',
-    location: 'Chisinau, Moldova',
-    architect: 'Line Architects',
-    code: 'FS R22 IN EU',
-    pages: '170 — 175',
-    quote: {
-      text: 'For the tub and washbasin, they chose pieces from the Vieques collection, which act as patches of luminous, bright white in a sea of grey.',
-      author: 'Line Architects',
+    "id": "nordic-flat",
+    "title": "Nordic Flat",
+    "location": "Chisinau, Moldova",
+    "architect": "Line Architects",
+    "code": "FS R22 IN EU",
+    "pages": "170 — 175",
+    "quote": {
+      "text": "For the tub and washbasin, they chose pieces from the Vieques collection, which act as patches of luminous, bright white in a sea of grey.",
+      "author": "Line Architects"
     },
-    products: [
-      { number: 1, name: 'Sen', type: 'Taps, Accessories' },
-      { number: 2, name: 'Pear 2', type: 'Sanitary ware' },
-      { number: 3, name: 'Revolving Moon', type: 'Mirror' },
-      { number: 4, name: 'Vieques', type: 'Washbasin, Bathtub' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Sen",
+        "type": "Taps, Accessories"
+      },
+      {
+        "number": 2,
+        "name": "Pear 2",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 3,
+        "name": "Revolving Moon",
+        "type": "Mirror"
+      },
+      {
+        "number": 4,
+        "name": "Vieques",
+        "type": "Washbasin, Bathtub"
+      }
     ],
-    images: {
-      hero: 'assets/images/nordic-flat/hero.jpg',
-      gallery: [
-        'assets/images/nordic-flat/01.jpg',
-        'assets/images/nordic-flat/02.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_07%20IN%20EU/DSC_9507.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_07%20IN%20EU/DSC_9406.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_07%20IN%20EU/DSC_9436.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_07%20IN%20EU/DSC_9452.jpg"
       ],
-      thumbnail: 'assets/images/nordic-flat/thumb.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_07%20IN%20EU/DSC_9507.jpg"
     },
-    plan: 'assets/plans/nordic-flat.svg',
+    "plan": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_07%20IN%20EU/Nordic_Flat.svg",
+    "cloudinaryTag": "FS R22/07 IN EU"
   },
   {
-    id: 'palazzo-mc',
-    title: 'Palazzo MC',
-    location: 'Cisternino, Italy',
-    architect: 'Corsaro Architetti',
-    code: 'FS R23 IN EU',
-    pages: '176 — 183',
-    quote: {
-      text: 'The wild garden connects the house to nature, creating a microclimate that guarantees psychophysical well-being.',
-      author: 'Corsaro Architetti',
+    "id": "palazzo-mc",
+    "title": "Palazzo MC",
+    "location": "Cisternino, Italy",
+    "architect": "Corsaro Architetti",
+    "code": "FS R23 IN EU",
+    "pages": "176 — 183",
+    "quote": {
+      "text": "The wild garden connects the house to nature, creating a microclimate that guarantees psychophysical well-being.",
+      "author": "Corsaro Architetti"
     },
-    products: [
-      { number: 1, name: 'Fez 2', type: 'Taps' },
-      { number: 2, name: 'Bjhon 1', type: 'Washbasin' },
-      { number: 3, name: 'Vieques', type: 'Washbasin' },
-      { number: 4, name: 'Spoon XL', type: 'Bathtub' },
-      { number: 5, name: 'Nudo LED', type: 'Mirror' },
-      { number: 6, name: 'Bucatini', type: 'Mirror' },
-      { number: 7, name: 'Sen', type: 'Accessories' },
-      { number: 8, name: 'Pear 2', type: 'Sanitary ware' },
-      { number: 9, name: 'Pic-nic', type: 'Extras' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Fez 2",
+        "type": "Taps"
+      },
+      {
+        "number": 2,
+        "name": "Bjhon 1",
+        "type": "Washbasin"
+      },
+      {
+        "number": 3,
+        "name": "Vieques",
+        "type": "Washbasin"
+      },
+      {
+        "number": 4,
+        "name": "Spoon XL",
+        "type": "Bathtub"
+      },
+      {
+        "number": 5,
+        "name": "Nudo LED",
+        "type": "Mirror"
+      },
+      {
+        "number": 6,
+        "name": "Bucatini",
+        "type": "Mirror"
+      },
+      {
+        "number": 7,
+        "name": "Sen",
+        "type": "Accessories"
+      },
+      {
+        "number": 8,
+        "name": "Pear 2",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 9,
+        "name": "Pic-nic",
+        "type": "Extras"
+      }
     ],
-    images: {
-      hero: 'assets/images/palazzo-mc/hero.jpg',
-      gallery: [
-        'assets/images/palazzo-mc/01.jpg',
-        'assets/images/palazzo-mc/02.jpg',
-        'assets/images/palazzo-mc/03.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_28%20IN%20EU/DMF_0663-POST.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_28%20IN%20EU/DMF_0857-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_28%20IN%20EU/DMF_9551-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_28%20IN%20EU/DMF_9651-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_28%20IN%20EU/DMF_0509-POST.jpg"
       ],
-      thumbnail: 'assets/images/palazzo-mc/thumb.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_28%20IN%20EU/DMF_0663-POST.jpg"
     },
-    plan: 'assets/plans/palazzo-mc.svg',
+    "plan": [
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_28%20IN%20EU/Palazzo_MC.svg",
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_28%20IN%20EU/Palazzo_MC_1.svg"
+    ],
+    "cloudinaryTag": "FS R22/28 IN EU"
   },
   {
-    id: 'soft-loft',
-    title: 'Soft Loft',
-    location: 'Chisinau, Moldova',
-    architect: 'Line Architects',
-    code: 'FS R31 IN EU',
-    pages: '184 — 189',
-    quote: {
-      text: 'The character of the interior is based on soft contrasts, where we harmoniously combined rough and soft textures, simple and sound materials, cold and warm shades.',
-      author: 'Line Architects',
+    "id": "soft-loft",
+    "title": "Soft Loft",
+    "location": "Chisinau, Moldova",
+    "architect": "Line Architects",
+    "code": "FS R31 IN EU",
+    "pages": "184 — 189",
+    "quote": {
+      "text": "The character of the interior is based on soft contrasts, where we harmoniously combined rough and soft textures, simple and sound materials, cold and warm shades.",
+      "author": "Line Architects"
     },
-    products: [
-      { number: 1, name: 'Lato', type: 'Storage unit' },
-      { number: 2, name: 'Memory', type: 'Mirror' },
-      { number: 3, name: 'Fez 2', type: 'Taps' },
-      { number: 4, name: 'Ell', type: 'Washbasin/Countertop' },
-      { number: 5, name: 'X', type: 'Towel holder' },
-      { number: 6, name: 'Cuna', type: 'Bathtub' },
-      { number: 7, name: 'Pear 2', type: 'Sanitary ware' },
-      { number: 8, name: 'Nivis', type: 'Washbasin' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Lato",
+        "type": "Storage unit"
+      },
+      {
+        "number": 2,
+        "name": "Memory",
+        "type": "Mirror"
+      },
+      {
+        "number": 3,
+        "name": "Fez 2",
+        "type": "Taps"
+      },
+      {
+        "number": 4,
+        "name": "Ell",
+        "type": "Washbasin/Countertop"
+      },
+      {
+        "number": 5,
+        "name": "X",
+        "type": "Towel holder"
+      },
+      {
+        "number": 6,
+        "name": "Cuna",
+        "type": "Bathtub"
+      },
+      {
+        "number": 7,
+        "name": "Pear 2",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 8,
+        "name": "Nivis",
+        "type": "Washbasin"
+      }
     ],
-    images: {
-      hero: 'assets/images/soft-loft/hero.jpg',
-      gallery: [
-        'assets/images/soft-loft/01.jpg',
-        'assets/images/soft-loft/02.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R18_63%20IN%20EU/DSC_1319.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R18_63%20IN%20EU/DSC_1592.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R18_63%20IN%20EU/DSC_1554.jpg"
       ],
-      thumbnail: 'assets/images/soft-loft/thumb.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R18_63%20IN%20EU/DSC_1319.jpg"
     },
-    plan: 'assets/plans/soft-loft.svg',
+    "plan": [
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R18_63%20IN%20EU/Soft_Loft.svg",
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R18_63%20IN%20EU/Soft_Loft_1.svg"
+    ],
+    "cloudinaryTag": "FS R18/63 IN EU"
   },
   {
-    id: 'private-apartment-tel-aviv',
-    title: 'Private Apartment',
-    location: 'Tel Aviv, Israel',
-    architect: 'Dieter Vander Velpen Architects',
-    code: 'FS R26 IN AS',
-    pages: '190 — 197',
-    quote: {
-      text: 'A calm sanctuary in the middle of the hustle and bustle of the city.',
-      author: 'Dieter Vander Velpen Architects',
+    "id": "private-apartment-tel-aviv",
+    "title": "Private Apartment",
+    "location": "Tel Aviv, Israel",
+    "architect": "Dieter Vander Velpen Architects",
+    "code": "FS R26 IN AS",
+    "pages": "190 — 197",
+    "quote": {
+      "text": "A calm sanctuary in the middle of the hustle and bustle of the city.",
+      "author": "Dieter Vander Velpen Architects"
     },
-    products: [
-      { number: 1, name: 'Sen', type: 'Taps, Accessories' },
-      { number: 2, name: 'Lariana', type: 'Bathtub' },
-      { number: 3, name: 'Plan-a', type: 'Shower' },
-      { number: 4, name: 'Litorale', type: 'Washbasin/Countertop' },
-      { number: 5, name: 'Pear 2', type: 'Sanitary ware' },
-      { number: 6, name: 'Evo 21', type: 'System' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Sen",
+        "type": "Taps, Accessories"
+      },
+      {
+        "number": 2,
+        "name": "Lariana",
+        "type": "Bathtub"
+      },
+      {
+        "number": 3,
+        "name": "Plan-a",
+        "type": "Shower"
+      },
+      {
+        "number": 4,
+        "name": "Litorale",
+        "type": "Washbasin/Countertop"
+      },
+      {
+        "number": 5,
+        "name": "Pear 2",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 6,
+        "name": "Evo 21",
+        "type": "System"
+      }
     ],
-    images: {
-      hero: 'assets/images/private-apartment-tel-aviv/hero.jpg',
-      gallery: [
-        'assets/images/private-apartment-tel-aviv/01.jpg',
-        'assets/images/private-apartment-tel-aviv/02.jpg',
-        'assets/images/private-apartment-tel-aviv/03.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_03%20IN%20AS/DVVarchitects_Tel_Aviv_Apartment_photocredits_PatriciaGoijens_13-POST.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_03%20IN%20AS/DVVarchitects_Tel_Aviv_Apartment_photocredits_PatriciaGoijens_11-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_03%20IN%20AS/DVVarchitects_Tel_Aviv_Apartment_photocredits_PatriciaGoijens_26-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_03%20IN%20AS/DSC_5388-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_03%20IN%20AS/DSC_5363_m-POST.jpg"
       ],
-      thumbnail: 'assets/images/private-apartment-tel-aviv/thumb.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_03%20IN%20AS/DVVarchitects_Tel_Aviv_Apartment_photocredits_PatriciaGoijens_13-POST.jpg"
     },
-    plan: 'assets/plans/private-apartment-tel-aviv.svg',
+    "plan": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_03%20IN%20AS/Private_Apartment.svg",
+    "cloudinaryTag": "FS R21/03 IN AS"
   },
   {
-    id: 'loft-in-ciutat-vella',
-    title: 'Loft in Ciutat Vella',
-    location: 'Barcelona, Spain',
-    architect: 'Estudio Vilablanch',
-    code: 'FS R18 IN EU',
-    pages: '198 — 203',
-    quote: {
-      text: 'The key to the interior design project was to make sure that the home has a clear reading of its overlapping stages. No decoration, no artifice, everything is real.',
-      author: 'Estudio Vilablanch',
+    "id": "loft-in-ciutat-vella",
+    "title": "Loft in Ciutat Vella",
+    "location": "Barcelona, Spain",
+    "architect": "Estudio Vilablanch",
+    "code": "FS R18 IN EU",
+    "pages": "198 — 203",
+    "quote": {
+      "text": "The key to the interior design project was to make sure that the home has a clear reading of its overlapping stages. No decoration, no artifice, everything is real.",
+      "author": "Estudio Vilablanch"
     },
-    products: [
-      { number: 1, name: 'Vieques', type: 'Bathtub' },
-      { number: 2, name: 'Fez 2', type: 'Taps' },
-      { number: 3, name: 'Tapiro', type: 'Rug' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Vieques",
+        "type": "Bathtub"
+      },
+      {
+        "number": 2,
+        "name": "Fez 2",
+        "type": "Taps"
+      },
+      {
+        "number": 3,
+        "name": "Tapiro",
+        "type": "Rug"
+      }
     ],
-    images: {
-      hero: 'assets/images/loft-in-ciutat-vella/hero.jpg',
-      gallery: [
-        'assets/images/loft-in-ciutat-vella/01.jpg',
-        'assets/images/loft-in-ciutat-vella/02.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_23%20IN%20EU/vilablanch_loft_ciutat_vella_Bcn_01.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_23%20IN%20EU/vilablanch_loft_ciutat_vella_Bcn_03.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_23%20IN%20EU/vilablanch_loft_ciutat_vella_Bcn_02.jpg"
       ],
-      thumbnail: 'assets/images/loft-in-ciutat-vella/thumb.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_23%20IN%20EU/vilablanch_loft_ciutat_vella_Bcn_01.jpg"
     },
-    plan: 'assets/plans/loft-in-ciutat-vella.svg',
+    "plan": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_23%20IN%20EU/Loft_in_Ciutat_Vella.svg",
+    "cloudinaryTag": "FS R19/23 IN EU"
   },
   {
-    id: 'ap-house',
-    title: 'AP House',
-    location: 'Urbino, Italy',
-    architect: 'GGA Gardini Gibertini Architetti',
-    code: 'FS R02 IN EU',
-    pages: '204 — 209',
-    quote: {
-      text: 'We chose Agape for the timeless character of the design of its products, which move between research, contemporaneity and tradition.',
-      author: 'GGA Architetti',
+    "id": "ap-house",
+    "title": "AP House",
+    "location": "Urbino, Italy",
+    "architect": "GGA Gardini Gibertini Architetti",
+    "code": "FS R02 IN EU",
+    "pages": "204 — 209",
+    "quote": {
+      "text": "We chose Agape for the timeless character of the design of its products, which move between research, contemporaneity and tradition.",
+      "author": "GGA Architetti"
     },
-    products: [
-      { number: 1, name: 'Drop', type: 'Bathtub' },
-      { number: 2, name: 'Square', type: 'Taps' },
-      { number: 3, name: 'Spoon XL', type: 'Washbasins' },
-      { number: 4, name: 'Lato', type: 'Storage unit' },
-      { number: 5, name: 'Pear', type: 'Sanitary ware' },
-      { number: 6, name: 'Bjhon 1', type: 'Washbasins' },
-      { number: 7, name: 'Nudo LED', type: 'Mirror' },
-      { number: 8, name: 'Basket / Midi Basket', type: 'Storage units' },
-      { number: 9, name: 'Sen', type: 'Taps, Accessories' },
-      { number: 10, name: 'Bucatini', type: 'Mirror' },
-      { number: 11, name: 'Flat D', type: 'Shower tray' },
-      { number: 12, name: 'Stairs', type: 'Towel holder' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Drop",
+        "type": "Bathtub"
+      },
+      {
+        "number": 2,
+        "name": "Square",
+        "type": "Taps"
+      },
+      {
+        "number": 3,
+        "name": "Spoon XL",
+        "type": "Washbasins"
+      },
+      {
+        "number": 4,
+        "name": "Lato",
+        "type": "Storage unit"
+      },
+      {
+        "number": 5,
+        "name": "Pear",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 6,
+        "name": "Bjhon 1",
+        "type": "Washbasins"
+      },
+      {
+        "number": 7,
+        "name": "Nudo LED",
+        "type": "Mirror"
+      },
+      {
+        "number": 8,
+        "name": "Basket / Midi Basket",
+        "type": "Storage units"
+      },
+      {
+        "number": 9,
+        "name": "Sen",
+        "type": "Taps, Accessories"
+      },
+      {
+        "number": 10,
+        "name": "Bucatini",
+        "type": "Mirror"
+      },
+      {
+        "number": 11,
+        "name": "Flat D",
+        "type": "Shower tray"
+      },
+      {
+        "number": 12,
+        "name": "Stairs",
+        "type": "Towel holder"
+      }
     ],
-    images: {
-      hero: 'assets/images/ap-house/hero.jpg',
-      gallery: [
-        'assets/images/ap-house/01.jpg',
-        'assets/images/ap-house/02.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R16_82%20IN%20EU/49light_ph_ezio_manciucca.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R16_82%20IN%20EU/59_ph_ezio_manciucca.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R16_82%20IN%20EU/65_ph_ezio_manciucca.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R16_82%20IN%20EU/25_ph_ezio_manciucca.jpg"
       ],
-      thumbnail: 'assets/images/ap-house/thumb.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R16_82%20IN%20EU/49light_ph_ezio_manciucca.jpg"
     },
-    plan: 'assets/plans/ap-house.svg',
+    "plan": [
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R16_82%20IN%20EU/AP_House.svg",
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R16_82%20IN%20EU/AP_House_1.svg",
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R16_82%20IN%20EU/AP_House_2.svg"
+    ],
+    "cloudinaryTag": "FS R16/82 IN EU"
   },
   {
-    id: 'amsterdam-apartment',
-    title: 'Amsterdam Apartment',
-    location: 'Amsterdam, The Netherlands',
-    architect: 'Kodde Architecten',
-    code: 'FS R01 IN EU',
-    pages: '210 — 215',
-    quote: {
-      text: "The Spoon XL's oval shape fits perfectly in the overall concept.",
-      author: 'Kodde Architecten',
+    "id": "amsterdam-apartment",
+    "title": "Amsterdam Apartment",
+    "location": "Amsterdam, The Netherlands",
+    "architect": "Kodde Architecten",
+    "code": "FS R01 IN EU",
+    "pages": "210 — 215",
+    "quote": {
+      "text": "The Spoon XL's oval shape fits perfectly in the overall concept.",
+      "author": "Kodde Architecten"
     },
-    products: [
-      { number: 1, name: 'Cheese', type: 'Extras' },
-      { number: 2, name: 'Memory', type: 'Taps, Accessories' },
-      { number: 3, name: 'Spoon XL', type: 'Bathtub' },
-      { number: 4, name: 'Litorale', type: 'Washbasin/Countertop' },
-      { number: 5, name: 'Plan-a', type: 'Shower' },
-      { number: 6, name: 'Pear 2', type: 'Sanitary ware' },
-      { number: 7, name: 'Lariana', type: 'Washbasin' },
-      { number: 8, name: 'Minuetto', type: 'Mirror' },
-      { number: 9, name: 'Evo 21', type: 'System' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Cheese",
+        "type": "Extras"
+      },
+      {
+        "number": 2,
+        "name": "Memory",
+        "type": "Taps, Accessories"
+      },
+      {
+        "number": 3,
+        "name": "Spoon XL",
+        "type": "Bathtub"
+      },
+      {
+        "number": 4,
+        "name": "Litorale",
+        "type": "Washbasin/Countertop"
+      },
+      {
+        "number": 5,
+        "name": "Plan-a",
+        "type": "Shower"
+      },
+      {
+        "number": 6,
+        "name": "Pear 2",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 7,
+        "name": "Lariana",
+        "type": "Washbasin"
+      },
+      {
+        "number": 8,
+        "name": "Minuetto",
+        "type": "Mirror"
+      },
+      {
+        "number": 9,
+        "name": "Evo 21",
+        "type": "System"
+      }
     ],
-    images: {
-      hero: 'assets/images/amsterdam-apartment/hero.jpg',
-      gallery: [
-        'assets/images/amsterdam-apartment/01.jpg',
-        'assets/images/amsterdam-apartment/02.jpg',
-        'assets/images/amsterdam-apartment/03.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_59%20IN%20EU/068-POST.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_59%20IN%20EU/073-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_59%20IN%20EU/051-POST.jpg"
       ],
-      thumbnail: 'assets/images/amsterdam-apartment/thumb.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_59%20IN%20EU/068-POST.jpg"
     },
-    plan: 'assets/plans/amsterdam-apartment.svg',
+    "plan": [
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_59%20IN%20EU/Amsterdam_Apartment.svg",
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_59%20IN%20EU/Amsterdam_Apartment_1.svg"
+    ],
+    "cloudinaryTag": "FS R21/59 IN EU"
   },
   {
-    id: 'flag-house',
-    title: 'Flag House',
-    location: 'Whistler, Canada',
-    architect: 'Studio MK27',
-    code: 'FS R10 IN NA',
-    pages: '216 — 221',
-    quote: {
-      text: 'While generous in scale, the structure\'s careful positioning and the relationship with the slope give the impression of a single-story home hovering above the ground.',
-      author: 'Studio MK27',
+    "id": "flag-house",
+    "title": "Flag House",
+    "location": "Whistler, Canada",
+    "architect": "Studio MK27",
+    "code": "FS R10 IN NA",
+    "pages": "216 — 221",
+    "quote": {
+      "text": "While generous in scale, the structure's careful positioning and the relationship with the slope give the impression of a single-story home hovering above the ground.",
+      "author": "Studio MK27"
     },
-    products: [
-      { number: 1, name: 'Pear 2', type: 'Sanitary ware' },
-      { number: 2, name: 'Sen', type: 'Taps' },
-      { number: 3, name: 'Flat XL', type: 'Countertop' },
-      { number: 4, name: 'Memory', type: 'Taps' },
-      { number: 5, name: 'Ottocento 002', type: 'Washbasin' },
-      { number: 6, name: 'DR', type: 'Bathtub' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Pear 2",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 2,
+        "name": "Sen",
+        "type": "Taps"
+      },
+      {
+        "number": 3,
+        "name": "Flat XL",
+        "type": "Countertop"
+      },
+      {
+        "number": 4,
+        "name": "Memory",
+        "type": "Taps"
+      },
+      {
+        "number": 5,
+        "name": "Ottocento 002",
+        "type": "Washbasin"
+      },
+      {
+        "number": 6,
+        "name": "DR",
+        "type": "Bathtub"
+      }
     ],
-    images: {
-      hero: 'assets/images/flag-house/hero.jpg',
-      gallery: [
-        'assets/images/flag-house/01.jpg',
-        'assets/images/flag-house/02.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R17_94%20IN%20NA/mk27_flag_house_fernando_guerra_Medium__4_-POST.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R17_94%20IN%20NA/mk27_flag_house_fernando_guerra_Medium__41_-upscaled.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R17_94%20IN%20NA/mk27_flag_house_fernando_guerra_Medium__43.jpg"
       ],
-      thumbnail: 'assets/images/flag-house/thumb.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R17_94%20IN%20NA/mk27_flag_house_fernando_guerra_Medium__4_-POST.jpg"
     },
-    plan: 'assets/plans/flag-house.svg',
+    "plan": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R17_94%20IN%20NA/Flag_House.svg",
+    "cloudinaryTag": "FS R17/94 IN NA"
   },
   {
-    id: 'attic-in-milan',
-    title: 'Attic in Milan',
-    location: 'Milan, Italy',
-    architect: 'hus/hüs/',
-    code: 'FS R04 IN EU',
-    pages: '222 — 229',
-    quote: {
-      text: 'The bathrooms are the result of a precise design exercise, carefully orchestrating a dialogue between stone, wood, and the nickel finishes of the tapware.',
-      author: 'hus/hüs/',
+    "id": "attic-in-milan",
+    "title": "Attic in Milan",
+    "location": "Milan, Italy",
+    "architect": "hus/hüs/",
+    "code": "FS R04 IN EU",
+    "pages": "222 — 229",
+    "quote": {
+      "text": "The bathrooms are the result of a precise design exercise, carefully orchestrating a dialogue between stone, wood, and the nickel finishes of the tapware.",
+      "author": "hus/hüs/"
     },
-    products: [
-      { number: 1, name: 'Memory Mix', type: 'Taps' },
-      { number: 2, name: 'Nivis', type: 'Washbasin' },
-      { number: 3, name: 'Bjhon 1', type: 'Washbasin' },
-      { number: 4, name: 'Dot Line', type: 'Accessories' },
-      { number: 5, name: 'Bucatini', type: 'Accessories, Mirror' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Memory Mix",
+        "type": "Taps"
+      },
+      {
+        "number": 2,
+        "name": "Nivis",
+        "type": "Washbasin"
+      },
+      {
+        "number": 3,
+        "name": "Bjhon 1",
+        "type": "Washbasin"
+      },
+      {
+        "number": 4,
+        "name": "Dot Line",
+        "type": "Accessories"
+      },
+      {
+        "number": 5,
+        "name": "Bucatini",
+        "type": "Accessories, Mirror"
+      }
     ],
-    images: {
-      hero: 'assets/images/attic-in-milan/hero.jpg',
-      gallery: [
-        'assets/images/attic-in-milan/01.jpg',
-        'assets/images/attic-in-milan/02.jpg',
-        'assets/images/attic-in-milan/03.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_02%20IN%20EU/Locatelli_Bathrooms_004.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_02%20IN%20EU/Locatelli_Bathrooms_001.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_02%20IN%20EU/Locatelli_Bathrooms_003.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_02%20IN%20EU/Locatelli_Kitchen_01.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_02%20IN%20EU/Locatelli_Living_011.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_02%20IN%20EU/Locatelli_Terrace_004-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_02%20IN%20EU/Locatelli_Bathrooms_002.jpg"
       ],
-      thumbnail: 'assets/images/attic-in-milan/thumb.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_02%20IN%20EU/Locatelli_Bathrooms_004.jpg"
     },
-    plan: 'assets/plans/attic-in-milan.svg',
+    "plan": [
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_02%20IN%20EU/Attico_Via_Locatelli.svg",
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_02%20IN%20EU/Attico_Via_Locatelli_1.svg"
+    ],
+    "cloudinaryTag": "FS R25/02 IN EU"
   },
   {
-    id: 'piano-effimero',
-    title: 'Piano Effimero',
-    location: 'Milan, Italy',
-    architect: 'ARPConcept',
-    code: 'FS R24 IN EU',
-    pages: '230 — 235',
-    quote: {
-      text: 'A living canvas: an evolving home-atelier where structure, material, and light come together with quiet intensity.',
-      author: 'ARPConcept',
+    "id": "piano-effimero",
+    "title": "Piano Effimero",
+    "location": "Milan, Italy",
+    "architect": "ARPConcept",
+    "code": "FS R24 IN EU",
+    "pages": "230 — 235",
+    "quote": {
+      "text": "A living canvas: an evolving home-atelier where structure, material, and light come together with quiet intensity.",
+      "author": "ARPConcept"
     },
-    products: [
-      { number: 1, name: 'Square', type: 'Taps' },
-      { number: 2, name: '369', type: 'Accessories' },
-      { number: 3, name: 'Narciso', type: 'Mirror' },
-      { number: 4, name: 'Ell', type: 'Washbasin/Countertop' },
-      { number: 5, name: 'Memory', type: 'Sanitary ware' },
-      { number: 6, name: 'Vitruvio', type: 'Mirrors' },
-      { number: 7, name: 'Ell Grid', type: 'Washbasin' },
-      { number: 8, name: 'Bjhon 1', type: 'Washbasin' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Square",
+        "type": "Taps"
+      },
+      {
+        "number": 2,
+        "name": "369",
+        "type": "Accessories"
+      },
+      {
+        "number": 3,
+        "name": "Narciso",
+        "type": "Mirror"
+      },
+      {
+        "number": 4,
+        "name": "Ell",
+        "type": "Washbasin/Countertop"
+      },
+      {
+        "number": 5,
+        "name": "Memory",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 6,
+        "name": "Vitruvio",
+        "type": "Mirrors"
+      },
+      {
+        "number": 7,
+        "name": "Ell Grid",
+        "type": "Washbasin"
+      },
+      {
+        "number": 8,
+        "name": "Bjhon 1",
+        "type": "Washbasin"
+      }
     ],
-    images: {
-      hero: 'assets/images/piano-effimero/hero.jpg',
-      gallery: [
-        'assets/images/piano-effimero/01.jpg',
-        'assets/images/piano-effimero/02.jpg',
+    "images": {
+      "hero": "assets/images/piano-effimero/hero.jpg",
+      "gallery": [
+        "assets/images/piano-effimero/01.jpg",
+        "assets/images/piano-effimero/02.jpg"
       ],
-      thumbnail: 'assets/images/piano-effimero/thumb.jpg',
+      "thumbnail": "assets/images/piano-effimero/thumb.jpg"
     },
-    plan: 'assets/plans/piano-effimero.svg',
+    "plan": "assets/plans/piano-effimero.svg"
   },
   {
-    id: 'nembo-venice',
-    title: 'Nembo Venice',
-    location: 'Venice, Italy',
-    architect: 'TA Torsello Architettura',
-    code: 'FS R21 IN EU',
-    pages: '236 — 243',
-    quote: {
-      text: 'The building is a recognisable architectural presence within the Venetian urban fabric, acting almost like a theatrical backdrop for the calle and its adjacent passageways.',
-      author: 'Alberto Torsello',
+    "id": "nembo-venice",
+    "title": "Nembo Venice",
+    "location": "Venice, Italy",
+    "architect": "TA Torsello Architettura",
+    "code": "FS R21 IN EU",
+    "pages": "236 — 243",
+    "quote": {
+      "text": "The building is a recognisable architectural presence within the Venetian urban fabric, acting almost like a theatrical backdrop for the calle and its adjacent passageways.",
+      "author": "Alberto Torsello"
     },
-    products: [
-      { number: 1, name: 'Memory', type: 'Taps' },
-      { number: 2, name: 'Bjhon 1', type: 'Washbasin' },
-      { number: 3, name: 'Ottocento', type: 'Bathtub' },
-      { number: 4, name: 'Square', type: 'Taps' },
-      { number: 5, name: 'Immersion', type: 'Bathtub' },
-      { number: 6, name: 'Ascension', type: 'Multifunctional seat' },
-      { number: 7, name: 'Pear 2', type: 'Sanitary ware' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Memory",
+        "type": "Taps"
+      },
+      {
+        "number": 2,
+        "name": "Bjhon 1",
+        "type": "Washbasin"
+      },
+      {
+        "number": 3,
+        "name": "Ottocento",
+        "type": "Bathtub"
+      },
+      {
+        "number": 4,
+        "name": "Square",
+        "type": "Taps"
+      },
+      {
+        "number": 5,
+        "name": "Immersion",
+        "type": "Bathtub"
+      },
+      {
+        "number": 6,
+        "name": "Ascension",
+        "type": "Multifunctional seat"
+      },
+      {
+        "number": 7,
+        "name": "Pear 2",
+        "type": "Sanitary ware"
+      }
     ],
-    images: {
-      hero: 'assets/images/nembo-venice/hero.jpg',
-      gallery: [
-        'assets/images/nembo-venice/01.jpg',
-        'assets/images/nembo-venice/02.jpg',
-        'assets/images/nembo-venice/03.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_28%20IN%20EU/9960M_AC_2508-POST.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_28%20IN%20EU/7262_AC_2601.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_28%20IN%20EU/7499_AC_2601-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_28%20IN%20EU/9198M_AC_2507-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_28%20IN%20EU/9911M_AC_2508-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_28%20IN%20EU/8871M_AC_2507.jpg"
       ],
-      thumbnail: 'assets/images/nembo-venice/thumb.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_28%20IN%20EU/9960M_AC_2508-POST.jpg"
     },
-    plan: 'assets/plans/nembo-venice.svg',
+    "plan": [
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_28%20IN%20EU/Nembo_Venice.svg",
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_28%20IN%20EU/Nembo_Venice_1.svg"
+    ],
+    "cloudinaryTag": "FS R25/28 IN EU"
   },
   {
-    id: 'casa-f',
-    title: 'Casa F',
-    location: 'Franciacorta, Italy',
-    architect: 'Marco Carini',
-    code: 'FS R06 IN EU',
-    pages: '244 — 251',
-    quote: {
-      text: 'The project aimed to find a harmonious relationship between the forest and the architecture. We wanted the house to become one more tree.',
-      author: 'Marco Carini',
+    "id": "casa-f",
+    "title": "Casa F",
+    "location": "Franciacorta, Italy",
+    "architect": "Marco Carini",
+    "code": "FS R06 IN EU",
+    "pages": "244 — 251",
+    "quote": {
+      "text": "The project aimed to find a harmonious relationship between the forest and the architecture. We wanted the house to become one more tree.",
+      "author": "Marco Carini"
     },
-    products: [
-      { number: 1, name: 'Memory', type: 'Taps, Accessories, Mirrors' },
-      { number: 2, name: 'Pear 2', type: 'Sanitary ware' },
-      { number: 3, name: 'Bjhon 1', type: 'Washbasin' },
-      { number: 4, name: 'Bucatini', type: 'Accessories' },
-      { number: 5, name: 'Nudo', type: 'Mirror' },
-      { number: 6, name: 'Bjhon 2', type: 'Washbasin' },
-      { number: 7, name: 'Dot Line', type: 'Accessorised bar' },
-      { number: 8, name: 'Ell', type: 'Washbasin/Countertop' },
-      { number: 9, name: 'Basket', type: 'Storage unit' },
-      { number: 10, name: 'X', type: 'Towel holder' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Memory",
+        "type": "Taps, Accessories, Mirrors"
+      },
+      {
+        "number": 2,
+        "name": "Pear 2",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 3,
+        "name": "Bjhon 1",
+        "type": "Washbasin"
+      },
+      {
+        "number": 4,
+        "name": "Bucatini",
+        "type": "Accessories"
+      },
+      {
+        "number": 5,
+        "name": "Nudo",
+        "type": "Mirror"
+      },
+      {
+        "number": 6,
+        "name": "Bjhon 2",
+        "type": "Washbasin"
+      },
+      {
+        "number": 7,
+        "name": "Dot Line",
+        "type": "Accessorised bar"
+      },
+      {
+        "number": 8,
+        "name": "Ell",
+        "type": "Washbasin/Countertop"
+      },
+      {
+        "number": 9,
+        "name": "Basket",
+        "type": "Storage unit"
+      },
+      {
+        "number": 10,
+        "name": "X",
+        "type": "Towel holder"
+      }
     ],
-    images: {
-      hero: 'assets/images/casa-f/hero.jpg',
-      gallery: [
-        'assets/images/casa-f/01.jpg',
-        'assets/images/casa-f/02.jpg',
-        'assets/images/casa-f/03.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_18%20IN%20EU/FMS_9453-CMYK.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_18%20IN%20EU/FMS_9341-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_18%20IN%20EU/FMS_9144-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_18%20IN%20EU/FMS_9160-POST.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_18%20IN%20EU/FMS_9093.jpg"
       ],
-      thumbnail: 'assets/images/casa-f/thumb.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_18%20IN%20EU/FMS_9453-CMYK.jpg"
     },
-    plan: 'assets/plans/casa-f.svg',
+    "plan": [
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_18%20IN%20EU/Casa_F.svg",
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_18%20IN%20EU/Casa_F_1.svg",
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R21_18%20IN%20EU/Casa_F_2.svg"
+    ],
+    "cloudinaryTag": "FS R21/18 IN EU"
   },
   {
-    id: 'inda-house',
-    title: 'Inda House',
-    location: 'Chisinau, Moldova',
-    architect: 'Line Architects',
-    code: 'FS R14 IN EU',
-    pages: '252 — 257',
-    quote: {
-      text: 'Changing perceptions, the house turns inward, allowing gardens to become the project\'s organizing force and emotional center.',
-      author: 'Dmitry Petrov',
+    "id": "inda-house",
+    "title": "Inda House",
+    "location": "Chisinau, Moldova",
+    "architect": "Line Architects",
+    "code": "FS R14 IN EU",
+    "pages": "252 — 257",
+    "quote": {
+      "text": "Changing perceptions, the house turns inward, allowing gardens to become the project's organizing force and emotional center.",
+      "author": "Dmitry Petrov"
     },
-    products: [
-      { number: 1, name: 'Sen', type: 'Taps, Accessories' },
-      { number: 2, name: 'Memory', type: 'Mirrors' },
-      { number: 3, name: 'Lariana', type: 'Washbasin' },
-      { number: 4, name: 'Rigo', type: 'System' },
-      { number: 5, name: 'Lato', type: 'Storage unit' },
-      { number: 6, name: 'Spoon XL', type: 'Bathtub' },
-      { number: 7, name: 'Stairs', type: 'Extras' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Sen",
+        "type": "Taps, Accessories"
+      },
+      {
+        "number": 2,
+        "name": "Memory",
+        "type": "Mirrors"
+      },
+      {
+        "number": 3,
+        "name": "Lariana",
+        "type": "Washbasin"
+      },
+      {
+        "number": 4,
+        "name": "Rigo",
+        "type": "System"
+      },
+      {
+        "number": 5,
+        "name": "Lato",
+        "type": "Storage unit"
+      },
+      {
+        "number": 6,
+        "name": "Spoon XL",
+        "type": "Bathtub"
+      },
+      {
+        "number": 7,
+        "name": "Stairs",
+        "type": "Extras"
+      }
     ],
-    images: {
-      hero: 'assets/images/inda-house/hero.jpg',
-      gallery: [
-        'assets/images/inda-house/01.jpg',
-        'assets/images/inda-house/02.jpg',
-        'assets/images/inda-house/03.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_31%20IN%20EU/DSC_8500.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_31%20IN%20EU/DSC_8629.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_31%20IN%20EU/DSC_8339.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_31%20IN%20EU/DSC_8175.jpg"
       ],
-      thumbnail: 'assets/images/inda-house/thumb.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_31%20IN%20EU/DSC_8500.jpg"
     },
-    plan: 'assets/plans/inda-house.svg',
+    "plan": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_31%20IN%20EU/Inda_House.svg",
+    "cloudinaryTag": "FS R22/31 IN EU"
   },
   {
-    id: 'private-house-busto-arsizio',
-    title: 'Private House',
-    location: 'Busto Arsizio, Italy',
-    architect: 'Archiplan Studio',
-    code: 'FS R27 IN EU',
-    pages: '258 — 263',
-    quote: {
-      text: 'The elements from Agape reinforce the vision of this project and contribute to a sense of extreme naturalness within the space.',
-      author: 'Diego Cisi',
+    "id": "private-house-busto-arsizio",
+    "title": "Private House",
+    "location": "Busto Arsizio, Italy",
+    "architect": "Archiplan Studio",
+    "code": "FS R27 IN EU",
+    "pages": "258 — 263",
+    "quote": {
+      "text": "The elements from Agape reinforce the vision of this project and contribute to a sense of extreme naturalness within the space.",
+      "author": "Diego Cisi"
     },
-    products: [
-      { number: 1, name: 'Memory', type: 'Taps, Mirrors' },
-      { number: 2, name: 'Flat PDX', type: 'Shower tray' },
-      { number: 3, name: 'Ell', type: 'Washbasin/Countertop' },
-      { number: 4, name: 'Pear 2', type: 'Sanitary ware' },
-      { number: 5, name: 'Fez 2', type: 'Taps' },
-      { number: 6, name: 'O.J.C.', type: 'Extras' },
-      { number: 7, name: 'Vieques', type: 'Washbasins' },
-      { number: 8, name: '4x4', type: 'Mirror cabinets' },
-      { number: 9, name: '369', type: 'Accessories' },
-      { number: 10, name: 'Bucatini', type: 'Mirror' },
-      { number: 11, name: 'Flat XL', type: 'Countertop' },
-      { number: 12, name: 'Stairs', type: 'Extra' },
-      { number: 13, name: 'Lato', type: 'Storage unit' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Memory",
+        "type": "Taps, Mirrors"
+      },
+      {
+        "number": 2,
+        "name": "Flat PDX",
+        "type": "Shower tray"
+      },
+      {
+        "number": 3,
+        "name": "Ell",
+        "type": "Washbasin/Countertop"
+      },
+      {
+        "number": 4,
+        "name": "Pear 2",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 5,
+        "name": "Fez 2",
+        "type": "Taps"
+      },
+      {
+        "number": 6,
+        "name": "O.J.C.",
+        "type": "Extras"
+      },
+      {
+        "number": 7,
+        "name": "Vieques",
+        "type": "Washbasins"
+      },
+      {
+        "number": 8,
+        "name": "4x4",
+        "type": "Mirror cabinets"
+      },
+      {
+        "number": 9,
+        "name": "369",
+        "type": "Accessories"
+      },
+      {
+        "number": 10,
+        "name": "Bucatini",
+        "type": "Mirror"
+      },
+      {
+        "number": 11,
+        "name": "Flat XL",
+        "type": "Countertop"
+      },
+      {
+        "number": 12,
+        "name": "Stairs",
+        "type": "Extra"
+      },
+      {
+        "number": 13,
+        "name": "Lato",
+        "type": "Storage unit"
+      }
     ],
-    images: {
-      hero: 'assets/images/private-house-busto-arsizio/hero.jpg',
-      gallery: [
-        'assets/images/private-house-busto-arsizio/01.jpg',
-        'assets/images/private-house-busto-arsizio/02.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_03%20IN%20EU/780A0376_PRO-POST.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_03%20IN%20EU/780A0287_PRO.png",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_03%20IN%20EU/780A0449_PRO.png"
       ],
-      thumbnail: 'assets/images/private-house-busto-arsizio/thumb.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_03%20IN%20EU/780A0376_PRO-POST.jpg"
     },
-    plan: 'assets/plans/private-house-busto-arsizio.svg',
+    "plan": [
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_03%20IN%20EU/Casa_Privata_Busto_Arsizio.svg",
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_03%20IN%20EU/Casa_Privata_Busto_Arsizio_1.svg",
+      "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_03%20IN%20EU/Casa_Privata_Busto_Arsizio_2.svg"
+    ],
+    "cloudinaryTag": "FS R20/03 IN EU"
   },
   {
-    id: 'east-melbourne-residence',
-    title: 'East Melbourne Residence',
-    location: 'East Melbourne, Australia',
-    architect: 'Hecker Guthrie',
-    code: 'FS R08 IN OC',
-    pages: '264 — 271',
-    quote: {
-      text: 'The movement between old and new becomes more intimate, with contemporary elements introduced in a way that respects the home\'s Victorian proportions.',
-      author: 'Hecker Guthrie',
+    "id": "east-melbourne-residence",
+    "title": "East Melbourne Residence",
+    "location": "East Melbourne, Australia",
+    "architect": "Hecker Guthrie",
+    "code": "FS R08 IN OC",
+    "pages": "264 — 271",
+    "quote": {
+      "text": "The movement between old and new becomes more intimate, with contemporary elements introduced in a way that respects the home's Victorian proportions.",
+      "author": "Hecker Guthrie"
     },
-    products: [
-      { number: 1, name: 'Memory', type: 'Taps, Mirror, Accessories' },
-      { number: 2, name: 'Bjhon 1', type: 'Washbasin' },
-      { number: 3, name: 'Ottocento', type: 'Bathtub' },
-      { number: 4, name: 'Pear 2', type: 'Sanitary ware' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Memory",
+        "type": "Taps, Mirror, Accessories"
+      },
+      {
+        "number": 2,
+        "name": "Bjhon 1",
+        "type": "Washbasin"
+      },
+      {
+        "number": 3,
+        "name": "Ottocento",
+        "type": "Bathtub"
+      },
+      {
+        "number": 4,
+        "name": "Pear 2",
+        "type": "Sanitary ware"
+      }
     ],
-    images: {
-      hero: 'assets/images/east-melbourne-residence/hero.jpg',
-      gallery: [
-        'assets/images/east-melbourne-residence/01.jpg',
-        'assets/images/east-melbourne-residence/02.jpg',
-        'assets/images/east-melbourne-residence/03.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R24_05%20IN%20OC/HG_GeorgeSt__smg_8578.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R24_05%20IN%20OC/HG_GeorgeSt__smg_9275.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R24_05%20IN%20OC/HG_GeorgeSt__smg_8639.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R24_05%20IN%20OC/HG_GeorgeSt__smg_9242.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R24_05%20IN%20OC/HG_GeorgeSt__smg_9289.jpg"
       ],
-      thumbnail: 'assets/images/east-melbourne-residence/thumb.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R24_05%20IN%20OC/HG_GeorgeSt__smg_8578.jpg"
     },
-    plan: 'assets/plans/east-melbourne-residence.svg',
+    "plan": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R24_05%20IN%20OC/East_Mebourne_Residence.svg",
+    "cloudinaryTag": "FS R24/05 IN OC"
   },
   {
-    id: 'nelson-terrace',
-    title: 'Nelson Terrace',
-    location: 'London, United Kingdom',
-    architect: 'Paolo Cossu Architects',
-    code: 'FS R20 IN EU',
-    pages: '272 — 279',
-    quote: {
-      text: 'A dialogue between the essential character of Georgian architecture and a contemporary thoughtful approach, creating a serene and refined environment.',
-      author: 'Paolo Cossu Architects',
+    "id": "nelson-terrace",
+    "title": "Nelson Terrace",
+    "location": "London, United Kingdom",
+    "architect": "Paolo Cossu Architects",
+    "code": "FS R20 IN EU",
+    "pages": "272 — 279",
+    "quote": {
+      "text": "A dialogue between the essential character of Georgian architecture and a contemporary thoughtful approach, creating a serene and refined environment.",
+      "author": "Paolo Cossu Architects"
     },
-    products: [
-      { number: 1, name: 'Fez 2', type: 'Taps' },
-      { number: 2, name: 'Lariana', type: 'Bathtub' },
-      { number: 3, name: 'Cooper', type: 'Shower' },
-      { number: 4, name: 'Dot Line', type: 'Accessorised bar' },
-      { number: 5, name: 'Ell', type: 'Washbasin' },
-      { number: 6, name: 'Pear 2', type: 'Sanitary ware' },
-      { number: 7, name: 'Nudo', type: 'Mirror' },
+    "products": [
+      {
+        "number": 1,
+        "name": "Fez 2",
+        "type": "Taps"
+      },
+      {
+        "number": 2,
+        "name": "Lariana",
+        "type": "Bathtub"
+      },
+      {
+        "number": 3,
+        "name": "Cooper",
+        "type": "Shower"
+      },
+      {
+        "number": 4,
+        "name": "Dot Line",
+        "type": "Accessorised bar"
+      },
+      {
+        "number": 5,
+        "name": "Ell",
+        "type": "Washbasin"
+      },
+      {
+        "number": 6,
+        "name": "Pear 2",
+        "type": "Sanitary ware"
+      },
+      {
+        "number": 7,
+        "name": "Nudo",
+        "type": "Mirror"
+      }
     ],
-    images: {
-      hero: 'assets/images/nelson-terrace/hero.jpg',
-      gallery: [
-        'assets/images/nelson-terrace/01.jpg',
-        'assets/images/nelson-terrace/02.jpg',
-        'assets/images/nelson-terrace/03.jpg',
+    "images": {
+      "hero": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R24_11%20IN%20EU/Nelson_Terrace_-_PCA_-_Lorenzo_Zandri_2023-3.jpg",
+      "gallery": [
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R24_11%20IN%20EU/Nelson_Terrace_-_PCA_-_Lorenzo_Zandri_2023-2.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R24_11%20IN%20EU/Nelson_Terrace_-_PCA_-_Lorenzo_Zandri_2023-14.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R24_11%20IN%20EU/Nelson_Terrace_-_PCA_-_Lorenzo_Zandri_2023-21.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R24_11%20IN%20EU/Nelson_Terrace_-_PCA_-_Lorenzo_Zandri_2023-23.jpg",
+        "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R24_11%20IN%20EU/Nelson_Terrace_-_PCA_-_Lorenzo_Zandri_2023-22.jpg"
       ],
-      thumbnail: 'assets/images/nelson-terrace/thumb.jpg',
+      "thumbnail": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R24_11%20IN%20EU/Nelson_Terrace_-_PCA_-_Lorenzo_Zandri_2023-3.jpg"
     },
-    plan: 'assets/plans/nelson-terrace.svg',
-  },
+    "plan": "https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R24_11%20IN%20EU/Nelson_Terrace.svg",
+    "cloudinaryTag": "FS R24/11 IN EU"
+  }
 ];

@@ -48,18 +48,15 @@
 
     .cover__logo {
       width: 180px;
-      height: 40px;
       margin-bottom: 60px;
-      border: 1px solid var(--cover-text-dim);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-family);
-      font-weight: 400;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--cover-text-dim);
+      color: var(--cover-text);
+      display: block;
+    }
+
+    .cover__logo svg {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     .cover__title {
@@ -228,8 +225,14 @@
     .body__plan svg {
       width: 100%;
       height: 100%;
-      max-width: 800px;
-      max-height: 800px;
+      max-width: 1200px;
+      max-height: 1200px;
+    }
+
+    /* Override dot label font (SVG ships with BaselGrotesk) */
+    .body__plan svg #numeri text,
+    .body__plan svg #numeri tspan {
+      font-family: Helvetica, Arial, sans-serif !important;
     }
 
     /* Placeholder border (dev only) */
@@ -302,7 +305,12 @@
       <!-- ============ Cover (always full vh) ============ -->
       <div class="scroll-item scroll-item--cover" id="coverItem">
         <div class="cover__top">
-          <div class="cover__logo">Agape logo</div>
+          <div class="cover__logo" aria-label="Agape">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 252.39 59.1" role="img">
+              <path fill="currentColor" d="M222.05,18.21c.39-5.48,3.63-9.11,9.11-9.11s8.5,3.63,8.96,9.11h-18.07ZM231.71,42.85c9.27,0,15.45-5.02,18.23-12.36h-10.27c-1.08,2.01-3.48,4.25-7.96,4.25-5.41,0-9.27-3.4-9.66-9.58h28.27v-1.16c0-13.13-7.03-22.09-19.16-22.09s-19.08,8.73-19.08,20.47,7.18,20.47,19.62,20.47ZM191.93,34.74c-5.56,0-9.27-4.48-9.27-12.36,0-7.42,3.24-12.36,9.11-12.36,5.48,0,9.11,4.48,9.11,12.36,0,7.26-3.24,12.2-8.96,12.36ZM183.28,56.6l.08-18.15h.31c2.78,3.01,6.49,4.4,10.58,4.4,10.04,0,16.68-8.19,16.68-20.47s-6.64-20.47-16.68-20.47c-4.25,0-7.8,1.39-10.81,4.25h-.31v-3.09h-9.89v53.53h10.04ZM153.08,35.67c-4.09,0-6.87-1.93-6.87-5.25,0-2.39,1.54-4.25,6.57-5.41l2.39-.54c2.78-.62,5.48-1.39,6.64-2.09v5.02c0,1.85-.15,2.47-.39,3.17-1.16,3.32-4.79,5.1-8.34,5.1ZM150.84,42.85c6.87,0,9.11-2.55,11.05-4.25h.31l.77,3.09h9.11l-.77-3.09v-20.16c0-3.78-.31-7.18-1.78-9.89-2.78-4.87-8.96-6.64-14.75-6.64-9.35,0-16.45,4.25-17.07,13.13h9.27c.39-4.02,3.24-5.95,7.42-5.95,4.48,0,6.8,2.09,6.8,5.02,0,2.09-.93,2.86-3.48,3.24l-1.7.23c-8.19,1.08-20.08,3.32-20.08,13.52,0,7.49,6.95,11.74,14.91,11.74ZM116.08,34.28c-5.48,0-9.11-4.17-9.11-11.9,0-7.26,3.24-12.36,9.11-12.36,5.48,0,9.11,4.4,9.11,12.36,0,7.11-3.24,11.9-9.11,11.9ZM116.08,57.76c11.2,0,18.69-7.42,18.69-18V3.08h-9.89v3.09h-.31c-2.09-2.63-6.41-4.25-10.74-4.25-10.27,0-16.92,9.96-16.92,20.47,0,11.05,6.57,20.08,16.92,20.08,3.63,0,7.42-1.31,10.81-4.48h.23c0,7.11-2.09,11.9-8.81,11.9-4.48,0-7.88-2.55-8.5-7.03h-9.19c1,9.42,8.5,14.91,17.69,14.91ZM77.53,35.67c-4.09,0-6.87-1.93-6.87-5.25,0-2.39,1.54-4.25,6.57-5.41l2.39-.54c2.78-.62,5.48-1.31,6.64-2.09v5.02c0,1.85-.15,2.47-.39,3.17-1.16,3.32-4.79,5.1-8.34,5.1ZM75.29,42.85c6.87,0,9.11-2.55,11.05-4.25h.31l.77,3.09h9.11l-.77-3.09v-20.16c0-3.78-.31-7.18-1.78-9.89-2.78-4.87-8.96-6.64-14.75-6.64-9.35,0-16.45,4.25-17.07,13.13h9.27c.39-4.02,3.24-5.95,7.42-5.95,4.48,0,6.8,2.09,6.8,5.02,0,2.09-.93,2.86-3.48,3.24l-1.7.23c-8.19,1.08-20.08,3.32-20.08,13.52,0,7.49,6.95,11.74,14.91,11.74ZM22.69,42.85c10.58,0,21.47-5.33,24.95-15.29.7-2.09,1.16-3.94,1.16-9.42V3.08c-3.48,2.09-11.59,4.4-19.85,6.26l-7.18,1.62C6.7,14.35,2.07,19.99,2.07,27.1c0,9.96,8.34,15.76,20.62,15.76Z"/>
+            </svg>
+            <title>Agape</title>
+          </div>
           <div>
             <div class="cover__title">Field<br>Studies</div>
             <div class="cover__title cover__title--review">Design<br>Review</div>
@@ -483,12 +491,33 @@
 
       var svgCache = {};
 
+      /** Resolve a plan path: absolute URL returned as-is, relative gets `../` prefix. */
+      function resolvePlanUrl(p) {
+        return /^https?:\/\//.test(p) ? p : '../' + p;
+      }
+
+      /** Fetch one SVG path, resolve with '' on failure. */
+      function fetchSvg(p) {
+        return fetch(resolvePlanUrl(p))
+          .then(function (r) { return r.ok ? r.text() : ''; })
+          .catch(function () { return ''; });
+      }
+
       function preloadPlans() {
         var promises = PROJECTS.map(function (project) {
-          return fetch('../' + project.plan)
-            .then(function (r) { return r.ok ? r.text() : ''; })
-            .then(function (text) { svgCache[project.id] = text; })
-            .catch(function () { svgCache[project.id] = ''; });
+          var plan = project.plan;
+          if (Array.isArray(plan)) {
+            // Fetch all; pick the largest by text length (probably the main bathroom)
+            return Promise.all(plan.map(fetchSvg)).then(function (texts) {
+              var best = texts.reduce(function (a, b) {
+                return b.length > a.length ? b : a;
+              }, '');
+              svgCache[project.id] = best;
+            });
+          }
+          return fetchSvg(plan).then(function (text) {
+            svgCache[project.id] = text;
+          });
         });
         return Promise.all(promises);
       }
@@ -578,9 +607,16 @@
           });
         }
 
-        // Numbered dots: new format uses #testi, legacy uses .plan-dots
-        var dotsGroup = svg.querySelector('#testi') || svg.querySelector('.plan-dots');
-        var dotEls = dotsGroup ? Array.from(dotsGroup.children) : [];
+        // Numbered dots: new format uses #bollini / #Livello_5 / #testi for circles
+        // and #numeri for labels. Legacy uses .plan-dots.
+        var circlesGroup = svg.querySelector('#bollini')
+          || svg.querySelector('#Livello_5')
+          || svg.querySelector('#testi')
+          || svg.querySelector('.plan-dots');
+        var numbersGroup = svg.querySelector('#numeri');
+        var dotCircles = circlesGroup ? Array.from(circlesGroup.children) : [];
+        var dotNumbers = numbersGroup ? Array.from(numbersGroup.children) : [];
+        var dotEls = dotCircles.concat(dotNumbers);
         gsap.set(dotEls, { scale: 0, transformOrigin: '50% 50%' });
 
         return {
@@ -590,6 +626,8 @@
           prodottiGroup: prodottiGroup,
           legacyLayers: legacyLayers,
           dotEls: dotEls,
+          dotCircles: dotCircles,
+          dotNumbers: dotNumbers,
         };
       }
 
@@ -613,14 +651,14 @@
             }, baseOffset + 0.3);
           }
 
-          // Phase 2: fill in the filled elements (outline drawn → color fills in)
+          // Phase 2: fill in the filled elements — delayed, slow fade
           if (pd.filledEls.length) {
             tl.to(pd.filledEls, {
               fill: function (i) { return pd.filledEls[i]._origFill; },
-              duration: 1.2,
+              duration: 2.8,
               ease: 'power2.out',
-              stagger: 0.03,
-            }, baseOffset + buildDur * 0.7);
+              stagger: 0.05,
+            }, baseOffset + buildDur * 0.95);
           }
 
           // Phase 3: prodotti fade in
@@ -629,17 +667,28 @@
               opacity: 1,
               duration: 1.5,
               ease: 'power2.out',
-            }, baseOffset + buildDur * 0.8);
+            }, baseOffset + buildDur * 1.05);
           }
 
-          // Phase 4: numbered dots (testi) pop in
-          if (planData.dotEls.length) {
-            tl.to(planData.dotEls, {
+          // Phase 4: numbered dots — circles + numbers pop in as pairs, sequentially
+          var dotsStart = baseOffset + buildDur * 1.2;
+          var dotStagger = 0.28;
+          var dotDur = 0.35;
+          if (planData.dotCircles.length) {
+            tl.to(planData.dotCircles, {
               scale: 1,
-              duration: 0.4,
-              stagger: 0.12,
+              duration: dotDur,
+              stagger: dotStagger,
               ease: 'back.out(1.7)',
-            }, baseOffset + buildDur * 0.9);
+            }, dotsStart);
+          }
+          if (planData.dotNumbers.length) {
+            tl.to(planData.dotNumbers, {
+              scale: 1,
+              duration: dotDur,
+              stagger: dotStagger,
+              ease: 'back.out(1.7)',
+            }, dotsStart);
           }
         } else {
           // Legacy format
