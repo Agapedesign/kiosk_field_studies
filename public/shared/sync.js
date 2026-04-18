@@ -124,6 +124,9 @@ const SYNC = (function () {
     broadcastProjectEnd: function (index, id) {
       return send({ type: 'project_end', index: index, id: id, ts: Date.now() });
     },
+    broadcastHeartbeat: function (index, id) {
+      return send({ type: 'heartbeat', index: index, id: id, ts: Date.now() });
+    },
     /** Console helper: `SYNC.status()` prints current state. */
     status: function () {
       var s = {

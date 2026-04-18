@@ -945,6 +945,17 @@
         }
       });
 
+      // --- Sync: heartbeat ---
+      // SX's current state: { index, id } while inside a project window
+      // (from project_start broadcast through project_end receipt), or
+      // { index: null } otherwise. Rebroadcast every heartbeatMs so DX
+      // can recover from any missed message / stale reconnect replay.
+      var sxActive = { index: null, id: null };
+      setInterval(function () {
+        if (!SYNC.isAuthoritative()) return;
+        SYNC.broadcastHeartbeat(sxActive.index, sxActive.id);
+      }, CONFIG.sync.heartbeatMs || 4000);
+
       function waitForProjectEnd(index, id, fallbackSec) {
         return new Promise(function (resolve) {
           var key = index + ':' + id;
@@ -988,6 +999,7 @@
             // in parallel with our accordion open, so both screens reach
             // their "content visible" state together.
             var syncLive = SYNC.isAuthoritative();
+            sxActive = { index: i, id: project.id };
             if (syncLive) {
               SYNC.broadcastProjectStart(i, project.id);
             }
@@ -1007,6 +1019,8 @@
             } else {
               await delay(holdDuration);
             }
+            // No longer in the project window — heartbeat goes quiet.
+            sxActive = { index: null, id: null };
 
             // Close accordion
             await closeAccordion(item);

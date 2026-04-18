@@ -661,6 +661,34 @@
         applyStart(msg);
       });
 
+      // SX rebroadcasts its current project every heartbeatMs. We use it
+      // as a safety-net converger: if we ever drift out of sync (missed
+      // start, stale reconnect replay, WebSocket blip), the next heartbeat
+      // pulls us back in line.
+      SYNC.on('heartbeat', function (msg) {
+        if (msg.index === null || msg.index === undefined) {
+          // SX is between projects. Clear our pin only if we're also
+          // idle — otherwise let the running cycle finish naturally.
+          if (currentActiveId === null && syncPinnedIndex !== null) {
+            syncPinnedIndex = null;
+          }
+          return;
+        }
+        if (typeof msg.index !== 'number') return;
+        // Same rules as project_start: buffer if mid-cycle with a
+        // different index, apply directly when idle or matching.
+        if (currentActiveId !== null && !cycleCompleted) {
+          if (syncPinnedIndex !== msg.index) {
+            pendingStart = msg;
+          }
+          return;
+        }
+        if (syncPinnedIndex !== msg.index) {
+          console.log('[DX] heartbeat resync', syncPinnedIndex, '→', msg.index);
+          applyStart(msg);
+        }
+      });
+
       function updateGridState() {
         var state;
         if (SYNC.isAuthoritative()) {

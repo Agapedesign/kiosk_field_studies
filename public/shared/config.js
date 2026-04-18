@@ -114,6 +114,10 @@ const CONFIG = {
     host: 'field-studies-sync.agapedesign.partykit.dev',
     room: 'showroom',
     // SX max wait for DX's project_end before auto-advancing.
-    projectEndTimeoutMs: 120000,
+    projectEndTimeoutMs: 60000,
+    // SX rebroadcasts current state every N ms so a screen that missed
+    // a project_start (WebSocket blip, reconnect with stale lastState)
+    // converges within one heartbeat interval.
+    heartbeatMs: 4000,
   },
 };
