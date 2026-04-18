@@ -1,4 +1,5 @@
 {
   "name": "field-studies-sync",
-  "main": "server.js"
+  "main": "server.js",
+  "compatibilityDate": "2026-04-18"
 }

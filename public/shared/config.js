@@ -111,7 +111,7 @@ const CONFIG = {
     // When `host` is empty, each screen runs its own standalone timeline
     // (no WebSocket traffic). After `partykit deploy` in /sync, set host
     // to the deployed origin (e.g. 'field-studies-sync.<user>.partykit.dev').
-    host: '',
+    host: 'field-studies-sync.agapedesign.partykit.dev',
     room: 'showroom',
     // SX max wait for DX's project_end before auto-advancing.
     projectEndTimeoutMs: 120000,
