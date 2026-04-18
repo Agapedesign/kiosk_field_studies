@@ -1014,6 +1014,14 @@
 
       requestAnimationFrame(function () {
         requestAnimationFrame(function () {
+          // Fit each open accordion to exactly one screen regardless of
+          // whether the title wraps: body height = screen - actual bar.
+          // Without this, two-line titles push products off the bottom.
+          projectItems.forEach(function (p) {
+            var barH = p.bar.offsetHeight;
+            p.inner.style.height = 'calc(var(--screen-h) - ' + barH + 'px)';
+          });
+
           // Measure block height: first clone's offsetTop = total real block height
           blockHeight = firstCloneEl.offsetTop;
           console.log('[SX] Block height:', blockHeight, 'px');
