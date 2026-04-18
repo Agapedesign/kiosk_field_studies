@@ -592,6 +592,11 @@
         var svg = doc.querySelector('svg');
         if (!svg) return null;
 
+        // Kill any stray tweens left on the previous SVG and drop it.
+        // Many plan SVGs share `id="piante"`, `id="prodotti"`, etc., so
+        // leaving multiple in the DOM lets `url(#…)` references cross-
+        // resolve between projects and corrupts fills/strokes/dashes.
+        gsap.killTweensOf(planContainer.querySelectorAll('*'));
         planContainer.innerHTML = '';
         planContainer.appendChild(svg);
 
@@ -890,6 +895,14 @@
           duration: 0.9,
           ease: 'power2.inOut',
         }, 0.2);
+
+        // Purge the plan SVG once the body has fully collapsed so only
+        // the currently-open project ever holds a plan in the DOM —
+        // prevents cross-project id collisions (see injectPlanSVG).
+        tl.add(function () {
+          gsap.killTweensOf(plan.querySelectorAll('*'));
+          plan.innerHTML = '';
+        });
 
         return tlPromise(tl);
       }
