@@ -28,8 +28,8 @@
       position: absolute;
       inset: 0;
       display: grid;
-      padding: 10px;
-      gap: 10px;
+      padding: 14px;
+      gap: 14px;
     }
 
     /* --- Cells --- */
@@ -41,8 +41,8 @@
 
     .grid__cell-inner {
       position: absolute;
-      inset: 0;
-      clip-path: inset(100% 0 0 0);
+      inset: 0 0 16px 0;
+      clip-path: inset(0 0 100% 0);
       transform: scale(1.08);
       will-change: clip-path, transform;
     }
@@ -50,28 +50,22 @@
     .grid__cell-image {
       display: block;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
+      height: auto;
+      object-fit: contain;
+      object-position: top left;
     }
 
-    .grid__cell-placeholder {
-      position: absolute;
-      inset: 0;
-    }
-
-    /* Cell number — below image */
-    .grid__cell-number {
+    /* Project code — in reserved area below image */
+    .grid__cell-code {
       position: absolute;
       bottom: 0;
-      left: 0;
+      right: 0;
       font-family: var(--font-family);
       font-weight: 400;
-      font-size: 9px;
-      line-height: 1;
-      color: #1a1a1a;
-      transform: translateY(100%);
-      padding-top: 3px;
+      font-size: 7px;
+      line-height: 16px;
+      color: #000;
+      white-space: nowrap;
     }
 
     /* --- Fullscreen image overlay (T₁) --- */
@@ -119,17 +113,31 @@
       var screenRight = document.getElementById('screenRight');
 
       // =============================================
-      // 1. Palette
+      // 1. Cloudinary helper + Palette
       // =============================================
 
-      var PALETTE = [
-        '#b8b0a4', '#a09890', '#8c8680', '#c4bcb0', '#9a9488',
-        '#b0a898', '#7a7570', '#c8c0b4', '#8e8880', '#a8a098',
-      ];
-
-      function projectColor(pi, vi) {
-        return PALETTE[(pi * 2 + vi) % PALETTE.length];
+      /**
+       * Insert Cloudinary transformations into a URL.
+       * For non-Cloudinary URLs (local paths), returns as-is.
+       * @param {string} url — base Cloudinary URL or local path
+       * @param {number} w — target width
+       * @param {number} [h] — optional target height
+       */
+      function cldImg(url, w, h) {
+        if (!url || url.indexOf('res.cloudinary.com') === -1) return url;
+        var transform = h
+          ? 'w_' + w + ',h_' + h + ',c_fill,q_auto,f_auto'
+          : 'w_' + w + ',c_limit,q_auto,f_auto';
+        return url.replace('/upload/', '/upload/' + transform + '/');
       }
+
+      // Thumbnail width — matches actual cell size (~140px)
+      var THUMB_W = 150;
+      // Fullscreen width
+      var FULL_W = 1080;
+      var FULL_H = 1920;
+
+      var FALLBACK_BG = 'rgba(0,0,0,0.05)';
 
       // =============================================
       // 2. Build cell data — one hero per project
@@ -147,9 +155,9 @@
 
       var SCREEN_W = 1080;
       var SCREEN_H = 1920;
-      var GAP = 10;
-      var PAD = 10;
-      var NUM_HEIGHT = 14; // space reserved below each cell for the number
+      var GAP = 14;
+      var PAD = 14;
+      var CODE_HEIGHT = 16; // space reserved below image for project code
       var totalCells = cells.length;
 
       // Find optimal column count so all cells fit in the screen height
@@ -158,8 +166,8 @@
         var rows = Math.ceil(totalCells / tryCol);
         var availW = SCREEN_W - PAD * 2 - GAP * (tryCol - 1);
         var cellW = availW / tryCol;
-        var cellH = cellW * (28 / 21); // 21:28 proportion
-        var totalH = PAD * 2 + rows * (cellH + NUM_HEIGHT) + GAP * (rows - 1);
+        var cellH = cellW * (28 / 21) + CODE_HEIGHT; // 21:28 image + code area
+        var totalH = PAD * 2 + rows * cellH + GAP * (rows - 1);
         if (totalH <= SCREEN_H) {
           cols = tryCol;
           break;
@@ -187,37 +195,27 @@
         inner.className = 'grid__cell-inner';
 
         var project = PROJECTS[cell.projectIndex];
-        var imgSrc = project.images.hero;
-
-        // Placeholder
-        var placeholder = document.createElement('div');
-        placeholder.className = 'grid__cell-placeholder';
-        placeholder.style.backgroundColor = projectColor(cell.projectIndex, 0);
-        inner.appendChild(placeholder);
+        var imgSrc = cldImg(project.images.hero, THUMB_W);
 
         // Image
         var img = document.createElement('img');
         img.className = 'grid__cell-image';
         img.src = imgSrc;
         img.alt = project.title;
-        img.loading = 'lazy';
-        img.style.opacity = '0';
-        img.onload = function () {
-          this.style.opacity = '1';
-          placeholder.style.display = 'none';
-        };
         img.onerror = function () {
+          // Missing image — show neutral fallback
           this.style.display = 'none';
+          inner.style.backgroundColor = FALLBACK_BG;
         };
         inner.appendChild(img);
 
         el.appendChild(inner);
 
-        // Number below image
-        var num = document.createElement('span');
-        num.className = 'grid__cell-number';
-        num.textContent = String(cell.globalIndex + 1).padStart(3, '0');
-        el.appendChild(num);
+        // Project code — bottom-right inside cell
+        var code = document.createElement('span');
+        code.className = 'grid__cell-code';
+        code.textContent = project.code;
+        el.appendChild(code);
 
         grid.appendChild(el);
         allInners.push(inner);
@@ -246,7 +244,7 @@
 
       var allCellEls = Array.from(grid.querySelectorAll('.grid__cell'));
 
-      /** Reveal all cells with stagger */
+      /** Reveal all cells with wave stagger */
       function revealAll() {
         allInners.forEach(function (inner, i) {
           gsap.to(inner, {
@@ -254,19 +252,19 @@
             scale: 1,
             duration: 0.6,
             ease: 'power2.out',
-            delay: 0.008 * i,
+            delay: 0.03 * i,
             overwrite: true,
           });
         });
       }
 
-      /** Hide non-project cells. Returns a promise when done. */
+      /** Hide non-project cells (curtain falls down). Returns a promise when done. */
       function hideNonProject(activeProjectId) {
         var dur = 0.6;
         allCellEls.forEach(function (cell) {
           if (cell.dataset.project !== activeProjectId) {
             gsap.to(cell.querySelector('.grid__cell-inner'), {
-              clipPath: 'inset(0 0 100% 0)',
+              clipPath: 'inset(100% 0 0 0)',
               scale: 1.08,
               duration: dur,
               ease: 'power2.in',
@@ -277,18 +275,24 @@
         return delay(dur + 0.1);
       }
 
-      /** Reveal all hidden cells back */
-      function revealNonProject() {
+      /** Reveal all hidden cells back with wave stagger */
+      function revealNonProject(activeProjectId) {
+        var staggerIdx = 0;
         allCellEls.forEach(function (cell) {
+          if (activeProjectId && cell.dataset.project === activeProjectId) return;
           var inner = cell.querySelector('.grid__cell-inner');
           gsap.to(inner, {
             clipPath: 'inset(0% 0 0 0)',
             scale: 1,
-            duration: 0.8,
+            duration: 0.6,
             ease: 'power2.out',
+            delay: 0.03 * staggerIdx,
             overwrite: true,
           });
+          staggerIdx++;
         });
+        // Return total duration for sequencing
+        return 0.6 + 0.03 * staggerIdx;
       }
 
       // Initial reveal
@@ -311,10 +315,10 @@
         return 'inset(' + top + '% ' + right + '% ' + bottom + '% ' + left + '%)';
       }
 
-      function expandFromCell(cellEl, imgSrc, pi) {
+      function expandFromCell(cellEl, rawSrc, pi) {
         var clip = cellClipPath(cellEl);
-        fullscreenImg.src = imgSrc;
-        fullscreenEl.style.backgroundColor = projectColor(pi, 0);
+        fullscreenImg.src = cldImg(rawSrc, FULL_W, FULL_H);
+        fullscreenEl.style.backgroundColor = FALLBACK_BG;
         gsap.set(fullscreenEl, { visibility: 'visible', opacity: 1, clipPath: clip });
         return animate(fullscreenEl, {
           clipPath: 'inset(0% 0% 0% 0%)',
@@ -341,15 +345,27 @@
       var currentActiveId = null;
       var cycleAborted = false;
 
+      /** Preload an image URL, resolve when ready (or on error). */
+      function preloadImage(url) {
+        return new Promise(function (resolve) {
+          var tmp = new Image();
+          tmp.onload = tmp.onerror = function () { resolve(url); };
+          tmp.src = url;
+        });
+      }
+
       /** Curtain down — reveal new image from top */
-      function curtainDown(imgSrc, pi) {
-        fullscreenImg.src = imgSrc;
-        fullscreenEl.style.backgroundColor = projectColor(pi, 0);
-        gsap.set(fullscreenEl, { visibility: 'visible', opacity: 1, clipPath: 'inset(0 0 100% 0)' });
-        return animate(fullscreenEl, {
-          clipPath: 'inset(0% 0% 0% 0%)',
-          duration: 1.0,
-          ease: 'power2.inOut',
+      function curtainDown(rawSrc, pi) {
+        var url = cldImg(rawSrc, FULL_W, FULL_H);
+        return preloadImage(url).then(function () {
+          fullscreenImg.src = url;
+          fullscreenEl.style.backgroundColor = FALLBACK_BG;
+          gsap.set(fullscreenEl, { visibility: 'visible', opacity: 1, clipPath: 'inset(0 0 100% 0)' });
+          return animate(fullscreenEl, {
+            clipPath: 'inset(0% 0% 0% 0%)',
+            duration: 1.0,
+            ease: 'power2.inOut',
+          });
         });
       }
 
@@ -375,17 +391,18 @@
         var images = [project.images.hero];
         project.images.gallery.forEach(function (g) { images.push(g); });
 
+        // Preload all fullscreen sizes upfront for this project
+        images.forEach(function (src) { preloadImage(cldImg(src, FULL_W, FULL_H)); });
+
         for (var i = 0; i < images.length; i++) {
           if (cycleAborted) return;
 
-          var imgSrc = '../' + images[i];
-
           if (i === 0) {
             // First image: expand from cell
-            await expandFromCell(cellEl, imgSrc, projectIndex);
+            await expandFromCell(cellEl, images[i], projectIndex);
           } else {
             // Subsequent images: curtain down
-            await curtainDown(imgSrc, projectIndex);
+            await curtainDown(images[i], projectIndex);
           }
           if (cycleAborted) return;
 
@@ -419,9 +436,19 @@
           cycleAborted = true;
 
           if (currentActiveId && !activeId) {
-            // Back to T₀ — hide fullscreen, reveal all cells
-            gsap.set(fullscreenEl, { visibility: 'hidden', opacity: 0, clipPath: '' });
-            revealNonProject();
+            // Back to T₀ — contract fullscreen into cell, then wave-reveal others
+            var prevId = currentActiveId;
+            var prevCell = allCellEls.find(function (c) {
+              return c.dataset.project === prevId;
+            });
+            if (prevCell && fullscreenEl.style.visibility === 'visible') {
+              contractToCell(prevCell).then(function () {
+                revealNonProject(prevId);
+              });
+            } else {
+              gsap.set(fullscreenEl, { visibility: 'hidden', opacity: 0, clipPath: '' });
+              revealNonProject(prevId);
+            }
           }
 
           currentActiveId = activeId;

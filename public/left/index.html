@@ -493,6 +493,53 @@
         return Promise.all(promises);
       }
 
+      /**
+       * Prepare stroke-draw on all shape elements in a group.
+       * For filled elements: saves original fill, sets fill to transparent,
+       * ensures a visible stroke exists for the draw animation.
+       * Returns { strokeEls, filledEls } — filledEls have ._origFill set.
+       */
+      function prepareStrokeDraw(group) {
+        if (!group) return { strokeEls: [], filledEls: [] };
+        var shapeTags = ['path', 'line', 'polyline', 'polygon', 'circle', 'ellipse', 'rect'];
+        var els = Array.from(group.querySelectorAll(shapeTags.join(',')));
+
+        var strokeEls = [];
+        var filledEls = [];
+
+        els.forEach(function (el) {
+          if (typeof el.getTotalLength !== 'function') return;
+
+          var computed = window.getComputedStyle(el);
+          var hasStroke = computed.stroke && computed.stroke !== 'none';
+          var fillVal = computed.fill;
+          var hasFill = fillVal && fillVal !== 'none' && fillVal !== 'transparent'
+            && fillVal !== 'rgba(0, 0, 0, 0)';
+
+          if (hasFill) {
+            // Save original fill, make transparent, ensure stroke for outline draw
+            el._origFill = fillVal;
+            el.style.fill = 'transparent';
+            if (!hasStroke) {
+              // Add a thin stroke matching the fill so outline is visible during draw
+              el.style.stroke = fillVal;
+              el.style.strokeWidth = '0.5';
+            }
+            var len = el.getTotalLength();
+            el.style.strokeDasharray = len;
+            el.style.strokeDashoffset = len;
+            filledEls.push(el);
+          } else if (hasStroke) {
+            var len = el.getTotalLength();
+            el.style.strokeDasharray = len;
+            el.style.strokeDashoffset = len;
+            strokeEls.push(el);
+          }
+        });
+
+        return { strokeEls: strokeEls, filledEls: filledEls };
+      }
+
       function injectPlanSVG(planContainer, projectId) {
         var svgStr = svgCache[projectId];
         if (!svgStr) return null;
@@ -505,65 +552,128 @@
         planContainer.innerHTML = '';
         planContainer.appendChild(svg);
 
-        var layerNames = ['plan-perimeter', 'plan-partitions', 'plan-fixtures'];
-        var pathsByLayer = {};
+        // Detect format: new (id="piante"/"prodotti") or legacy (class="plan-*")
+        var pianteGroup = svg.querySelector('#piante');
+        var prodottiGroup = svg.querySelector('#prodotti');
+        var isNewFormat = !!(pianteGroup || prodottiGroup);
 
-        layerNames.forEach(function (cls) {
-          var group = svg.querySelector('.' + cls);
-          if (!group) { pathsByLayer[cls] = []; return; }
-          var paths = Array.from(group.querySelectorAll('path'));
-          pathsByLayer[cls] = paths;
-          paths.forEach(function (path) {
-            var len = path.getTotalLength();
-            path.style.strokeDasharray = len;
-            path.style.strokeDashoffset = len;
+        var pianteData = { strokeEls: [], filledEls: [] };
+
+        if (isNewFormat) {
+          if (pianteGroup) {
+            pianteData = prepareStrokeDraw(pianteGroup);
+          }
+          if (prodottiGroup) {
+            gsap.set(prodottiGroup, { opacity: 0 });
+          }
+        }
+
+        // Legacy layers
+        var legacyLayers = [];
+        if (!isNewFormat) {
+          ['plan-perimeter', 'plan-partitions', 'plan-fixtures'].forEach(function (cls) {
+            var group = svg.querySelector('.' + cls);
+            var data = prepareStrokeDraw(group);
+            legacyLayers.push(data.strokeEls.concat(data.filledEls));
           });
-        });
+        }
 
-        var dotsGroup = svg.querySelector('.plan-dots');
+        // Numbered dots: new format uses #testi, legacy uses .plan-dots
+        var dotsGroup = svg.querySelector('#testi') || svg.querySelector('.plan-dots');
         var dotEls = dotsGroup ? Array.from(dotsGroup.children) : [];
         gsap.set(dotEls, { scale: 0, transformOrigin: '50% 50%' });
 
-        return { svg: svg, pathsByLayer: pathsByLayer, dotEls: dotEls };
+        return {
+          svg: svg,
+          isNewFormat: isNewFormat,
+          pianteData: pianteData,
+          prodottiGroup: prodottiGroup,
+          legacyLayers: legacyLayers,
+          dotEls: dotEls,
+        };
       }
 
       function addPlanimetryToTimeline(tl, planData, baseOffset) {
         if (!planData) return;
 
-        var delays = CONFIG.t1.planimetryDelay;
         var ease = CONFIG.ease.planDraw;
 
-        if (planData.pathsByLayer['plan-perimeter'].length) {
-          tl.to(planData.pathsByLayer['plan-perimeter'], {
-            strokeDashoffset: 0,
-            duration: 2.0,
-            ease: ease,
-          }, baseOffset + delays.perimeter);
-        }
+        if (planData.isNewFormat) {
+          var pd = planData.pianteData;
+          var allStroke = pd.strokeEls.concat(pd.filledEls);
+          var buildDur = CONFIG.t1.planimetryBuild;
 
-        if (planData.pathsByLayer['plan-partitions'].length) {
-          tl.to(planData.pathsByLayer['plan-partitions'], {
-            strokeDashoffset: 0,
-            duration: 1.5,
-            ease: ease,
-          }, baseOffset + delays.partitions);
-        }
+          // Phase 1: stroke-draw all outlines (stroked + filled elements)
+          if (allStroke.length) {
+            tl.to(allStroke, {
+              strokeDashoffset: 0,
+              duration: buildDur,
+              ease: ease,
+              stagger: 0.02,
+            }, baseOffset + 0.3);
+          }
 
-        if (planData.pathsByLayer['plan-fixtures'].length) {
-          tl.to(planData.pathsByLayer['plan-fixtures'], {
-            strokeDashoffset: 0,
-            duration: 2.0,
-            ease: ease,
-          }, baseOffset + delays.fixtures);
-        }
+          // Phase 2: fill in the filled elements (outline drawn → color fills in)
+          if (pd.filledEls.length) {
+            tl.to(pd.filledEls, {
+              fill: function (i) { return pd.filledEls[i]._origFill; },
+              duration: 1.2,
+              ease: 'power2.out',
+              stagger: 0.03,
+            }, baseOffset + buildDur * 0.7);
+          }
 
-        if (planData.dotEls.length) {
-          tl.to(planData.dotEls, {
-            scale: 1,
-            duration: 0.4,
-            stagger: 0.12,
-            ease: 'back.out(1.7)',
-          }, baseOffset + delays.dots);
+          // Phase 3: prodotti fade in
+          if (planData.prodottiGroup) {
+            tl.to(planData.prodottiGroup, {
+              opacity: 1,
+              duration: 1.5,
+              ease: 'power2.out',
+            }, baseOffset + buildDur * 0.8);
+          }
+
+          // Phase 4: numbered dots (testi) pop in
+          if (planData.dotEls.length) {
+            tl.to(planData.dotEls, {
+              scale: 1,
+              duration: 0.4,
+              stagger: 0.12,
+              ease: 'back.out(1.7)',
+            }, baseOffset + buildDur * 0.9);
+          }
+        } else {
+          // Legacy format
+          var delays = CONFIG.t1.planimetryDelay;
+
+          if (planData.legacyLayers[0] && planData.legacyLayers[0].length) {
+            tl.to(planData.legacyLayers[0], {
+              strokeDashoffset: 0,
+              duration: 2.0,
+              ease: ease,
+            }, baseOffset + delays.perimeter);
+          }
+          if (planData.legacyLayers[1] && planData.legacyLayers[1].length) {
+            tl.to(planData.legacyLayers[1], {
+              strokeDashoffset: 0,
+              duration: 1.5,
+              ease: ease,
+            }, baseOffset + delays.partitions);
+          }
+          if (planData.legacyLayers[2] && planData.legacyLayers[2].length) {
+            tl.to(planData.legacyLayers[2], {
+              strokeDashoffset: 0,
+              duration: 2.0,
+              ease: ease,
+            }, baseOffset + delays.fixtures);
+          }
+          if (planData.dotEls.length) {
+            tl.to(planData.dotEls, {
+              scale: 1,
+              duration: 0.4,
+              stagger: 0.12,
+              ease: 'back.out(1.7)',
+            }, baseOffset + delays.dots);
+          }
         }
       }
 

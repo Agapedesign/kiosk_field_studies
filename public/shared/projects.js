@@ -1,10 +1,17 @@
 /**
- * Field Studies Display — Project Data
+ * Field Studies Display — Project Data v3
  *
  * 37 projects from the "Field Studies — Design Review" catalogue.
  * All content in English.
  *
- * Images should be placed in assets/images/{id}/
+ * IMAGE DELIVERY:
+ * Projects with Cloudinary images use base URLs from:
+ *   https://res.cloudinary.com/agapelibrary/image/upload/
+ * Transformations should be applied programmatically by inserting
+ * parameters between /upload/ and the public_id, e.g.:
+ *   .../upload/w_1080,h_1920,c_fill,q_auto,f_auto/Agape%20Field%20Studies%2026/...
+ *
+ * Projects without Cloudinary images use local placeholder paths.
  * Plans should be placed in assets/plans/{id}.svg
  */
 
@@ -26,14 +33,16 @@ const PROJECTS = [
       { number: 3, name: 'Bjhon 1', type: 'Washbasin' },
     ],
     images: {
-      hero: 'assets/images/home-sanctuary/hero.jpg',
+      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_01%20IN%20EU/1a._canalhouse_bardevanvoltt.jpg',
       gallery: [
-        'assets/images/home-sanctuary/01.jpg',
-        'assets/images/home-sanctuary/02.jpg',
-        'assets/images/home-sanctuary/03.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_01%20IN%20EU/3._canalhouse_bardevanvoltt.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_01%20IN%20EU/5._canalhouse_bardevanvoltt.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_01%20IN%20EU/7._canalhouse_bardevanvoltt.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_01%20IN%20EU/9._canalhouse_bardevanvoltt.jpg',
       ],
-      thumbnail: 'assets/images/home-sanctuary/thumb.jpg',
+      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_01%20IN%20EU/1a._canalhouse_bardevanvoltt.jpg',
     },
+    cloudinaryTag: 'FS R22/01 IN EU',
     plan: 'assets/plans/home-sanctuary.svg',
   },
   {
@@ -54,13 +63,16 @@ const PROJECTS = [
       { number: 4, name: '369', type: 'Accessories' },
     ],
     images: {
-      hero: 'assets/images/its-house/hero.jpg',
+      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_22%20IN%20AS/TWO_BOOKS_P0036147_0_5x.jpg',
       gallery: [
-        'assets/images/its-house/01.jpg',
-        'assets/images/its-house/02.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_22%20IN%20AS/TWO_BOOKS_P0036180_0_5x.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_22%20IN%20AS/TWO_BOOKS_P0036305_0_5x.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_22%20IN%20AS/TWO_BOOKS_P0036308_0_5x.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_22%20IN%20AS/TWO_BOOKS_P0036366_0_5x.jpg',
       ],
-      thumbnail: 'assets/images/its-house/thumb.jpg',
+      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_22%20IN%20AS/TWO_BOOKS_P0036147_0_5x.jpg',
     },
+    cloudinaryTag: 'FS R22/22 IN AS',
     plan: 'assets/plans/its-house.svg',
   },
   {
@@ -79,13 +91,15 @@ const PROJECTS = [
       { number: 2, name: 'Vieques', type: 'Bathtub, Washbasin' },
     ],
     images: {
-      hero: 'assets/images/pleated-b-villa/hero.jpg',
+      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_40%20IN%20EU/bergmeisterwolf_Aldranz_IMG_4578_GW.jpg',
       gallery: [
-        'assets/images/pleated-b-villa/01.jpg',
-        'assets/images/pleated-b-villa/02.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_40%20IN%20EU/bergmeisterwolf_Aldranz_IMG_4343_GW.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_40%20IN%20EU/bergmeisterwolf_Aldranz_IMG_4457_GW.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_40%20IN%20EU/bergmeisterwolf_Aldranz_IMG_4563_GW.jpg',
       ],
-      thumbnail: 'assets/images/pleated-b-villa/thumb.jpg',
+      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_40%20IN%20EU/bergmeisterwolf_Aldranz_IMG_4578_GW.jpg',
     },
+    cloudinaryTag: 'FS R19/40 IN EU',
     plan: 'assets/plans/pleated-b-villa.svg',
   },
   {
@@ -106,13 +120,15 @@ const PROJECTS = [
       { number: 4, name: 'Nudo LED', type: 'Mirror' },
     ],
     images: {
-      hero: 'assets/images/te-arai-beach-house/hero.jpg',
+      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_15%20IN%20OC/FH.TaraIti.071-POST.jpg',
       gallery: [
-        'assets/images/te-arai-beach-house/01.jpg',
-        'assets/images/te-arai-beach-house/02.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_15%20IN%20OC/FH.TaraIti.060.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_15%20IN%20OC/FH.TaraIti.133.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_15%20IN%20OC/FH.TaraIti.205.jpg',
       ],
-      thumbnail: 'assets/images/te-arai-beach-house/thumb.jpg',
+      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_15%20IN%20OC/FH.TaraIti.071-POST.jpg',
     },
+    cloudinaryTag: 'FS R20/15 IN OC',
     plan: 'assets/plans/te-arai-beach-house.svg',
   },
   {
@@ -134,14 +150,17 @@ const PROJECTS = [
       { number: 5, name: 'Evo 21', type: 'System' },
     ],
     images: {
-      hero: 'assets/images/suspension-house/hero.jpg',
+      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Fougeron_SuspensionHouse_50S8922-POST.jpg',
       gallery: [
-        'assets/images/suspension-house/01.jpg',
-        'assets/images/suspension-house/02.jpg',
-        'assets/images/suspension-house/03.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Fougeron_SuspensionHouse_50S7745.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Fougeron_SuspensionHouse_50S8473-POST.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Fougeron_SuspensionHouse_50S8630.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Fougeron_SuspensionHouse_50S9219.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Fougeron_SuspensionHouseDJI_0482.jpg',
       ],
-      thumbnail: 'assets/images/suspension-house/thumb.jpg',
+      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_21%20IN%20NA/Fougeron_SuspensionHouse_50S8922-POST.jpg',
     },
+    cloudinaryTag: 'FS R22/21 IN NA',
     plan: 'assets/plans/suspension-house.svg',
   },
   {
@@ -162,14 +181,16 @@ const PROJECTS = [
       { number: 4, name: 'Litorale', type: 'Washbasin/Countertop' },
     ],
     images: {
-      hero: 'assets/images/hh47-house/hero.jpg',
+      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_63%20IN%20EU/09192019_JUMA_Hoge_Heirweg_Luyens_Van_De_Keere_Annick_Vernimmen_264.jpg',
       gallery: [
-        'assets/images/hh47-house/01.jpg',
-        'assets/images/hh47-house/02.jpg',
-        'assets/images/hh47-house/03.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_63%20IN%20EU/00516055_O.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_63%20IN%20EU/09192019_JUMA_Hoge_Heirweg_Luyens_Van_De_Keere_Annick_Vernimmen_079.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_63%20IN%20EU/09192019_JUMA_Hoge_Heirweg_Luyens_Van_De_Keere_Annick_Vernimmen_173.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_63%20IN%20EU/09192019_JUMA_Hoge_Heirweg_Luyens_Van_De_Keere_Annick_Vernimmen_226.jpg',
       ],
-      thumbnail: 'assets/images/hh47-house/thumb.jpg',
+      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_63%20IN%20EU/09192019_JUMA_Hoge_Heirweg_Luyens_Van_De_Keere_Annick_Vernimmen_264.jpg',
     },
+    cloudinaryTag: 'FS R19/63 IN EU',
     plan: 'assets/plans/hh47-house.svg',
   },
   {
@@ -189,13 +210,14 @@ const PROJECTS = [
       { number: 3, name: 'Square', type: 'Shower' },
     ],
     images: {
-      hero: 'assets/images/villa-with-internal-view/hero.jpg',
+      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_27%20IN%20EU/hires.tobias.kaser.007.jpg',
       gallery: [
-        'assets/images/villa-with-internal-view/01.jpg',
-        'assets/images/villa-with-internal-view/02.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_27%20IN%20EU/hires.tobias.kaser.012.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_27%20IN%20EU/hires.tobias.kaser.025.jpg',
       ],
-      thumbnail: 'assets/images/villa-with-internal-view/thumb.jpg',
+      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_27%20IN%20EU/hires.tobias.kaser.007.jpg',
     },
+    cloudinaryTag: 'FS R25/27 IN EU',
     plan: 'assets/plans/villa-with-internal-view.svg',
   },
   {
@@ -217,14 +239,15 @@ const PROJECTS = [
       { number: 5, name: 'Plan-a', type: 'Shower' },
     ],
     images: {
-      hero: 'assets/images/sage-house/hero.jpg',
+      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_04%20IN%20OC/CW_Sage_House_53-POST.jpg',
       gallery: [
-        'assets/images/sage-house/01.jpg',
-        'assets/images/sage-house/02.jpg',
-        'assets/images/sage-house/03.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_04%20IN%20OC/CW_Sage_House_11.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_04%20IN%20OC/CW_Sage_House_51.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_04%20IN%20OC/CW_Sage_House_54.jpg',
       ],
-      thumbnail: 'assets/images/sage-house/thumb.jpg',
+      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R19_04%20IN%20OC/CW_Sage_House_53-POST.jpg',
     },
+    cloudinaryTag: 'FS R19/04 IN OC',
     plan: 'assets/plans/sage-house.svg',
   },
   {
@@ -249,14 +272,16 @@ const PROJECTS = [
       { number: 8, name: 'Gemma', type: 'Extras' },
     ],
     images: {
-      hero: 'assets/images/twin-gable-house/hero.jpg',
+      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_16%20IN%20NA/Leidner_Eichler_01.jpg',
       gallery: [
-        'assets/images/twin-gable-house/01.jpg',
-        'assets/images/twin-gable-house/02.jpg',
-        'assets/images/twin-gable-house/03.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_16%20IN%20NA/Leidner_Eichler_09.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_16%20IN%20NA/Leidner_Eichler_10.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_16%20IN%20NA/Leidner_Eichler_31.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_16%20IN%20NA/Leidner_Eichler_34.jpg',
       ],
-      thumbnail: 'assets/images/twin-gable-house/thumb.jpg',
+      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_16%20IN%20NA/Leidner_Eichler_01.jpg',
     },
+    cloudinaryTag: 'FS R20/16 IN NA',
     plan: 'assets/plans/twin-gable-house.svg',
   },
   {
@@ -282,15 +307,18 @@ const PROJECTS = [
       { number: 9, name: 'Memory', type: 'Accessories' },
     ],
     images: {
-      hero: 'assets/images/kew-residence/hero.jpg',
+      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_036_HR.jpg',
       gallery: [
-        'assets/images/kew-residence/01.jpg',
-        'assets/images/kew-residence/02.jpg',
-        'assets/images/kew-residence/03.jpg',
-        'assets/images/kew-residence/04.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_021_HR.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_027_HR.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_030_HR.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_042_HR.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_043_HR-POST.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_052_HR.jpg',
       ],
-      thumbnail: 'assets/images/kew-residence/thumb.jpg',
+      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_21%20IN%20OC/GG_TLP001_JWAKew_036_HR.jpg',
     },
+    cloudinaryTag: 'FS R20/21 IN OC',
     plan: 'assets/plans/kew-residence.svg',
   },
   {
@@ -309,13 +337,15 @@ const PROJECTS = [
       { number: 2, name: 'Vieques', type: 'Bathtub, Washbasin' },
     ],
     images: {
-      hero: 'assets/images/shutter-house/hero.jpg',
+      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_26%20IN%20OC/20200211_SOK_Shutter_House_645.jpg',
       gallery: [
-        'assets/images/shutter-house/01.jpg',
-        'assets/images/shutter-house/02.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_26%20IN%20OC/20200211_SOK_Shutter_House_008_2.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_26%20IN%20OC/20200211_SOK_Shutter_House_355.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_26%20IN%20OC/20200211_SOK_Shutter_House_363.jpg',
       ],
-      thumbnail: 'assets/images/shutter-house/thumb.jpg',
+      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R20_26%20IN%20OC/20200211_SOK_Shutter_House_645.jpg',
     },
+    cloudinaryTag: 'FS R20/26 IN OC',
     plan: 'assets/plans/shutter-house.svg',
   },
   {
@@ -338,13 +368,15 @@ const PROJECTS = [
       { number: 6, name: 'Lariana', type: 'Bathtub, Washbasin' },
     ],
     images: {
-      hero: 'assets/images/apartment-xviii/hero.jpg',
+      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_09%20IN%20EU/studio_razavi_architecture_-_Apartment_XVIII_-_Vincent_Leroux_3.jpg',
       gallery: [
-        'assets/images/apartment-xviii/01.jpg',
-        'assets/images/apartment-xviii/02.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_09%20IN%20EU/studio_razavi_architecture_-_Apartment_XVIII_-_Vincent_Leroux_9.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_09%20IN%20EU/studio_razavi_architecture_-_Apartment_XVIII_-_Vincent_Leroux_20.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_09%20IN%20EU/studio_razavi_architecture_-_Apartment_XVIII_-_Vincent_Leroux_21.jpg',
       ],
-      thumbnail: 'assets/images/apartment-xviii/thumb.jpg',
+      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R22_09%20IN%20EU/studio_razavi_architecture_-_Apartment_XVIII_-_Vincent_Leroux_3.jpg',
     },
+    cloudinaryTag: 'FS R22/09 IN EU',
     plan: 'assets/plans/apartment-xviii.svg',
   },
   {
@@ -365,14 +397,16 @@ const PROJECTS = [
       { number: 4, name: 'Nudo', type: 'Mirror' },
     ],
     images: {
-      hero: 'assets/images/yolo-house/hero.jpg',
+      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_24%20IN%20OC/PATTERN_YOLO_256_FULLRES.jpg',
       gallery: [
-        'assets/images/yolo-house/01.jpg',
-        'assets/images/yolo-house/02.jpg',
-        'assets/images/yolo-house/03.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_24%20IN%20OC/PATTERN_YOLO_305_FULLRES.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_24%20IN%20OC/PATTERN_YOLO_355_FULLRES.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_24%20IN%20OC/PATTERN_YOLO_413_FULLRES.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_24%20IN%20OC/PATTERN_YOLO_522-Edit_FULLRES.jpg',
       ],
-      thumbnail: 'assets/images/yolo-house/thumb.jpg',
+      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R25_24%20IN%20OC/PATTERN_YOLO_256_FULLRES.jpg',
     },
+    cloudinaryTag: 'FS R25/24 IN OC',
     plan: 'assets/plans/yolo-house.svg',
   },
   {
@@ -394,14 +428,16 @@ const PROJECTS = [
       { number: 5, name: 'Nudo', type: 'Mirror' },
     ],
     images: {
-      hero: 'assets/images/merricks-farmhouse/hero.jpg',
+      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_23%20IN%20OC/LUMBYMERRICKS_342_fullres.jpg',
       gallery: [
-        'assets/images/merricks-farmhouse/01.jpg',
-        'assets/images/merricks-farmhouse/02.jpg',
-        'assets/images/merricks-farmhouse/03.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_23%20IN%20OC/LUMBYMERRICKS_107-Edit_fullres.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_23%20IN%20OC/LUMBYMERRICKS_118_fullres.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_23%20IN%20OC/LUMBYMERRICKS_266-Edit_fullres.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_23%20IN%20OC/LUMBYMERRICKS_296-Edit_fullres.jpg',
       ],
-      thumbnail: 'assets/images/merricks-farmhouse/thumb.jpg',
+      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_23%20IN%20OC/LUMBYMERRICKS_342_fullres.jpg',
     },
+    cloudinaryTag: 'FS R23/23 IN OC',
     plan: 'assets/plans/merricks-farmhouse.svg',
   },
   {
@@ -427,15 +463,18 @@ const PROJECTS = [
       { number: 9, name: 'Nudo', type: 'Mirror' },
     ],
     images: {
-      hero: 'assets/images/casa-mezcal/hero.jpg',
+      hero: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/03_CasaMezcal_BardevanVoltt_AlejandroRamirezOrozco.jpg',
       gallery: [
-        'assets/images/casa-mezcal/01.jpg',
-        'assets/images/casa-mezcal/02.jpg',
-        'assets/images/casa-mezcal/03.jpg',
-        'assets/images/casa-mezcal/04.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/05_CasaMezcal_BardevanVoltt_AlejandroRamirezOrozco.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/23_CasaMezcal_BardevanVoltt_AlejandroRamirezOrozco.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/24_CasaMezcal_BardevanVoltt_AlejandroRamirezOrozco.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/31_CasaMezcal_BardevanVoltt_AlejandroRamirezOrozco.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/65_CasaMezcal_BardeVanVoltt_HighResolution_RGB_PohotoByAlejandroRamirezOrozco.jpg',
+        'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/77_CasaMezcal_BardeVanVoltt_HighResolution_RGB_PohotoByAlejandroRamirezOrozco.jpg',
       ],
-      thumbnail: 'assets/images/casa-mezcal/thumb.jpg',
+      thumbnail: 'https://res.cloudinary.com/agapelibrary/image/upload/Agape%20Field%20Studies%2026/FS%20R23_26%20IN%20NA/03_CasaMezcal_BardevanVoltt_AlejandroRamirezOrozco.jpg',
     },
+    cloudinaryTag: 'FS R23/26 IN NA',
     plan: 'assets/plans/casa-mezcal.svg',
   },
   {
