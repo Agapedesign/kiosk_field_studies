@@ -259,37 +259,47 @@
         var idx = 0;
         allCellEls.forEach(function (cell) {
           if (cell.dataset.project !== activeProjectId) {
-            gsap.to(cell.querySelector('.grid__cell-inner'), {
-              clipPath: 'inset(0 0 100% 0)',
-              scale: 1.08,
-              duration: dur,
-              delay: idx * stagger,
-              ease: 'power2.in',
-              overwrite: true,
-            });
+            gsap.fromTo(
+              cell.querySelector('.grid__cell-inner'),
+              { clipPath: 'inset(0% 0% 0% 0%)', scale: 1 },
+              {
+                clipPath: 'inset(0% 0% 100% 0%)',
+                scale: 1.08,
+                duration: dur,
+                delay: idx * stagger,
+                ease: 'power2.in',
+                overwrite: true,
+                immediateRender: false,
+              }
+            );
             idx++;
           }
         });
         return delay(dur + idx * stagger + 0.05);
       }
 
-      /** T6: Reveal all non-project cells back with wave stagger. */
+      /** T6: Reveal all non-project cells — curtain down (top → bottom), wave stagger. */
       function revealNonProject(activeProjectId) {
         var staggerIdx = 0;
         allCellEls.forEach(function (cell) {
           if (activeProjectId && cell.dataset.project === activeProjectId) return;
           var inner = cell.querySelector('.grid__cell-inner');
-          gsap.to(inner, {
-            clipPath: 'inset(0% 0 0 0)',
-            scale: 1,
-            duration: 0.6,
-            ease: 'power2.out',
-            delay: 0.03 * staggerIdx,
-            overwrite: true,
-          });
+          gsap.fromTo(
+            inner,
+            { clipPath: 'inset(0% 0% 100% 0%)', scale: 1.08 },
+            {
+              clipPath: 'inset(0% 0% 0% 0%)',
+              scale: 1,
+              duration: 1.0,
+              ease: 'power3.out',
+              delay: 0.04 * staggerIdx,
+              overwrite: true,
+              immediateRender: false,
+            }
+          );
           staggerIdx++;
         });
-        return 0.6 + 0.03 * staggerIdx;
+        return 1.0 + 0.04 * staggerIdx;
       }
 
       // Initial reveal
@@ -313,17 +323,24 @@
         });
       }
 
-      /** Composition slots within 1080×1920 — free layout, centers + max bounds. */
+      /**
+       * Composition slots within 1080×1920 — non-overlapping free layout.
+       * Each slot = { cx, cy, maxW, maxH }. Images fit inside max bounds
+       * preserving natural aspect; boxes are designed with clear gutters
+       * so fitted images never overlap regardless of aspect ratio.
+       *
+       * Bands: top (hero + 2 accents), mid, bottom.
+       */
       function getCompositionSlots(n) {
         var all = [
-          { cx: 540,  cy: 560,  maxW: 780, maxH: 900 },   // 0: hero, big top-center
-          { cx: 260,  cy: 1220, maxW: 440, maxH: 540 },   // 1: left mid
-          { cx: 790,  cy: 1260, maxW: 460, maxH: 560 },   // 2: right mid
-          { cx: 320,  cy: 1680, maxW: 400, maxH: 440 },   // 3: bottom left
-          { cx: 760,  cy: 1720, maxW: 400, maxH: 460 },   // 4: bottom right
-          { cx: 540,  cy: 1460, maxW: 340, maxH: 380 },   // 5: center mid
-          { cx: 160,  cy: 880,  maxW: 280, maxH: 340 },   // 6: upper-left accent
-          { cx: 900,  cy: 900,  maxW: 280, maxH: 340 },   // 7: upper-right accent
+          { cx: 540, cy: 470,  maxW: 640, maxH: 800 }, // 0 hero (x 220–860, y 70–870)
+          { cx: 275, cy: 1150, maxW: 490, maxH: 440 }, // 1 left mid  (x 30–520,  y 930–1370)
+          { cx: 805, cy: 1150, maxW: 490, maxH: 440 }, // 2 right mid (x 560–1050,y 930–1370)
+          { cx: 215, cy: 1620, maxW: 350, maxH: 400 }, // 3 bottom-left   (x 40–390,  y 1420–1820)
+          { cx: 865, cy: 1620, maxW: 350, maxH: 400 }, // 4 bottom-right  (x 690–1040,y 1420–1820)
+          { cx: 540, cy: 1620, maxW: 270, maxH: 400 }, // 5 bottom-center (x 405–675, y 1420–1820)
+          { cx: 100, cy: 320,  maxW: 170, maxH: 280 }, // 6 upper-left accent  (x 15–185, y 180–460)
+          { cx: 980, cy: 320,  maxW: 170, maxH: 280 }, // 7 upper-right accent (x 895–1065,y 180–460)
         ];
         return all.slice(0, Math.min(n, all.length));
       }
@@ -348,7 +365,9 @@
       // =============================================
 
       var currentActiveId = null;
-      var cycleAborted = false;
+      var cycleIdCounter = 0;
+      var activeCycleId = 0;
+      var cycleCompleted = false;
       var activeLayer = null;
       var activeHeroInner = null;
 
@@ -364,6 +383,11 @@
       }
 
       async function cycleProject(projectId, projectIndex) {
+        var myId = ++cycleIdCounter;
+        activeCycleId = myId;
+        cycleCompleted = false;
+        function live() { return activeCycleId === myId; }
+
         var project = PROJECTS[projectIndex];
         var cellEl = allCellEls.find(function (c) { return c.dataset.project === projectId; });
         if (!cellEl) return;
@@ -378,13 +402,13 @@
 
         // T-1
         await hideNonProject(projectId);
-        if (cycleAborted) return;
+        if (!live()) return;
 
         // Preload with natural dimensions
         var imgData = await Promise.all(imgUrls.map(function (url) {
           return preloadImageWithSize(cldImg(url, FULL_W));
         }));
-        if (cycleAborted) return;
+        if (!live()) return;
 
         // Measure hero cell image rect (actual rendered rect, not cell box)
         var sr = screenRight.getBoundingClientRect();
@@ -423,7 +447,7 @@
         // T0: swap grid thumb → floating hero (same position, same size)
         gsap.set(innerEl, { opacity: 0 });
         await delay(0.25);
-        if (cycleAborted) return;
+        if (!live()) return;
 
         // T1 + T2: non-hero slide out from under hero; hero scales up last
         var slots = getCompositionSlots(floaters.length);
@@ -451,11 +475,11 @@
           ease: 'power3.inOut',
         });
         await Promise.all(nonHeroTweens.concat([heroTween]));
-        if (cycleAborted) return;
+        if (!live()) return;
 
         // T3: hold
         await delay(3.8);
-        if (cycleAborted) return;
+        if (!live()) return;
 
         // T4: side-curtain hides non-hero images (left edge sweeps right)
         var hideTweens = floaters.slice(1).map(function (f, i) {
@@ -467,7 +491,7 @@
           });
         });
         await Promise.all(hideTweens);
-        if (cycleAborted) return;
+        if (!live()) return;
 
         // T5: hero scales back to grid cell rect
         await animate(floaters[0].el, {
@@ -478,7 +502,7 @@
           duration: 0.9,
           ease: 'power3.inOut',
         });
-        if (cycleAborted) return;
+        if (!live()) return;
 
         // Restore grid thumb, remove floating layer
         gsap.set(innerEl, { opacity: 1 });
@@ -486,8 +510,13 @@
         activeLayer = null;
         activeHeroInner = null;
 
-        // T6: reveal other cells with wave stagger
+        // Brief beat so T5 → T6 reads as two distinct steps
+        await delay(0.4);
+        if (!live()) return;
+
+        // T6: reveal other cells — curtain down with wave stagger
         revealNonProject(projectId);
+        cycleCompleted = true;
       }
 
       // =============================================
@@ -500,20 +529,23 @@
         var activeId = isActive ? PROJECTS[state.projectIndex].id : null;
 
         if (activeId !== currentActiveId) {
-          // Abort running cycle, tear down any floating layer
-          cycleAborted = true;
           var prevId = currentActiveId;
+          var wasCompleted = cycleCompleted;
+
+          // Invalidate any running cycle — its `live()` checks will now fail.
+          activeCycleId++;
           cleanupCycle();
 
-          if (prevId && !activeId) {
-            // Returning to T0 — reveal previously hidden cells
+          // Only force-reveal if cycleProject didn't already run T6 naturally.
+          // Avoids jarring double animation at end of each project.
+          if (prevId && !wasCompleted) {
             revealNonProject(prevId);
           }
+          cycleCompleted = false;
 
           currentActiveId = activeId;
 
           if (activeId) {
-            cycleAborted = false;
             cycleProject(activeId, state.projectIndex);
           }
         }
