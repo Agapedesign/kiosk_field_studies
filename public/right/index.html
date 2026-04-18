@@ -117,6 +117,7 @@
   <script src="../shared/config.js"></script>
   <script src="../shared/projects.js"></script>
   <script src="../shared/timeline.js"></script>
+  <script src="../shared/sync.js"></script>
   <script>
     (function () {
       'use strict';
@@ -608,14 +609,43 @@
         // T6: reveal all cells (including active) — curtain down wave
         revealNonProject(null);
         cycleCompleted = true;
+
+        // Tell SX we're done with this project so it can close the accordion.
+        if (SYNC.isAuthoritative()) {
+          SYNC.broadcastProjectEnd(projectIndex, projectId);
+          syncPinnedIndex = null;
+        }
       }
 
       // =============================================
-      // 8. State machine — poll TIMELINE, trigger cycle
+      // 8. State machine — sync-driven (PartyKit) or TIMELINE fallback
       // =============================================
 
+      // When sync is authoritative, SX's project_start pins the active
+      // index here; cycleProject broadcasts project_end which clears it.
+      // Without sync we fall back to TIMELINE-based polling.
+      var syncPinnedIndex = null;
+
+      SYNC.on('project_start', function (msg) {
+        if (typeof msg.index !== 'number') return;
+        var expected = PROJECTS[msg.index] && PROJECTS[msg.index].id;
+        if (msg.id && expected && msg.id !== expected) {
+          console.warn('[DX] project_start id mismatch — index', msg.index,
+                       'expected', expected, 'got', msg.id);
+        }
+        syncPinnedIndex = msg.index;
+      });
+
       function updateGridState() {
-        var state = TIMELINE.getState();
+        var state;
+        if (SYNC.isAuthoritative()) {
+          state = syncPinnedIndex !== null
+            ? { projectIndex: syncPinnedIndex, phase: 't1' }
+            : { projectIndex: 0, phase: 't0' };
+        } else {
+          state = TIMELINE.getState();
+        }
+
         var isActive = state.phase !== 't0' && state.phase !== 'dissolve';
         var activeId = isActive ? PROJECTS[state.projectIndex].id : null;
 
@@ -644,6 +674,7 @@
         requestAnimationFrame(updateGridState);
       }
 
+      SYNC.connect('dx');
       requestAnimationFrame(updateGridState);
 
       // =============================================

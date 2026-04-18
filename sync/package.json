@@ -1,0 +1,12 @@
+{
+  "name": "field-studies-sync",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "partykit dev",
+    "deploy": "partykit deploy"
+  },
+  "devDependencies": {
+    "partykit": "^0.0.113"
+  }
+}

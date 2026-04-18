@@ -106,5 +106,14 @@ const CONFIG = {
   // Position in loop = (Date.now() - start) % totalLoopDuration
   sync: {
     defaultStart: 1713100800000,  // Unix ms — fallback if no ?start= param
+
+    // --- PartyKit relay (optional) ---
+    // When `host` is empty, each screen runs its own standalone timeline
+    // (no WebSocket traffic). After `partykit deploy` in /sync, set host
+    // to the deployed origin (e.g. 'field-studies-sync.<user>.partykit.dev').
+    host: '',
+    room: 'showroom',
+    // SX max wait for DX's project_end before auto-advancing.
+    projectEndTimeoutMs: 120000,
   },
 };
