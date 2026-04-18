@@ -570,6 +570,13 @@
         var TRANS_DUR  = 1.0;
 
         for (var i = 0; i < imgData.length; i++) {
+          // The last image is about to drift at centre — give SX a head
+          // start so its accordion-close + sweep-to-next overlap with
+          // our remaining drift/transition/T6 instead of running after.
+          if (i === imgData.length - 1 && SYNC.isAuthoritative()) {
+            SYNC.broadcastProjectEnd(projectIndex, projectId);
+          }
+
           await animate(allFloaterEls, {
             y: '-=' + DRIFT_DIST,
             duration: DRIFT_DUR,
@@ -610,9 +617,14 @@
         revealNonProject(null);
         cycleCompleted = true;
 
-        // Tell SX we're done with this project so it can close the accordion.
-        if (SYNC.isAuthoritative()) {
-          SYNC.broadcastProjectEnd(projectIndex, projectId);
+        // Apply any project_start that arrived while we were finishing
+        // (SX tends to outrun T6 when close + sweep is short), or clear
+        // the pin so the grid stays as the idle state.
+        if (pendingStart) {
+          var queued = pendingStart;
+          pendingStart = null;
+          applyStart(queued);
+        } else {
           syncPinnedIndex = null;
         }
       }
@@ -622,18 +634,31 @@
       // =============================================
 
       // When sync is authoritative, SX's project_start pins the active
-      // index here; cycleProject broadcasts project_end which clears it.
-      // Without sync we fall back to TIMELINE-based polling.
+      // index here; cycleProject clears it (or swaps in a pending one)
+      // after T6 completes. Without sync we fall back to TIMELINE.
       var syncPinnedIndex = null;
+      // A project_start that arrived before our own T6 finished — we
+      // hold it so updateGridState can't abort the reveal animation.
+      var pendingStart = null;
 
-      SYNC.on('project_start', function (msg) {
-        if (typeof msg.index !== 'number') return;
+      function applyStart(msg) {
         var expected = PROJECTS[msg.index] && PROJECTS[msg.index].id;
         if (msg.id && expected && msg.id !== expected) {
           console.warn('[DX] project_start id mismatch — index', msg.index,
                        'expected', expected, 'got', msg.id);
         }
         syncPinnedIndex = msg.index;
+      }
+
+      SYNC.on('project_start', function (msg) {
+        if (typeof msg.index !== 'number') return;
+        // If we're mid-cycle but haven't reached T6 yet, buffer — letting
+        // updateGridState switch now would kill the reveal animation.
+        if (currentActiveId !== null && !cycleCompleted) {
+          pendingStart = msg;
+          return;
+        }
+        applyStart(msg);
       });
 
       function updateGridState() {
