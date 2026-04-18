@@ -971,18 +971,25 @@
             await sweepLoop(item.el);
             highlightProject(i);
 
+            // Kick DX the moment scroll settles — its zoom/gallery runs
+            // in parallel with our accordion open, so both screens reach
+            // their "content visible" state together.
+            var syncLive = SYNC.isAuthoritative();
+            if (syncLive) {
+              SYNC.broadcastProjectStart(i, project.id);
+            }
+
             // Brief pause — title visible
             await delay(0.4);
 
             // Open accordion (with SVG stroke animation)
             await openAccordion(item, project.id);
 
-            // Hold: T₁ + T₂ duration — when sync is live, DX is the
-            // authoritative clock and we wait for its project_end; when
-            // standalone, fall back to the fixed per-project duration.
+            // Hold: when sync is live, DX is the authoritative clock
+            // and we wait for its project_end; standalone falls back to
+            // the fixed per-project duration.
             var holdDuration = CONFIG.t1.duration + CONFIG.t2.durationPerImage * imgCount;
-            if (SYNC.isAuthoritative()) {
-              SYNC.broadcastProjectStart(i, project.id);
+            if (syncLive) {
               await waitForProjectEnd(i, project.id, holdDuration);
             } else {
               await delay(holdDuration);
