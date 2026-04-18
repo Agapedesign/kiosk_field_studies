@@ -84,6 +84,10 @@
       inset: 0;
       z-index: 10;
       pointer-events: none;
+      /* Isolate this layer from outside compositing — smart-TV browsers
+         can then treat it as a self-contained surface during scroll. */
+      contain: layout paint size;
+      isolation: isolate;
     }
 
     .fs-layer img {
@@ -130,16 +134,19 @@
        */
       function cldImg(url, w, h) {
         if (!url || url.indexOf('res.cloudinary.com') === -1) return url;
-        var transform = h
-          ? 'w_' + w + ',h_' + h + ',c_fill,q_auto,f_auto'
-          : 'w_' + w + ',c_limit,q_auto,f_auto';
-        return url.replace('/upload/', '/upload/' + transform + '/');
+        var parts = ['w_' + w];
+        if (h) parts.push('h_' + h);
+        parts.push('c_limit', 'q_auto', 'f_auto');
+        return url.replace('/upload/', '/upload/' + parts.join(',') + '/');
       }
 
       // Thumbnail width — matches actual cell size (~140px)
       var THUMB_W = 150;
-      // Fullscreen width
-      var FULL_W = 1080;
+      // Floater max dimensions — the scroll band is ~700px wide and the
+      // screen is 1920 tall, so fetching larger than 800×1920 just burns
+      // smart-TV GPU memory and decode time. `c_limit` keeps natural
+      // aspect; smaller dimension is whichever fits first.
+      var FULL_W = 800;
       var FULL_H = 1920;
 
       var FALLBACK_BG = 'rgba(0,0,0,0.05)';
@@ -338,12 +345,25 @@
       // 7. Project cycle — vertical scroll storyboard
       // =============================================
 
-      /** Preload image and return natural dimensions. */
+      /**
+       * Preload image, pre-decode to bitmap, and return natural dimensions.
+       * Using `img.decode()` (where supported) means the smart-TV main
+       * thread isn't stalled decoding JPEGs at the moment the floater is
+       * added to the DOM — one less source of scroll glitching.
+       */
       function preloadImageWithSize(url) {
         return new Promise(function (resolve) {
           var tmp = new Image();
-          tmp.onload = function () {
+          tmp.decoding = 'async';
+          function done() {
             resolve({ url: url, w: tmp.naturalWidth || 1080, h: tmp.naturalHeight || 1440 });
+          }
+          tmp.onload = function () {
+            if (typeof tmp.decode === 'function') {
+              tmp.decode().then(done, done);
+            } else {
+              done();
+            }
           };
           tmp.onerror = function () {
             resolve({ url: url, w: 1080, h: 1440 });
@@ -366,6 +386,9 @@
         if (activeHeroInner) {
           gsap.set(activeHeroInner, { opacity: 1 });
         }
+        // Ensure the grid is visible again even if a cycle was aborted
+        // mid-T3 (we hide it during scroll for compositor performance).
+        grid.style.visibility = '';
         activeLayer = null;
         activeHeroInner = null;
       }
@@ -389,9 +412,11 @@
         await hideNonProject(projectId);
         if (!live()) return;
 
-        // Preload all images with natural dimensions
+        // Preload all images with natural dimensions. Cap both
+        // dimensions at Cloudinary so decode + GPU memory on the smart
+        // TV match the actual display size instead of the source.
         var imgData = await Promise.all(imgUrls.map(function (url) {
-          return preloadImageWithSize(cldImg(url, FULL_W));
+          return preloadImageWithSize(cldImg(url, FULL_W, FULL_H));
         }));
         if (!live()) return;
 
@@ -444,6 +469,7 @@
         // T1 only has to animate transform (GPU) back to identity.
         var floaters = imgData.map(function (data, i) {
           var el = document.createElement('img');
+          el.decoding = 'async';
           el.src = data.url;
           layer.appendChild(el);
           gsap.set(el, {
@@ -487,6 +513,8 @@
         // fade combined with curtain-down (top → bottom unveil).
         // Uses fromTo + immediateRender:false (same pattern as grid curtains)
         // so GSAP has explicit, consistent-unit endpoints for clipPath.
+        // Clip-path is cleared on completion so T3 scroll doesn't pay
+        // the per-frame clip cost (smart-TV GPUs are sensitive to it).
         if (floaters.length > 1) {
           var nonHeroEls = floaters.slice(1).map(function (f) { return f.el; });
           await new Promise(function (resolve) {
@@ -504,6 +532,21 @@
           });
           if (!live()) return;
         }
+
+        // Normalize every floater before scrolling: no clip-path, and
+        // will-change narrowed to transform only. Smart-TV compositors
+        // pay per-frame cost for clip-path even when fully open, and a
+        // broad will-change hint discourages layer caching.
+        allFloaterEls.forEach(function (el) {
+          el.style.clipPath = 'none';
+          el.style.willChange = 'transform';
+        });
+
+        // Nothing in the grid is visible during scroll (all cells are
+        // curtain-up, hero lives on the floater layer). Hiding the grid
+        // wholesale stops the compositor from walking its 36 clipped
+        // cells every frame.
+        grid.style.visibility = 'hidden';
 
         // T3: drift-then-transition per image.
         //   drift — 2 s linear slow crawl (min velocity, never fully 0)
@@ -543,6 +586,9 @@
         if (layer.parentNode) layer.parentNode.removeChild(layer);
         activeLayer = null;
         activeHeroInner = null;
+
+        // Grid comes back into the paint tree before the reveal sweep.
+        grid.style.visibility = '';
 
         await delay(0.2);
         if (!live()) return;
