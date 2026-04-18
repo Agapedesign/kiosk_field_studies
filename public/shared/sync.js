@@ -15,6 +15,8 @@ const SYNC = (function () {
   var role = null;
   var reconnectTimer = null;
   var lastMessageTs = 0;
+  var sentCount = 0;
+  var recvCount = 0;
   var handlers = {
     project_start: [],
     project_end: [],
@@ -44,11 +46,12 @@ const SYNC = (function () {
     }
 
     ws.onopen = function () {
-      console.log('[SYNC] connected');
+      console.log('[SYNC] ✓ connected as', role);
     };
 
     ws.onmessage = function (event) {
       lastMessageTs = Date.now();
+      recvCount++;
       var msg;
       try {
         msg = JSON.parse(event.data);
@@ -56,6 +59,7 @@ const SYNC = (function () {
         console.warn('[SYNC] bad JSON', event.data);
         return;
       }
+      console.log('[SYNC] ← recv', msg.type, msg.index, msg.id);
       var list = handlers[msg.type];
       if (!list) return;
       for (var i = 0; i < list.length; i++) {
@@ -63,13 +67,13 @@ const SYNC = (function () {
       }
     };
 
-    ws.onclose = function () {
-      console.log('[SYNC] disconnected, retrying in 2s');
+    ws.onclose = function (event) {
+      console.log('[SYNC] ✗ disconnected (code', event.code, '), retrying in 2s');
       scheduleReconnect();
     };
 
-    ws.onerror = function () {
-      // onclose will fire next — reconnect handled there
+    ws.onerror = function (err) {
+      console.warn('[SYNC] error event', err);
     };
   }
 
@@ -79,9 +83,14 @@ const SYNC = (function () {
   }
 
   function send(msg) {
-    if (!ws || ws.readyState !== WebSocket.OPEN) return false;
+    if (!ws || ws.readyState !== WebSocket.OPEN) {
+      console.warn('[SYNC] send skipped — not connected', msg);
+      return false;
+    }
     try {
       ws.send(JSON.stringify(msg));
+      sentCount++;
+      console.log('[SYNC] → send', msg.type, msg.index, msg.id);
       return true;
     } catch (e) {
       console.warn('[SYNC] send failed', e);
@@ -114,6 +123,21 @@ const SYNC = (function () {
     },
     broadcastProjectEnd: function (index, id) {
       return send({ type: 'project_end', index: index, id: id, ts: Date.now() });
+    },
+    /** Console helper: `SYNC.status()` prints current state. */
+    status: function () {
+      var s = {
+        role: role,
+        url: buildUrl(),
+        readyState: ws ? ws.readyState : 'no ws',
+        connected: isConnected(),
+        authoritative: isAuthoritative(),
+        sent: sentCount,
+        received: recvCount,
+        lastMessageAgo: lastMessageTs ? (Date.now() - lastMessageTs) + 'ms' : 'never',
+      };
+      console.table(s);
+      return s;
     },
   };
 })();
