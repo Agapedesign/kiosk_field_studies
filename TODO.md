@@ -10,3 +10,4 @@ Future improvements, not required for MDW 2026 opening.
 6. **4K option for hi-res screens** — 2160×3840 portrait asset pipeline and adaptive CSS so the same codebase scales to 4K panels.
 7. **Same-browser two-windows option** — ability to open SX and DX side-by-side in a single browser (split viewport or paired windows) for development and for venues where one PC drives two outputs.
 8. **Line weights revision** — audit all SVG strokes, accordion borders, and text weights for consistency across the 37 project plans.
+9. **DX gallery image width option** — switch between full-width (1080px) gallery images on DX, or images sized to match the SX column width (so both screens share a visual grid).
